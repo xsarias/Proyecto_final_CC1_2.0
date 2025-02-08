@@ -14,9 +14,7 @@ class Multilista_cancion {
     MiVector<nodo_canciones> lista_datos; // Lista de datos
 
 public:
-    Multilista_cancion() : num_dat(0), num_cab(0) {
-        // Inicializar la multilista con cabeceras básicas si es necesario
-    }
+    
 
     void insertar(nodo_canciones Dato);
     void insertar(cabeza Cabeza);
@@ -182,7 +180,7 @@ void Multilista_cancion::por_pais(int pos, string dato) {
     }
 }
 void Multilista_cancion::por_ciudad(int pos, string dato) {
-    int pos_cab = 5;
+    int pos_cab = 6;
     int cab = lista_cabeceras[pos_cab].pos_cabeza;
     if (cab == 0 || dato < retornar_dato(cab, "ciudadGrabacion")) {
         lista_datos[pos].sig_ciudad = cab;
@@ -198,6 +196,7 @@ void Multilista_cancion::por_ciudad(int pos, string dato) {
         lista_datos[pos].sig_ciudad= sig;
         lista_datos[ant].sig_ciudad = pos;
     }
+
 }
 
 int Multilista_cancion::retornar_pos(int x, string parametro) {

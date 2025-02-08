@@ -5,9 +5,18 @@
 #include "MiVector.h"
 #include "multilista_version.h"
 #include "Links.h"
-
+#include "estructuras.h"
 using namespace std;
 Multilista_version multi_version;
+
+cabeza titulo_ver = {"tituloVer", 0};
+cabeza  tipoVers = {"tipoVer", 0};
+cabeza anioPub = {"anio_pub", 0};
+cabeza paisGrab = {"pais_grab", 0};
+cabeza artistaPrinc = {"artista_princ", 0};
+cabeza ciudad_Grab = {"Ciudad grabación", 0};
+cabeza genero_ver = {"Género canción ", 0};
+    
 
 class Version {
 private:
@@ -21,15 +30,6 @@ private:
     string genero;  
     int anio; 
     MiVector<nodo_links> listLinksVers;  
-
-    cabeza titulo_ver = {"tituloVer", 0};
-    cabeza tipoVers = {"tipoVer", 0};
-    cabeza anioPub = {"anio_pub", 0};
-    cabeza paisGrab = {"pais_grab", 0};
-    cabeza artistaPrinc = {"artista_princ", 0};
-    cabeza ciudad_Grab = {"Ciudad grabación", 0};
-    cabeza genero_ver = {"Género canción ", 0};
-
 public:
     // Constructores
     Version() : idVersion(0), tituloVer(""), tipVersion(""), anio(0), ciudadGrab(""), paisGra(""), genero(""), arrMusic("") {}

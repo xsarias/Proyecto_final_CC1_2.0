@@ -31,11 +31,13 @@ public:
     string getInstrumInter() const { return instrum_inter; }
 
     void mostrarInformacion();
+    void imprimir_artista(Artista Artista);
     nodo_artistas insertar_artista(Artista artista);
 
     // Métodos para guardar y leer desde archivo
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Artista>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
 };
+
 
 #endif

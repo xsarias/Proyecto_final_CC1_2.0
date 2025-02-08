@@ -1,37 +1,81 @@
 #include <iostream>
+#include "Librerias/Cancion.h"
 #include "Librerias/Links.h"
+#include "Librerias/Artista.h"
 #include "Librerias/MiVector.h"
+#include "Cancion.cpp"
+#include "Artista.cpp"
 #include "Links.cpp"
+
+
 using namespace std;
 
 int main() {
-	// ---------------------------------------------------------------------------------------------
-	// para probar los metodos de archivado de Links
-	// ---------------------------------------------------------------------------------------------
-	MiVector<Links> listaLinks;
+    MiVector<Cancion> listaCanciones;
 
-    // Agregamos algunos Links con ID
-    listaLinks.push_back(Links(1, "Spotify", "https://spotify.com/album1", "https://spotify.com/song1"));
-    listaLinks.push_back(Links(2, "Apple Music", "https://apple.com/album2", "https://apple.com/song2"));
-    listaLinks.push_back(Links(3, "YouTube", "https://youtube.com/album3", "https://youtube.com/song3"));
+    // Agregar algunas canciones de prueba
+    listaCanciones.push_back(Cancion(1, "Bohemian Rhapsody", "Queen", "Rock", 1975, "5:55"));
+    listaCanciones.push_back(Cancion(2, "Imagine", "John Lennon", "Soft Rock", 1971, "3:07"));
+    listaCanciones.push_back(Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01"));
 
-    // Guardamos en archivo
-    string archivo = "links.txt";
-    Links::guardarEnArchivo(archivo, listaLinks);
-    cout << "Links guardados en archivo." << endl;
+    // Guardar las canciones en un archivo
+    string nombreArchivo = "canciones.txt";
+    Cancion::guardarEnArchivo(nombreArchivo, listaCanciones);
+    cout << "Canciones guardadas en " << nombreArchivo << endl;
 
-    // Limpiamos la lista y la volvemos a cargar desde el archivo
-    listaLinks.clear();
-    Links::leerDesdeArchivo(archivo, listaLinks);
+    // Limpiar la lista y volver a cargar desde el archivo
+    MiVector<Cancion> listaRecuperada;
+    Cancion::leerDesdeArchivo(nombreArchivo, listaRecuperada);
+    cout << "Canciones cargadas desde el archivo:\n";
 
-    // Mostramos los links cargados
-    cout << "Links cargados desde archivo:" << endl;
-    for (size_t i = 1; i <= listaLinks.size(); i++) {  // Desde 1 por MiVector
-        cout << listaLinks[i].obtenerLink() << endl;
+    // Mostrar las canciones recuperadas
+    for (size_t i = 1; i <= listaRecuperada.size(); i++) {
+        cout << "ID: " << listaRecuperada[i].getId() << " | "
+             << "Nombre: " << listaRecuperada[i].getNombreCancion() << " | "
+             << "Artista: " << listaRecuperada[i].getNomArtistico() << " | "
+             << "Género: " << listaRecuperada[i].getGenero() << " | "
+             << "Año: " << listaRecuperada[i].getAnioPublicacion() << " | "
+             << "Duración: " << listaRecuperada[i].getDuracion() << endl;
     }
 
     return 0;
 }
+
+
+// #include <iostream>
+// #include "Librerias/Links.h"
+// #include "Librerias/MiVector.h"
+// #include "Links.cpp"
+// using namespace std;
+
+// int main() {
+// 	// ---------------------------------------------------------------------------------------------
+// 	// para probar los metodos de archivado de Links
+// 	// ---------------------------------------------------------------------------------------------
+// 	MiVector<Links> listaLinks;
+
+//     // Agregamos algunos Links con ID
+//     listaLinks.push_back(Links(1, "Spotify", "https://spotify.com/album1", "https://spotify.com/song1"));
+//     listaLinks.push_back(Links(2, "Apple Music", "https://apple.com/album2", "https://apple.com/song2"));
+//     listaLinks.push_back(Links(3, "YouTube", "https://youtube.com/album3", "https://youtube.com/song3"));
+
+//     // Guardamos en archivo
+//     string archivo = "links.txt";
+//     Links::guardarEnArchivo(archivo, listaLinks);
+//     cout << "Links guardados en archivo." << endl;
+
+//     // Limpiamos la lista y la volvemos a cargar desde el archivo
+//     listaLinks.clear();
+//     Links::leerDesdeArchivo(archivo, listaLinks);
+
+//     // Mostramos los links cargados
+//     cout << "Links cargados desde archivo:" << endl;
+//     for (size_t i = 1; i <= listaLinks.size(); i++) {  // Desde 1 por MiVector
+//         cout << listaLinks[i].obtenerLink() << endl;
+//     }
+
+//     return 0;
+// }
 
 
 // #include <iostream>

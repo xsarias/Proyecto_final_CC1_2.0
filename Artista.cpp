@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include "Librerias/Artista.h"
-
 nodo_artistas Artista :: insertar_artista(Artista artista) {
     nodo_artistas artista_nuevo;
     artista_nuevo.id = artista.id;

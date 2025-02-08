@@ -63,7 +63,7 @@ nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> lin
     cancion_nueva.composMusica = cancion.composLetra;
     cancion_nueva.duracion = cancion.duracion;
     cancion_nueva.genero = cancion.genero;
-    for(int i=1; i<=artista.size(); i++){
+    for(int i=1; i<artista.size(); i++){
         cancion_nueva.list_artist.push_back(artista[i].insertar_artista(artista[i]));
     }
     for(int i=1; i<=links.size(); i++){

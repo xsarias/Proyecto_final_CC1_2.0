@@ -49,7 +49,7 @@ void  Cancion :: insertar_cabeceras(){
     multi_cancion.insertar(anio_pub); //8
 
 }
-void  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista){
+void  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<Version> version){
     nodo_canciones cancion_nueva;
     cancion_nueva.nom_cancion = cancion.nombreCancion;
     cancion_nueva.nom_artistico = cancion.nom_artistico;

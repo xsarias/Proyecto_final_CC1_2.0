@@ -67,5 +67,4 @@ struct nodo_album{
     
 };
 
-
 #endif

@@ -4,6 +4,7 @@
 #include "MiVector.h"
 #include "multilista_version.h"
 #include "Links.h"
+#include "estructuras.h"
 using namespace std;
 Multilista_version multi_version;
 class Version {

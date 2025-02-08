@@ -23,7 +23,7 @@ private:
     int anioPublicacion; 
     string genero;  
     MiVector<nodo_links> listPlataf;  
-    MiVector<Version> listVersiones;
+    MiVector<nodo_versiones> listVersiones;
     cabeza nombre_artis = {"nombre artistico", 0};
     cabeza nom_cancion = {"nombre canción", 0};
     cabeza comp_let = {"compositor letra", 0};
@@ -42,8 +42,8 @@ public:
     ciudadGrabacion(ciudadGrabacion), paisGrabacion(paisGrabacion), numArtistasPrincipales(numArtistasPrincipales) {}
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);
-    void insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista);
+    void insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<Version> version);
     void insertar_artista(Artista artista );
 };
 
-#endif
+#endif 

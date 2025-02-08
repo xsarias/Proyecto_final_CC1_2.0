@@ -23,6 +23,7 @@ class Artista {
         string getInstrumInter() const { return instrum_inter; }
         void mostrarInformacion();
         nodo_artistas insertar_artista(Artista artista);
+        void imprimir_links(Artista artista);
 };
 
 

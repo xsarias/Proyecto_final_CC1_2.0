@@ -1,0 +1,3 @@
+1,Spotify,https://spotify.com/album1,https://spotify.com/song1
+2,Apple Music,https://apple.com/album2,https://apple.com/song2
+3,YouTube,https://youtube.com/album3,https://youtube.com/song3

@@ -12,6 +12,24 @@ struct nodo_links{
     std::string link_cancion;
     int sig_nomPlata, sig_linkAlb, sig_linkCan;
 };
+struct nodo_artistas{
+    std::string nom_real;
+    std::string nom_artistico;
+    std::string pais_origen;
+    std::string instru_interpre;
+    int sig_nomReal, sig_nomArtistico, sig_paisOri, sig_instrumento;
+};
+
+struct nodo_versiones{
+    std::string titulos, tipo_version, pais_grab, artista_princ, ciudad_grab, genero;
+    int año;
+    MiVector<nodo_links> lista_links;
+    MiVector<nodo_artistas> lista_artistas;
+    int sig_titulo, sig_tipoVers, sig_paisGrab, sig_artistaPrinc, sig_listaArt;
+    int sig_ciudadGrab, sig_genero, sig_año, sig_listaLinks;
+};
+
+
 struct nodo_canciones{
     std::string nom_artistico;
     std::string nom_cancion;
@@ -36,22 +54,9 @@ struct nodo_canciones{
     int sig_genero;
     int sig_anio_pub;
 };
-struct nodo_artistas{
-    std::string nom_real;
-    std::string nom_artistico;
-    std::string pais_origen;
-    std::string instru_interpre;
-    int sig_nomReal, sig_nomArtistico, sig_paisOri, sig_instrumento;
-};
 
-struct nodo_versiones{
-    std::string titulos, tipo_version, pais_grab, artista_princ, ciudad_grab, genero;
-    int año;
-    MiVector<nodo_links> lista_links;
-    MiVector<nodo_artistas> lista_artistas;
-    int sig_titulo, sig_tipoVers, sig_paisGrab, sig_artistaPrinc, sig_listaArt;
-    int sig_ciudadGrab, sig_genero, sig_año, sig_listaLinks;
-};
+
+
 struct nodo_album{
     std::string titulo, nom_artis, cover, fotografia, editora, estudio_grab, anio_pub;
     MiVector<nodo_links> lista_links;

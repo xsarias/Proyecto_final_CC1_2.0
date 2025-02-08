@@ -1,0 +1,59 @@
+#include "Librerias/Cancion.h"
+#include <iostream>
+
+void Cancion :: imprimir_lista(string parametro, int pos_cab) {
+    // Obtener la posición inicial de la cabeza para el orden del parámetro
+    int cab = multi_cancion.retornar_pos(pos_cab, "pos_cabeza");
+    int cont;
+    if (cab < 0) {
+        cout << "La lista está vacía o no se ha ordenado." << endl;
+        return;
+    }
+    cout << "Lista de " << multi_cancion.retornar_dato(pos_cab, "nombreCabeza") << ":" << endl;
+    int pos_actual=cab;
+    cont= 1;
+    while (pos_actual != 0){
+        // Obtener y mostrar el nombre de la canción actual
+        string caracteristica = multi_cancion.retornar_dato(pos_actual, parametro);
+        cout << cont << "). Nombre canción: " << multi_cancion.retornar_dato(pos_actual, "nom_cancion") << endl;
+        cout << parametro << " -> " << caracteristica << endl;
+        cont++;
+
+        // Pasar al siguiente elemento en la lista
+        if (parametro == "nombre_artistico") {
+            pos_actual = multi_cancion.retornar_pos(pos_actual, "sig_nombre_artistico");
+        } else if (parametro == "anio") {
+            pos_actual = multi_cancion.retornar_pos(pos_actual, "sig_anio");
+        } else if (parametro == "nombre_cancion") {
+            pos_actual = multi_cancion.retornar_pos(pos_actual, "sig_cancion");
+        } else if (parametro == "compositor") {
+            pos_actual = multi_cancion.retornar_pos(pos_actual, "sig_compositor");
+        } else if (parametro == "interprete") {
+            pos_actual = multi_cancion.retornar_pos(pos_actual, "sig_interprete");
+        } else {
+            // Si el parámetro no coincide con ninguno de los anteriores, salir del bucle
+            cout << "Parámetro no válido." << endl;
+            break;
+        }
+    }
+}
+void  Cancion :: insertar_cabeceras(){
+    //Posición de las cabezas
+    multi_cancion.insertar(nombre_artis);//1
+    multi_cancion.insertar(nom_cancion);//2
+    multi_cancion.insertar(comp_let);  //3
+    multi_cancion.insertar(comp_music);  //4
+    multi_cancion.insertar(pais); //5
+    multi_cancion.insertar(ciudad);  //6
+    multi_cancion.insertar(genero_); //7
+    multi_cancion.insertar(anio_pub); //8
+
+}
+void  Cancion :: insertar_cancion(Cancion cancion){
+    nodo_canciones cancion_nueva;
+    cancion_nueva.nom_cancion = cancion.nombreCancion;
+    cancion_nueva.nom_artistico = cancion.nom_artistico;
+    cancion_nueva.arrMusic = cancion.arrMusic;
+    multi_cancion.insertar(cancion_nueva);
+    cout<<"canción insertada"<<endl;
+}

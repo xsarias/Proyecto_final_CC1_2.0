@@ -8,31 +8,26 @@ int main() {
 	// ---------------------------------------------------------------------------------------------
 	// para probar los metodos de archivado de Links
 	// ---------------------------------------------------------------------------------------------
-    MiVector<Links> listaLinks;
+	MiVector<Links> listaLinks;
 
-    // Agregamos algunos datos de prueba
-    listaLinks.push_back(Links("Spotify", "https://spotify.com/album1", "https://spotify.com/song1"));
-    listaLinks.push_back(Links("YouTube", "https://youtube.com/album2", "https://youtube.com/song2"));
-    listaLinks.push_back(Links("Apple Music", "https://apple.com/album3", "https://apple.com/song3"));
+    // Agregamos algunos Links con ID
+    listaLinks.push_back(Links(1, "Spotify", "https://spotify.com/album1", "https://spotify.com/song1"));
+    listaLinks.push_back(Links(2, "Apple Music", "https://apple.com/album2", "https://apple.com/song2"));
+    listaLinks.push_back(Links(3, "YouTube", "https://youtube.com/album3", "https://youtube.com/song3"));
 
-    // Guardar en archivo
-    cout << "Guardando en archivo 'links.txt'..." << endl;
-    Links::guardarEnArchivo("links.txt", listaLinks);
+    // Guardamos en archivo
+    string archivo = "links.txt";
+    Links::guardarEnArchivo(archivo, listaLinks);
+    cout << "Links guardados en archivo." << endl;
 
-    // Limpiar la lista para verificar la lectura
+    // Limpiamos la lista y la volvemos a cargar desde el archivo
     listaLinks.clear();
+    Links::leerDesdeArchivo(archivo, listaLinks);
 
-    // Leer desde archivo
-    cout << "Leyendo desde archivo 'links.txt'..." << endl;
-    Links::leerDesdeArchivo("links.txt", listaLinks);
-
-    // Mostrar los datos leídos
-    cout << "\nContenido de la lista después de leer del archivo:" << endl;
-    for (size_t i = 1; i <= listaLinks.size(); i++) {
-        cout << "Plataforma: " << listaLinks[i].getNomPlat() << endl;
-        cout << "Álbum: " << listaLinks[i].getLinkAlbum() << endl;
-        cout << "Canción: " << listaLinks[i].getLinkCancion() << endl;
-        cout << "---------------------------" << endl;
+    // Mostramos los links cargados
+    cout << "Links cargados desde archivo:" << endl;
+    for (size_t i = 1; i <= listaLinks.size(); i++) {  // Desde 1 por MiVector
+        cout << listaLinks[i].obtenerLink() << endl;
     }
 
     return 0;

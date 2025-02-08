@@ -15,17 +15,19 @@ int main() {
     nodo_canciones cancion_insertada;
     nodo_versiones version;
     Cancion cancioncita;
+	cancioncita.insertar_cabeceras();
     // Agregar algunas canciones de prueba
     listaCanciones.push_back(Cancion(1, "Bohemian Rhapsody", "Queen", "Rock", 1975, "5:55"));
     listaCanciones.push_back(Cancion(2, "Imagine", "John Lennon", "Soft Rock", 1971, "3:07"));
     listaCanciones.push_back(Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01"));
     listalinkscancion.push_back(Links(1, "Spotify", "https://open.spotify.com/album/123", "https://open.spotify.com/track/456"));
     listalinkscancion.push_back(Links(2, "Apple Music", "https://music.apple.com/album/789", "https://music.apple.com/track/012"));
-    listaartisas.push_back(Artista(1, "Paul David Hewson", "Bono", "Irlanda", "Voz"));
+    listaartisas.push_back(Artista(1, "Paul David Hewson", "Bono", "Irlanda", "color"));
+	listaartisas.push_back(Artista(2, "Paul David Hewson", "Bono", "Irlanda", "color2"));
     cancion_insertada = cancioncita.insertar_cancion((Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01")), listalinkscancion, listaartisas);
     for(int i=1; i<= cancion_insertada.list_artist.size(); i++){
         cout<< cancion_insertada.list_artist[i].instru_interpre;
-    };
+    }
     // Guardar las canciones en un archivo
     string nombreArchivo = "canciones.txt";
     Cancion::guardarEnArchivo(nombreArchivo, listaCanciones);

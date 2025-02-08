@@ -1,9 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "Librerias/Artista.h"
-nodo_artistas Artista :: insertar_artista(Artista artista) {
-
-void Artista::imprimir_links(Artista artista){
+void Artista::imprimir_artista(Artista artista){
     cout << artista.nom_real << endl;
     cout << artista.nom_artist << endl;
     cout << artista.pais_origen << endl;
@@ -16,7 +14,6 @@ nodo_artistas Artista :: insertar_artista(Artista artista){
     artista_nuevo.nom_real = artista.nom_real;
     artista_nuevo.pais_origen = artista.pais_origen;
     artista_nuevo.instru_interpre = artista.instrum_inter;
-    cout << "Artista insertado" << endl;
     return artista_nuevo;
 }
 

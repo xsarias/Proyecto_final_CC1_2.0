@@ -9,7 +9,14 @@
 #include "Links.h"
 
 Multilista_cancion multi_cancion;
-
+cabeza nombre_artis = {"nombre artistico", 0};
+cabeza nom_cancion = {"nombre canción", 0};
+cabeza comp_let = {"compositor letra", 0};
+cabeza comp_music = {"compositor musica", 0};
+cabeza pais = {"Pais grabacion", 0};
+cabeza ciudad = {"Ciudad grabación", 0};
+cabeza genero_ = {"Género canción ", 0};
+cabeza anio_pub = {"Año publicación", 0};
 class Cancion {
 private:
     int id;
@@ -27,16 +34,6 @@ private:
     string genero;  
     MiVector<nodo_links> listPlataf;  
     MiVector<Version> listVersiones;
-
-    cabeza nombre_artis = {"nombre artistico", 0};
-    cabeza nom_cancion = {"nombre canción", 0};
-    cabeza comp_let = {"compositor letra", 0};
-    cabeza comp_music = {"compositor musica", 0};
-    cabeza pais = {"Pais grabacion", 0};
-    cabeza ciudad = {"Ciudad grabación", 0};
-    cabeza genero_ = {"Género canción ", 0};
-    cabeza anio_pub = {"Año publicación", 0};
-
 public:
     // Constructor por defecto necesario para MiVector
     Cancion() : id(0), nombreCancion(""), nom_artistico(""), genero(""), anioPublicacion(0), duracion("") {}

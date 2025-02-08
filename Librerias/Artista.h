@@ -1,7 +1,7 @@
 #ifndef ARTISTA_H
 #define ARTISTA_H
 #include <string>
-#include <estructuras.h>
+#include "estructuras.h"
 using namespace std;
 class Artista {
     private:

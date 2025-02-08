@@ -10,36 +10,67 @@
 
 using namespace std;
 
+
 int main() {
-    MiVector<Cancion> listaCanciones;
+    MiVector<Artista> listaArtistas;
 
-    // Agregar algunas canciones de prueba
-    listaCanciones.push_back(Cancion(1, "Bohemian Rhapsody", "Queen", "Rock", 1975, "5:55"));
-    listaCanciones.push_back(Cancion(2, "Imagine", "John Lennon", "Soft Rock", 1971, "3:07"));
-    listaCanciones.push_back(Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01"));
+    // Agregar artistas a la lista
+    listaArtistas.push_back(Artista(1, "Freddie Mercury", "Queen", "Reino Unido", "Voz, Piano"));
+    listaArtistas.push_back(Artista(2, "Kurt Cobain", "Nirvana", "EE.UU.", "Voz, Guitarra"));
+    listaArtistas.push_back(Artista(3, "David Gilmour", "Pink Floyd", "Reino Unido", "Guitarra, Voz"));
 
-    // Guardar las canciones en un archivo
-    string nombreArchivo = "canciones.txt";
-    Cancion::guardarEnArchivo(nombreArchivo, listaCanciones);
-    cout << "Canciones guardadas en " << nombreArchivo << endl;
+    // Guardar la lista en archivo
+    Artista::guardarEnArchivo("artistas.txt", listaArtistas);
 
-    // Limpiar la lista y volver a cargar desde el archivo
-    MiVector<Cancion> listaRecuperada;
-    Cancion::leerDesdeArchivo(nombreArchivo, listaRecuperada);
-    cout << "Canciones cargadas desde el archivo:\n";
+    // Limpiar la lista para simular la carga desde archivo
+    listaArtistas.clear();
+    cout << "Lista de artistas vaciada." << endl;
 
-    // Mostrar las canciones recuperadas
-    for (size_t i = 1; i <= listaRecuperada.size(); i++) {
-        cout << "ID: " << listaRecuperada[i].getId() << " | "
-             << "Nombre: " << listaRecuperada[i].getNombreCancion() << " | "
-             << "Artista: " << listaRecuperada[i].getNomArtistico() << " | "
-             << "Género: " << listaRecuperada[i].getGenero() << " | "
-             << "Año: " << listaRecuperada[i].getAnioPublicacion() << " | "
-             << "Duración: " << listaRecuperada[i].getDuracion() << endl;
+    // Leer la lista desde el archivo
+    Artista::leerDesdeArchivo("artistas.txt", listaArtistas);
+
+    // Mostrar artistas cargados
+    cout << "Lista de artistas cargados desde el archivo:" << endl;
+    for (size_t i = 1; i <= listaArtistas.size(); i++) {
+        cout << "ID: " << listaArtistas[i].getId() << ", "
+             << "Nombre Real: " << listaArtistas[i].getNomReal() << ", "
+             << "Nombre Artístico: " << listaArtistas[i].getNomArtist() << ", "
+             << "País: " << listaArtistas[i].getPaisOrigen() << ", "
+             << "Instrumento: " << listaArtistas[i].getInstrumInter() << endl;
     }
 
     return 0;
 }
+// int main() {
+//     MiVector<Cancion> listaCanciones;
+
+//     // Agregar algunas canciones de prueba
+//     listaCanciones.push_back(Cancion(1, "Bohemian Rhapsody", "Queen", "Rock", 1975, "5:55"));
+//     listaCanciones.push_back(Cancion(2, "Imagine", "John Lennon", "Soft Rock", 1971, "3:07"));
+//     listaCanciones.push_back(Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01"));
+
+//     // Guardar las canciones en un archivo
+//     string nombreArchivo = "canciones.txt";
+//     Cancion::guardarEnArchivo(nombreArchivo, listaCanciones);
+//     cout << "Canciones guardadas en " << nombreArchivo << endl;
+
+//     // Limpiar la lista y volver a cargar desde el archivo
+//     MiVector<Cancion> listaRecuperada;
+//     Cancion::leerDesdeArchivo(nombreArchivo, listaRecuperada);
+//     cout << "Canciones cargadas desde el archivo:\n";
+
+//     // Mostrar las canciones recuperadas
+//     for (size_t i = 1; i <= listaRecuperada.size(); i++) {
+//         cout << "ID: " << listaRecuperada[i].getId() << " | "
+//              << "Nombre: " << listaRecuperada[i].getNombreCancion() << " | "
+//              << "Artista: " << listaRecuperada[i].getNomArtistico() << " | "
+//              << "Género: " << listaRecuperada[i].getGenero() << " | "
+//              << "Año: " << listaRecuperada[i].getAnioPublicacion() << " | "
+//              << "Duración: " << listaRecuperada[i].getDuracion() << endl;
+//     }
+
+//     return 0;
+// }
 
 
 // #include <iostream>

@@ -22,11 +22,11 @@ struct nodo_artistas{
 
 struct nodo_versiones{
     std::string titulos, tipo_version, pais_grab, artista_princ, ciudad_grab, genero;
-    int anio;
+    int anio_pub;
     MiVector<nodo_links> lista_links;
     MiVector<nodo_artistas> lista_artistas;
     int sig_titulo, sig_tipoVers, sig_paisGrab, sig_artistaPrinc;
-    int sig_ciudadGrab, sig_genero, sig_anio;
+    int sig_ciudadGrab, sig_genero, sig_anioPub;
 };
 
 

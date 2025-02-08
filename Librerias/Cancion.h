@@ -47,7 +47,7 @@ public:
 
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);
-    void insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista);
+    nodo_canciones insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista);
     void insertar_artista(Artista artista);
 
     // Getters

@@ -12,7 +12,7 @@
         
     
 }
-void Album ::insertar_album(Album album){
+void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album){
     nodo_album album_nuevo;
     album_nuevo.titulo = album.titulo_alb;
     album_nuevo.nom_artis = album.nombre_art;
@@ -21,6 +21,14 @@ void Album ::insertar_album(Album album){
     album_nuevo.editora = album.editora;
     album_nuevo.estudio_grab = album.estudio_grab;
     album_nuevo.anio_pub = album.anio_pub;
-    multi_album.insertar(album_nuevo);
-    cout<<"album insertado"<<endl;
+    for(int i=1; i<= canciones_album.size(); i++){
+        album_nuevo.lista_caciones.push_back(canciones_album[i]);
     }
+    for(int j=1; j<=links_album.size(); j++){
+        album_nuevo.lista_links.push_back(links_album[j].insertar_link(links_album[j]));
+    }
+    
+    multi_album.insertar(album_nuevo);
+
+    cout<<"albúm insertado"<<endl;
+}

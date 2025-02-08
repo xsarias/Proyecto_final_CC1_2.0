@@ -12,12 +12,17 @@ using namespace std;
 
 int main() {
     MiVector<Cancion> listaCanciones;
-
+    MiVector<Links> listalinkscancion;
+    MiVector<Artista> listaartisas;
+    Cancion cancioncita;
     // Agregar algunas canciones de prueba
     listaCanciones.push_back(Cancion(1, "Bohemian Rhapsody", "Queen", "Rock", 1975, "5:55"));
     listaCanciones.push_back(Cancion(2, "Imagine", "John Lennon", "Soft Rock", 1971, "3:07"));
     listaCanciones.push_back(Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01"));
-
+    listalinkscancion.push_back(Links(1, "Spotify", "https://open.spotify.com/album/123", "https://open.spotify.com/track/456"));
+    listalinkscancion.push_back(Links(2, "Apple Music", "https://music.apple.com/album/789", "https://music.apple.com/track/012"));
+    listaartisas.push_back(Artista("Paul David Hewson", "Bono", "Irlanda", "Voz"));
+    cancioncita.insertar_cancion((Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01")), listalinkscancion, listaartisas);
     // Guardar las canciones en un archivo
     string nombreArchivo = "canciones.txt";
     Cancion::guardarEnArchivo(nombreArchivo, listaCanciones);

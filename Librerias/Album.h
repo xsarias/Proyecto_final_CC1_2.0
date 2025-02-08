@@ -39,7 +39,7 @@ public:
           cover_art(coverArt), fotogra(fotogra), editora(editora), estudio_grab(estudioGrab) {}
         void insertar_cabeceras(); 
         void imprimir_lista(string parametro, int pos_cab);
-        void insertar_album(Album cancion);
+        void insertar_album(Album cancion, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album);
 };
 
 

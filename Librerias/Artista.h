@@ -1,6 +1,7 @@
 #ifndef ARTISTA_H
 #define ARTISTA_H
 #include <string>
+#include <estructuras.h>
 using namespace std;
 class Artista {
     private:
@@ -21,6 +22,7 @@ class Artista {
         string getPaisOrigen() const { return pais_origen; }
         string getInstrumInter() const { return instrum_inter; }
         void mostrarInformacion();
+        nodo_artistas insertar_artista(Artista artista);
 };
 
 

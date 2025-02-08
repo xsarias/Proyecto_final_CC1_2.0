@@ -1,6 +1,7 @@
 #ifndef LINKS_H
 #define LINKS_H
 #include <string>
+#include "estructuras.h"
 using namespace std;
 class Links {
 private:
@@ -33,6 +34,7 @@ public:
     string obtenerPlataforma() const {
         return nomPlat;
     }
+    nodo_links insertar_link(Links links);
 
 };
 #endif

@@ -49,11 +49,27 @@ void  Cancion :: insertar_cabeceras(){
     multi_cancion.insertar(anio_pub); //8
 
 }
-void  Cancion :: insertar_cancion(Cancion cancion){
+void  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista){
     nodo_canciones cancion_nueva;
     cancion_nueva.nom_cancion = cancion.nombreCancion;
     cancion_nueva.nom_artistico = cancion.nom_artistico;
     cancion_nueva.arrMusic = cancion.arrMusic;
+    cancion_nueva.anioPublicacion = cancion.anioPublicacion;
+    cancion_nueva.arrMusic = cancion.arrMusic;
+    cancion_nueva.ciudadGrabacion = cancion.ciudadGrabacion;
+    cancion_nueva.composLetra = cancion.ciudadGrabacion;
+    cancion_nueva.composMusica = cancion.composLetra;
+    cancion_nueva.duracion = cancion.duracion;
+    cancion_nueva.genero = cancion.genero;
+    for(int i=1; i<=artista.size(); i++){
+        cancion_nueva.list_artist.push_back(artista[i].insertar_artista(artista[i]));
+    }
+    for(int i=1; i<=links.size(); i++){
+        cancion_nueva.list_links.push_back(links[i].insertar_link(links[i]));
+    }
     multi_cancion.insertar(cancion_nueva);
     cout<<"canción insertada"<<endl;
+}
+void Cancion :: insertar_artista(Artista artista){
+    artista.insertar_artista(artista);
 }

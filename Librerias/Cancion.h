@@ -5,6 +5,7 @@
 #include "estructuras.h"
 #include "Artista.h"
 #include "Version.h"
+#include "Links.h"
 Multilista_cancion multi_cancion;
 class Cancion {
 private:
@@ -41,7 +42,8 @@ public:
     ciudadGrabacion(ciudadGrabacion), paisGrabacion(paisGrabacion), numArtistasPrincipales(numArtistasPrincipales) {}
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);
-    void insertar_cancion(Cancion cancion);
+    void insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista);
+    void insertar_artista(Artista artista );
 };
 
 #endif

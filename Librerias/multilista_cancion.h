@@ -185,7 +185,7 @@ void Multilista_cancion::por_ciudad(int pos, string dato) {
     int pos_cab = 5;
     int cab = lista_cabeceras[pos_cab].pos_cabeza;
     if (cab == 0 || dato < retornar_dato(cab, "ciudadGrabacion")) {
-        lista_datos[pos].sig_pais = cab;
+        lista_datos[pos].sig_ciudad = cab;
         lista_cabeceras[pos_cab].pos_cabeza = pos;
     } else {
         int ant = cab;

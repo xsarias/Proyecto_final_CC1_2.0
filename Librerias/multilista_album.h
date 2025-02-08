@@ -2,6 +2,7 @@
 #define MULTILISTA_ALBUM_H
 #include <iostream>
 #include <string>
+#include "MiVector.h"
 #include "estructuras.h"
 using namespace std;
 

@@ -3,6 +3,9 @@
 #include "MiVector.h"
 #include "multilista_album.h"
 #include "estructuras.h"
+#include "Artista.h"
+#include "Links.h"
+
 Multilista_album multi_album;
 class Album{
 private:
@@ -14,6 +17,8 @@ private:
     string fotogra;  
     string editora; 
     string estudio_grab;  
+    MiVector<nodo_links> lista_links;
+    MiVector<nodo_canciones> lista_canciones;
     cabeza titulo = {"titulo", 0};
     cabeza nom_artis = {"nombre_artis", 0};
     cabeza anio_publi = {"anio_pub", 0};

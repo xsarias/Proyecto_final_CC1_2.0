@@ -2,6 +2,7 @@
 #define LINKS_H
 #include <string>
 #include "estructuras.h"
+#include "MiVector.h"
 using namespace std;
 class Links {
 private:
@@ -36,5 +37,8 @@ public:
     }
     nodo_links insertar_link(Links links);
 
+    // Métodos para leer y guardar en archivo
+    static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Links>& lista);
+    static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
 };
 #endif

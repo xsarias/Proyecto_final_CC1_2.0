@@ -6,7 +6,7 @@
 using namespace std;
 
 class Multilista_album{
-    int num_dat, num_cab;
+    int num_dat, num_cab, centinela;
      // Contadores de datos y cabeceras
     MiVector<cabeza>lista_cabeceras; // Puntero a la lista de cabeceras
     MiVector<nodo_album>lista_datos;      // Puntero al primer nodo de datos
@@ -23,11 +23,185 @@ public:
     string retornar_dato(int x,  std::string parametro);
     int retornar_pos(int x, std::string parametro);
     void ordenar_alfabeticamente(int pos, std::string dato, std::string atributo, std::string apuntador);
-    void ordenar_anio(nodo_album nodo);
-    void ordenar_genero(nodo_album nodo);
-    void por_compositor(nodo_album nodo,  std::string comp);
-    void por_interprete(nodo_album nodo, std::string interp);
-    void ordenar_descendentemente_anio(nodo_album nodo, cabeza cab_gen);
+    void ordenar_alfabeticamente_centinelas(int pos, std::string dato, std::string atributo, std::string apuntador);
     bool lista_llena();
 };
+
+void Multilista_album:: insertar(nodo_album Dato) {
+    
+    lista_datos.push_back(Dato);
+    num_dat = lista_datos.size();
+    ordenar_alfabeticamente(num_dat, lista_datos[num_dat].titulo, "titulo", "sig_titulo");
+    ordenar_alfabeticamente(num_dat, lista_datos[num_dat].nom_artis, "nom_artis", "sig_nomArtis");
+    ordenar_alfabeticamente(num_dat, lista_datos[num_dat].anio_pub, "anio_pub", "sig_aniPublic");
+    ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].cover, "cover", "sig_cover");
+    ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].estudio_grab, "estudio_grab", "sig_estudioGrab");
+    ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].fotografia, "fotografia", "sig_fotografia");
+    ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].editora, "editora", "sig_editora");
+    
+}
+void Multilista_album::insertar(cabeza Cabeza) {
+    lista_cabeceras.push_back(Cabeza);
+    num_cab++;
+}
+void Multilista_album::ordenar_alfabeticamente(int pos, std::string dato, std::string atributo, std::string apuntador){
+    int pos_cab;
+    int cab;
+    if(atributo == "titulo"){
+        pos_cab = 1;
+        cab = lista_cabeceras[pos_cab].pos_cabeza;
+        if (cab == 0 || dato < retornar_dato(cab, atributo)){
+            lista_datos[pos].sig_titulo= cab;
+            lista_cabeceras[pos_cab].pos_cabeza = pos;
+        } else {
+            int ant = cab;
+            int sig = retornar_pos(cab, apuntador);
+
+            while (sig != 0 && dato > retornar_dato(sig, atributo)) {
+                ant = sig;
+                sig = retornar_pos(sig, apuntador);
+            }
+            lista_datos[pos].sig_titulo = sig;
+            lista_datos[ant].sig_titulo = pos;
+        }
+
+    }else if(atributo == "nom_artis"){
+        pos_cab=2;
+        cab = lista_cabeceras[pos_cab].pos_cabeza;
+        if (cab == 0 || dato < retornar_dato(cab, atributo)){
+            lista_datos[pos].sig_nomArtis = cab;
+            lista_cabeceras[pos_cab].pos_cabeza = pos;
+        } else {
+            int ant = cab;
+            int sig = retornar_pos(cab, apuntador);
+
+            while (sig != 0 && dato > retornar_dato(sig, atributo)) {
+                ant = sig;
+                sig = retornar_pos(sig, apuntador);
+            }
+            lista_datos[pos].sig_nomArtis = sig;
+            lista_datos[ant].sig_nomArtis = pos;
+        }
+    }else if(atributo== "anio_pub"){
+        pos_cab=3;
+        cab = lista_cabeceras[pos_cab].pos_cabeza;
+        if (cab == 0 || dato < retornar_dato(cab, atributo)){
+            lista_datos[pos].sig_anioPublic = cab;
+            lista_cabeceras[pos_cab].pos_cabeza = pos;
+        } else {
+            int ant = cab;
+            int sig = retornar_pos(cab, apuntador);
+
+            while (sig != 0 && dato > retornar_dato(sig, atributo)) {
+                ant = sig;
+                sig = retornar_pos(sig, apuntador);
+            }
+            lista_datos[pos].sig_anioPublic = sig;
+            lista_datos[ant].sig_anioPublic = pos;
+        }
+    }
+}
+void Multilista_album::ordenar_alfabeticamente_centinelas(int pos, string dato, string atributo, string apuntador){
+    int pos_cab;
+    int cab;
+    if(atributo == "cover"){
+        pos_cab = 4;
+        cab = lista_cabeceras[pos_cab].pos_cabeza;
+        if (cab == 0 || dato < retornar_dato(cab, atributo)){
+            lista_datos[pos].sig_cover = cab;
+            lista_cabeceras[pos_cab].pos_cabeza = pos;
+        } else {
+            int ant = cab;
+            int sig = retornar_pos(cab, apuntador);
+
+            while (sig != 0 && dato > retornar_dato(sig, atributo)) {
+                ant = sig;
+                sig = retornar_pos(sig, apuntador);
+            }
+            lista_datos[pos].sig_cover = sig;
+            lista_datos[ant].sig_cover = pos;
+        }
+    }else if(atributo == "fotografia"){
+        pos_cab = 5;
+        cab = lista_cabeceras[pos_cab].pos_cabeza;
+        if (cab == 0 || dato < retornar_dato(cab, atributo)){
+            lista_datos[pos].sig_fotografia = cab;
+            lista_cabeceras[pos_cab].pos_cabeza = pos;
+        } else {
+            int ant = cab;
+            int sig = retornar_pos(cab, apuntador);
+
+            while (sig != 0 && dato > retornar_dato(sig, atributo)) {
+                ant = sig;
+                sig = retornar_pos(sig, apuntador);
+            }
+            lista_datos[pos].sig_fotografia = sig;
+            lista_datos[ant].sig_fotografia = pos;
+        }
+    }else if(atributo == "estudio_grab"){
+        pos_cab = 6;
+        cab = lista_cabeceras[pos_cab].pos_cabeza;
+        if (cab == 0 || dato < retornar_dato(cab, atributo)){
+            lista_datos[pos].sig_estudioGrab= cab;
+            lista_cabeceras[pos_cab].pos_cabeza = pos;
+        } else {
+            int ant = cab;
+            int sig = retornar_pos(cab, apuntador);
+
+            while (sig != 0 && dato > retornar_dato(sig, atributo)) {
+                ant = sig;
+                sig = retornar_pos(sig, apuntador);
+            }
+            lista_datos[pos].sig_estudioGrab = sig;
+            lista_datos[ant].sig_estudioGrab= pos;
+        }
+    }else if(atributo == "editora"){
+        pos_cab = 7;
+        cab = lista_cabeceras[pos_cab].pos_cabeza;
+        if (cab == 0 || dato < retornar_dato(cab, atributo)){
+            lista_datos[pos].sig_editora = cab;
+            lista_cabeceras[pos_cab].pos_cabeza = pos;
+        } else {
+            int ant = cab;
+            int sig = retornar_pos(cab, apuntador);
+
+            while (sig != 0 && dato > retornar_dato(sig, atributo)) {
+                ant = sig;
+                sig = retornar_pos(sig, apuntador);
+            }
+            lista_datos[pos].sig_editora = sig;
+            lista_datos[ant].sig_editora = pos;
+        }
+    }
+
+}
+
+bool Multilista_album::Multilista_vacia() {
+    return num_dat == 0;
+}
+
+bool Multilista_album::lista_llena(){
+    return false; // Con punteros, no hay límite fijo de tamaño
+}
+int Multilista_album::retornar_pos(int x, std::string parametro){
+    if (parametro == "sig_titulo") return lista_datos[x].sig_titulo;
+    if (parametro == "sig_nomArtis") return lista_datos[x].sig_nomArtis;
+    if (parametro == "sig_cover") return lista_datos[x].sig_cover;
+    if (parametro == "sig_fotografia") return lista_datos[x].sig_fotografia;
+    if (parametro == "sig_editora") return lista_datos[x].sig_editora;
+    if (parametro == "sig_anioPublic") return lista_datos[x].sig_anioPublic;
+    return -1;
+}
+
+string Multilista_album::retornar_dato(int x, std::string parametro) {
+    if (parametro == "titulo") return lista_datos[x].titulo;
+    if (parametro == "nom_artis") return lista_datos[x].nom_artis;
+    if (parametro == "cover") return lista_datos[x].cover;
+    if (parametro == "fotografia") return lista_datos[x].fotografia;
+    if (parametro == "editora") return lista_datos[x].editora;
+    if (parametro == "estudio_grab") return lista_datos[x].estudio_grab;
+    if (parametro == "anio_pub") return lista_datos[x].anio_pub;
+    return "Parámetro desconocido";
+}
+
 #endif

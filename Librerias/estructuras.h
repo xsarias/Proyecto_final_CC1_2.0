@@ -57,7 +57,7 @@ struct nodo_album{
     MiVector<nodo_links> lista_links;
     MiVector<nodo_canciones> lista_caciones;
     MiVector<nodo_artistas> lista_artistas;
-    int sig_titulo, sig_nomArtis, sig_listaArtis, sig_cover, sig_fotografia, sig_editora;
+    int sig_titulo, sig_nomArtis, sig_listaArtis, sig_cover, sig_estudioGrab, sig_fotografia, sig_editora;
     int sig_anioPublic, sig_listaLinks, sig_listaCanci;
     
 };

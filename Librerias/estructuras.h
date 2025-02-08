@@ -63,6 +63,7 @@ struct nodo_canciones{
 
 
 struct nodo_album{
+    int id;
     string titulo, nom_artis, cover, fotografia, editora, estudio_grab, anio_pub;
     MiVector<nodo_links> lista_links;
     MiVector<nodo_canciones> lista_caciones;

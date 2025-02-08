@@ -6,42 +6,88 @@
 #include "Cancion.cpp"
 #include "Artista.cpp"
 #include "Links.cpp"
+#include "Album.cpp"
+#include "Librerias/Album.h"
+
 
 
 using namespace std;
 
 
 int main() {
-    MiVector<Artista> listaArtistas;
+	// 	// 	// ---------------------------------------------------------------------------------------------
+// // 	// para probar los metodos de archivado de Album
+// // 	// ---------------------------------------------------------------------------------------------
+    MiVector<Album> listaAlbumes;
+    string archivo = "albumes.txt";
 
-    // Agregar artistas a la lista
-    listaArtistas.push_back(Artista(1, "Freddie Mercury", "Queen", "Reino Unido", "Voz, Piano"));
-    listaArtistas.push_back(Artista(2, "Kurt Cobain", "Nirvana", "EE.UU.", "Voz, Guitarra"));
-    listaArtistas.push_back(Artista(3, "David Gilmour", "Pink Floyd", "Reino Unido", "Guitarra, Voz"));
+    // Insertar álbumes en la lista
+    listaAlbumes.push_back(Album(1, "Dark Side of the Moon", "Pink Floyd", "Reino Unido", 1973, "Portada1.jpg", "Fotógrafo1", "Capitol Records", "Abbey Road Studios"));
+    listaAlbumes.push_back(Album(2, "Thriller", "Michael Jackson", "EE.UU.", 1982, "Portada2.jpg", "Fotógrafo2", "Epic Records", "Westlake Recording Studios"));
+    listaAlbumes.push_back(Album(3, "Back in Black", "AC/DC", "Australia", 1980, "Portada3.jpg", "Fotógrafo3", "Atlantic Records", "Electric Lady Studios"));
 
-    // Guardar la lista en archivo
-    Artista::guardarEnArchivo("artistas.txt", listaArtistas);
+    // Guardar en archivo
+    Album::guardarEnArchivo(archivo, listaAlbumes);
+    cout << "Lista de álbumes guardada en archivo.\n" << endl;
 
-    // Limpiar la lista para simular la carga desde archivo
-    listaArtistas.clear();
-    cout << "Lista de artistas vaciada." << endl;
+    // Limpiar la lista y volver a cargar desde el archivo
+    listaAlbumes.clear();
+    Album::leerDesdeArchivo(archivo, listaAlbumes);
+    cout << "Lista de álbumes cargada desde el archivo:\n" << endl;
 
-    // Leer la lista desde el archivo
-    Artista::leerDesdeArchivo("artistas.txt", listaArtistas);
-
-    // Mostrar artistas cargados
-    cout << "Lista de artistas cargados desde el archivo:" << endl;
-    for (size_t i = 1; i <= listaArtistas.size(); i++) {
-        cout << "ID: " << listaArtistas[i].getId() << ", "
-             << "Nombre Real: " << listaArtistas[i].getNomReal() << ", "
-             << "Nombre Artístico: " << listaArtistas[i].getNomArtist() << ", "
-             << "País: " << listaArtistas[i].getPaisOrigen() << ", "
-             << "Instrumento: " << listaArtistas[i].getInstrumInter() << endl;
+    // Mostrar los álbumes cargados
+    for (size_t i = 1; i <= listaAlbumes.size(); i++) {
+        cout << "ID: " << listaAlbumes[i].getId() << endl;
+        cout << "Título: " << listaAlbumes[i].getTitulo() << endl;
+        cout << "Artista: " << listaAlbumes[i].getNombreArt() << endl;
+        cout << "País de grabación: " << listaAlbumes[i].getPaisGrab() << endl;
+        cout << "Año de publicación: " << listaAlbumes[i].getAnioPub() << endl;
+        cout << "Cover Art: " << listaAlbumes[i].getCoverArt() << endl;
+        cout << "Fotógrafo: " << listaAlbumes[i].getFotogra() << endl;
+        cout << "Editora: " << listaAlbumes[i].getEditora() << endl;
+        cout << "Estudio de grabación: " << listaAlbumes[i].getEstudioGrab() << endl;
+        cout << "---------------------------------\n";
     }
 
     return 0;
 }
 // int main() {
+// 	// 	// ---------------------------------------------------------------------------------------------
+// // 	// para probar los metodos de archivado de Artista
+// // 	// ---------------------------------------------------------------------------------------------
+//     MiVector<Artista> listaArtistas;
+
+//     // Agregar artistas a la lista
+//     listaArtistas.push_back(Artista(1, "Freddie Mercury", "Queen", "Reino Unido", "Voz, Piano"));
+//     listaArtistas.push_back(Artista(2, "Kurt Cobain", "Nirvana", "EE.UU.", "Voz, Guitarra"));
+//     listaArtistas.push_back(Artista(3, "David Gilmour", "Pink Floyd", "Reino Unido", "Guitarra, Voz"));
+
+//     // Guardar la lista en archivo
+//     Artista::guardarEnArchivo("artistas.txt", listaArtistas);
+
+//     // Limpiar la lista para simular la carga desde archivo
+//     listaArtistas.clear();
+//     cout << "Lista de artistas vaciada." << endl;
+
+//     // Leer la lista desde el archivo
+//     Artista::leerDesdeArchivo("artistas.txt", listaArtistas);
+
+//     // Mostrar artistas cargados
+//     cout << "Lista de artistas cargados desde el archivo:" << endl;
+//     for (size_t i = 1; i <= listaArtistas.size(); i++) {
+//         cout << "ID: " << listaArtistas[i].getId() << ", "
+//              << "Nombre Real: " << listaArtistas[i].getNomReal() << ", "
+//              << "Nombre Artístico: " << listaArtistas[i].getNomArtist() << ", "
+//              << "País: " << listaArtistas[i].getPaisOrigen() << ", "
+//              << "Instrumento: " << listaArtistas[i].getInstrumInter() << endl;
+//     }
+
+//     return 0;
+// }
+// int main() {
+// 	// ---------------------------------------------------------------------------------------------
+// 	// para probar los metodos de archivado de Cancion
+// 	// ---------------------------------------------------------------------------------------------
 //     MiVector<Cancion> listaCanciones;
 
 //     // Agregar algunas canciones de prueba

@@ -25,6 +25,7 @@ struct nodo_artistas{
 };
 
 struct nodo_versiones{
+    int id; 
     string titulos, tipo_version, pais_grab, artista_princ, ciudad_grab, genero;
     int anio_pub;
     MiVector<nodo_links> lista_links;

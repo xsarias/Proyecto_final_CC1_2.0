@@ -1,13 +1,17 @@
 #ifndef VERSION_H
 #define VERSION_H
+
 #include <string>
 #include "MiVector.h"
 #include "multilista_version.h"
 #include "Links.h"
+
 using namespace std;
 Multilista_version multi_version;
+
 class Version {
 private:
+    int idVersion;
     string tituloVer;  
     string tipVersion;  
     string artistasPrin;  
@@ -17,28 +21,43 @@ private:
     string genero;  
     int anio; 
     MiVector<nodo_links> listLinksVers;  
+
     cabeza titulo_ver = {"tituloVer", 0};
-    cabeza  tipoVers = {"tipoVer", 0};
+    cabeza tipoVers = {"tipoVer", 0};
     cabeza anioPub = {"anio_pub", 0};
     cabeza paisGrab = {"pais_grab", 0};
     cabeza artistaPrinc = {"artista_princ", 0};
     cabeza ciudad_Grab = {"Ciudad grabación", 0};
     cabeza genero_ver = {"Género canción ", 0};
-    
-
 
 public:
-    // Constructor
-    Version() :  tituloVer(""), tipVersion(""), anio(0), ciudadGrab(""), paisGra(""), genero(""), arrMusic("") {};
+    // Constructores
+    Version() : idVersion(0), tituloVer(""), tipVersion(""), anio(0), ciudadGrab(""), paisGra(""), genero(""), arrMusic("") {}
 
-    Version(const string& tituloVer, const string& tipVersion, int anio,
+    Version(int id, const string& tituloVer, const string& tipVersion, int anio,
             const string& ciudadGrab = "", const string& paisGra = "",
             const string& genero = "", const string& arrMusic = "")
-        : tituloVer(tituloVer), tipVersion(tipVersion), anio(anio),
+        : idVersion(id), tituloVer(tituloVer), tipVersion(tipVersion), anio(anio),
           ciudadGrab(ciudadGrab), paisGra(paisGra), genero(genero), arrMusic(arrMusic) {}
+
+    // Métodos
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);
     void insertar_version(Version version);
 
+    // Getters
+    int getIdVersion() const { return idVersion; }
+    string getTituloVer() const { return tituloVer; }
+    string getTipVersion() const { return tipVersion; }
+    int getAnio() const { return anio; }
+    string getCiudadGrab() const { return ciudadGrab; }
+    string getPaisGra() const { return paisGra; }
+    string getGenero() const { return genero; }
+    string getArrMusic() const { return arrMusic; }
+
+    // Métodos de archivos
+    static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Version>& lista);
+    static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
 };
+
 #endif

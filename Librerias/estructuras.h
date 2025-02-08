@@ -25,8 +25,8 @@ struct nodo_versiones{
     int año;
     MiVector<nodo_links> lista_links;
     MiVector<nodo_artistas> lista_artistas;
-    int sig_titulo, sig_tipoVers, sig_paisGrab, sig_artistaPrinc, sig_listaArt;
-    int sig_ciudadGrab, sig_genero, sig_año, sig_listaLinks;
+    int sig_titulo, sig_tipoVers, sig_paisGrab, sig_artistaPrinc;
+    int sig_ciudadGrab, sig_genero, sig_año;
 };
 
 

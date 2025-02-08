@@ -1,5 +1,7 @@
 #include "Librerias/Cancion.h"
 #include <iostream>
+#include <fstream>
+#include "Librerias/MiVector.h"
 
 void Cancion :: imprimir_lista(string parametro, int pos_cab) {
     // Obtener la posición inicial de la cabeza para el orden del parámetro
@@ -49,7 +51,7 @@ void  Cancion :: insertar_cabeceras(){
     multi_cancion.insertar(anio_pub); //8
 
 }
-void  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<Version> version){
+nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista){
     nodo_canciones cancion_nueva;
     cancion_nueva.nom_cancion = cancion.nombreCancion;
     cancion_nueva.nom_artistico = cancion.nom_artistico;
@@ -61,7 +63,7 @@ void  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVect
     cancion_nueva.composMusica = cancion.composLetra;
     cancion_nueva.duracion = cancion.duracion;
     cancion_nueva.genero = cancion.genero;
-    for(int i=1; i<=artista.size(); i++){
+    for(int i=1; i<artista.size(); i++){
         cancion_nueva.list_artist.push_back(artista[i].insertar_artista(artista[i]));
     }
     for(int i=1; i<=links.size(); i++){
@@ -69,7 +71,54 @@ void  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVect
     }
     multi_cancion.insertar(cancion_nueva);
     cout<<"canción insertada"<<endl;
+    return cancion_nueva;
 }
 void Cancion :: insertar_artista(Artista artista){
     artista.insertar_artista(artista);
+}
+
+// Método para guardar la lista de Canciones en un archivo
+void Cancion::guardarEnArchivo(const string& nombreArchivo, const MiVector<Cancion>& lista) {
+    ofstream archivo(nombreArchivo);
+    if (!archivo) {
+        cerr << "Error al abrir el archivo para escritura." << endl;
+        return;
+    }
+
+    for (size_t i = 1; i <= lista.size(); i++) {
+        archivo << lista[i].getId() << ","
+                << lista[i].getNombreCancion() << ","
+                << lista[i].getNomArtistico() << ","
+                << lista[i].getGenero() << ","
+                << lista[i].getAnioPublicacion() << ","
+                << lista[i].getDuracion() << endl;
+    }
+
+    archivo.close();
+}
+
+// Método para leer la lista de Canciones desde un archivo
+void Cancion::leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista) {
+    ifstream archivo(nombreArchivo);
+    if (!archivo) {
+        cerr << "Error al abrir el archivo para lectura." << endl;
+        return;
+    }
+
+    lista.clear();
+
+    int id, anioPublicacion;
+    string nombreCancion, nomArtistico, genero, duracion;
+    while (archivo >> id) {
+        archivo.ignore();
+        getline(archivo, nombreCancion, ',');
+        getline(archivo, nomArtistico, ',');
+        getline(archivo, genero, ',');
+        archivo >> anioPublicacion;
+        archivo.ignore();
+        getline(archivo, duracion);
+        lista.push_back(Cancion(id, nombreCancion, nomArtistico, genero, anioPublicacion, duracion));
+    }
+
+    archivo.close();
 }

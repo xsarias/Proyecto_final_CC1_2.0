@@ -15,7 +15,8 @@ struct nodo_links{
 struct nodo_canciones{
     std::string nom_artistico;
     std::string nom_cancion;
-    std::string duracion;  
+    std::string duracion;
+    MiVector<nodo_artistas> list_artist;  
     int numArtistasPrincipales;  
     std::string composLetra;  
     std::string composMusica;  
@@ -24,12 +25,12 @@ struct nodo_canciones{
     std::string paisGrabacion; 
     int anioPublicacion; 
     std::string genero;
+    MiVector<nodo_links> list_links;
+    MiVector<nodo_versiones> list_versiones;
     int sig_nom_cancion;
     int sig_nombre_artistico;
-    int sig_album;
-    int sig_art_princ;
     int sig_comp_let;
-    int sig_comp_canc;
+    int sig_comp_music;
     int sig_pais;
     int sig_ciudad;
     int sig_genero;

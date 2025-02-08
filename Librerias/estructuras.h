@@ -25,11 +25,7 @@ struct nodo_artistas{
 };
 
 struct nodo_versiones{
-<<<<<<< HEAD
-    std::string titulos, tipo_version, pais_grab, artista_princ, ciudad_grab, genero;
-=======
     string titulos, tipo_version, pais_grab, artista_princ, ciudad_grab, genero;
->>>>>>> 7dd8cbdc2217029d7c0c01d9ec6273f631cdd902
     int anio_pub;
     MiVector<nodo_links> lista_links;
     MiVector<nodo_artistas> lista_artistas;

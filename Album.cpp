@@ -13,12 +13,8 @@ void Album::insertar_cabeceras() {
     multi_album.insertar(estudio_grabaci);
     multi_album.insertar(editorial);
 }
-<<<<<<< HEAD
-void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album){
-=======
 
-void Album::insertar_album(Album album) {
->>>>>>> 7dd8cbdc2217029d7c0c01d9ec6273f631cdd902
+void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album){
     nodo_album album_nuevo;
     album_nuevo.id = album.id;
     album_nuevo.titulo = album.titulo_alb;
@@ -36,11 +32,6 @@ void Album::insertar_album(Album album) {
     }
     
     multi_album.insertar(album_nuevo);
-<<<<<<< HEAD
-
-    cout<<"albúm insertado"<<endl;
-}
-=======
     cout << "Álbum insertado" << endl;
 }
 
@@ -97,4 +88,3 @@ void Album::leerDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista
 
     archivo.close();
 }
->>>>>>> 7dd8cbdc2217029d7c0c01d9ec6273f631cdd902

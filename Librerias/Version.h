@@ -38,7 +38,7 @@ public:
           ciudadGrab(ciudadGrab), paisGra(paisGra), genero(genero), arrMusic(arrMusic) {}
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);
-    void insertar_cancion(Version version);
+    void insertar_version(Version version);
 
 };
 #endif

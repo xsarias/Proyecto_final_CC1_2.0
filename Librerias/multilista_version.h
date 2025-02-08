@@ -54,11 +54,7 @@ string Multilista_version::retornar_dato(int x, string parametro){
     if(parametro == "artista_princ") return lista_versiones[x].artista_princ;
     if(parametro == "ciudad_grab") return lista_versiones[x].ciudad_grab;
     if(parametro == "genero") return lista_versiones[x].genero;
-<<<<<<< HEAD
     if(parametro == "anio_pub") return to_string(lista_versiones[x].anio_pub);
-=======
-    if(parametro == "anio_pub") return to_string(lista_versiones[x].anio_pub).c_str();
->>>>>>> 7dd8cbdc2217029d7c0c01d9ec6273f631cdd902
     return "Parametro desconocido";
 
 

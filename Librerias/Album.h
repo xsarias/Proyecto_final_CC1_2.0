@@ -42,16 +42,13 @@ public:
           const string& estudioGrab = "")
         : id(id), titulo_alb(tituloAlb), nombre_art(nombreArt), pais_grab(paisGrab), anio_pub(anioPub),
           cover_art(coverArt), fotogra(fotogra), editora(editora), estudio_grab(estudioGrab) {}
-<<<<<<< HEAD
-        void insertar_cabeceras(); 
-        void imprimir_lista(string parametro, int pos_cab);
-        void insertar_album(Album cancion, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album);
-=======
+      
+        
 
     // Métodos
     void insertar_cabeceras();
     void imprimir_lista(string parametro, int pos_cab);
-    void insertar_album(Album album);
+    void insertar_album(Album cancion, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album);
 
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Album>& lista);
@@ -67,7 +64,6 @@ public:
     string getFotogra() const { return fotogra; }
     string getEditora() const { return editora; }
     string getEstudioGrab() const { return estudio_grab; }
->>>>>>> 7dd8cbdc2217029d7c0c01d9ec6273f631cdd902
 };
 
 #endif

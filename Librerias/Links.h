@@ -7,36 +7,43 @@ using namespace std;
 
 class Links {
 private:
-    int id;          // Nuevo atributo ID
-    string nomPlat;  // Nombre de la plataforma
+    int id;         // ID único del link
+    int idAlbum;    // ID del Álbum asociado (clave foránea)
+    int idVersion;  // ID de la Versión asociada (clave foránea)
+    string nomPlat; // Nombre de la plataforma
     string linkAlbum;
     string linkCancion;
 
 public:
-    // Constructor
-    Links() : id(0), nomPlat(" "), linkAlbum(" "), linkCancion(" ") {}
-    Links(int id, const string& nomPlat, const string& linkAlbum, const string& linkCancion)
-        : id(id), nomPlat(nomPlat), linkAlbum(linkAlbum), linkCancion(linkCancion) {}
+    // Constructor por defecto
+    Links() : id(0), idAlbum(0), idVersion(0), nomPlat(" "), linkAlbum(" "), linkCancion(" ") {}
+
+    // Constructor con parámetros
+    Links(int id, int idAlbum, int idVersion, const string& nomPlat, const string& linkAlbum, const string& linkCancion)
+        : id(id), idAlbum(idAlbum), idVersion(idVersion), nomPlat(nomPlat), linkAlbum(linkAlbum), linkCancion(linkCancion) {}
 
     // Getters
     int getId() const { return id; }
+    int getIdAlbum() const { return idAlbum; }
+    int getIdVersion() const { return idVersion; }
     string getNomPlat() const { return nomPlat; }
     string getLinkAlbum() const { return linkAlbum; }
     string getLinkCancion() const { return linkCancion; }
 
     // Método para obtener el link completo
     string obtenerLink() const {
-        return "ID: " + to_string(id) + " | Link Álbum: " + linkAlbum + ", Link Canción: " + linkCancion;
+        return "ID: " + to_string(id) + " | Álbum ID: " + to_string(idAlbum) + " | Versión ID: " + to_string(idVersion) +
+               " | Link Álbum: " + linkAlbum + ", Link Canción: " + linkCancion;
     }
 
     // Método para actualizar el link del álbum
-    void actualizarLink(const string& link) {
+    void actualizarLinkAlbum(const string& link) {
         linkAlbum = link;
     }
 
-    // Método para obtener el nombre de la plataforma
-    string obtenerPlataforma() const {
-        return nomPlat;
+    // Método para actualizar el link de la canción
+    void actualizarLinkCancion(const string& link) {
+        linkCancion = link;
     }
 
     nodo_links insertar_link(Links links);

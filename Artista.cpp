@@ -59,3 +59,42 @@ void Artista::leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& l
 
     archivo.close();
 }
+void Artista::eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& lista) {
+    int idEliminar;
+    cout << "Ingrese el ID del artista que desea eliminar: ";
+    cin >> idEliminar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getId() == idEliminar) {
+            encontrado = true;
+            cout << "Está seguro de eliminar el siguiente artista? (y/n)\n";
+            cout << "ID: " << lista[i].getId() << "\n"
+                 << "Nombre real: " << lista[i].getNomReal() << "\n"
+                 << "Nombre artístico: " << lista[i].getNomArtist() << "\n"
+                 << "País de origen: " << lista[i].getPaisOrigen() << "\n"
+                 << "Instrumento principal: " << lista[i].getInstrumInter() << "\n";
+
+            char confirmacion;
+            cout << "Confirmar eliminación (y/n): ";
+            cin >> confirmacion;
+
+            if (confirmacion == 'y' || confirmacion == 'Y') {
+                lista.erase(i);  // Eliminar de la lista
+                cout << "Artista eliminado con éxito.\n";
+            } else {
+                cout << "Eliminación cancelada.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró un artista con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
+}
+

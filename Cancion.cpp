@@ -125,3 +125,43 @@ void Cancion::leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& l
 
     archivo.close();
 }
+
+void Cancion::eliminarDeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista) {
+    int idEliminar;
+    cout << "Ingrese el ID de la canción que desea eliminar: ";
+    cin >> idEliminar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getId() == idEliminar) {
+            encontrado = true;
+            cout << "Está seguro de eliminar la siguiente canción? (y/n)\n";
+            cout << "ID: " << lista[i].getId() << "\n"
+                 << "Nombre: " << lista[i].getNombreCancion() << "\n"
+                 << "Artista: " << lista[i].getNomArtistico() << "\n"
+                 << "Género: " << lista[i].getGenero() << "\n"
+                 << "Año de Publicación: " << lista[i].getAnioPublicacion() << "\n"
+                 << "Duración: " << lista[i].getDuracion() << "\n";
+
+            char confirmacion;
+            cout << "Confirmar eliminación (y/n): ";
+            cin >> confirmacion;
+
+            if (confirmacion == 'y' || confirmacion == 'Y') {
+                lista.erase(i);  // Eliminar de la lista
+                cout << "Canción eliminada con éxito.\n";
+            } else {
+                cout << "Eliminación cancelada.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró una canción con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
+}

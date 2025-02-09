@@ -60,3 +60,45 @@ void Links::leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista
 
     archivo.close();
 }
+
+void Links::eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& lista) {
+    int idEliminar;
+    cout << "Ingrese el ID del link que desea eliminar: ";
+    cin >> idEliminar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getId() == idEliminar) {
+            encontrado = true;
+            cout << "Está seguro de eliminar el siguiente link? (y/n)\n";
+            cout << "ID: " << lista[i].getId() << "\n"
+                 << "ID Álbum: " << lista[i].getIdAlbum() << "\n"
+                 << "ID Versión: " << lista[i].getIdVersion() << "\n"
+                 << "Plataforma: " << lista[i].getNomPlat() << "\n"
+                 << "Link Álbum: " << lista[i].getLinkAlbum() << "\n"
+                 << "Link Canción: " << lista[i].getLinkCancion() << "\n";
+
+            char confirmacion;
+            cout << "Confirmar eliminación (y/n): ";
+            cin >> confirmacion;
+
+            if (confirmacion == 'y' || confirmacion == 'Y') {
+                lista.erase(i);  // Eliminar de la lista
+                cout << "Link eliminado con éxito.\n";
+            } else {
+                cout << "Eliminación cancelada.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró un link con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
+}
+
+

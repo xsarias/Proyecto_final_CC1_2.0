@@ -37,6 +37,8 @@ public:
     // Métodos para guardar y leer desde archivo
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Artista>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
+    static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
+
 };
 
 

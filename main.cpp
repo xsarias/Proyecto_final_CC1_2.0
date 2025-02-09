@@ -42,10 +42,8 @@ void insertar_prueba(){
     listaCanciones.push_back(Cancion(10, "Hotel California", "Eagles", "Rock", 1976, "6:30"));
     
     // Enlaces para las canciones
-    listalinkscancion.push_back(Links(1, "Spotify", "https://open.spotify.com/album/123", "https://open.spotify.com/track/456"));
-    listalinkscancion.push_back(Links(2, "Apple Music", "https://music.apple.com/album/789", "https://music.apple.com/track/012"));
-    listalinkscancion.push_back(Links(3, "Spotify", "https://open.spotify.com/album/456", "https://open.spotify.com/track/789"));
-    listalinkscancion.push_back(Links(4, "Apple Music", "https://music.apple.com/album/123", "https://music.apple.com/track/345"));
+    listalinkscancion.push_back(Links(1, 101, 201, "Spotify", "https://spotify.com/album/101", "https://spotify.com/track/123"));
+    listalinkscancion.push_back(Links(3, 103, 203, "YouTube", "https://youtube.com/album/103", "https://youtube.com/track/345"));
     
     // Caso de prueba 2: Agregar artistas
     listaArtistas.push_back(Artista(1, "Paul David Hewson", "Bono", "Irlanda", "Rock"));
@@ -60,12 +58,12 @@ void insertar_prueba(){
     listaArtistas.push_back(Artista(10, "Eagles", "Don Henley, Glenn Frey, Bernie Leadon, Randy Meisner", "EE. UU.", "Rock"));
     
     // Caso de prueba 3: Insertar versiones y canciones
-    listaVersiones.push_back(vers.insertar_version(Version(1, "Titulo1", "Oficial", 2023, "Madrid", "España", "Rock", "Guitarra"), listaArtistas, listalinkscancion));
+    listaVersiones.push_back(vers.insertar_version(Version(1, 2, 3, "Titulo1", "Oficial", 2023, "Madrid", "España", "Rock", "Guitarra"), listaArtistas, listalinkscancion));
     cancionInsertada = cancioncita.insertar_cancion(Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01"), listalinkscancion, listaArtistas, listaVersiones);
     listaCancionesAlbum.push_back(cancionInsertada);
     
     // Caso de prueba 4: Insertar un álbum con canciones y enlaces
-    listalinksalbum.push_back(Links(2, "Youtube", "https://youtube.com/album/789", "https://music.apple.com/track/012"));
+    listalinksalbum.push_back(Links(4, 104, 204, "Deezer", "https://deezer.com/album/104", "https://deezer.com/track/456"));
     album.insertar_album(Album(1, "Thriller", "Michael Jackson", "EE. UU.", 1982, "thriller_cover.jpg", "John Smith", "Epic Records", "Westlake Recording Studios"), listaCancionesAlbum, listalinksalbum);
     album.insertar_album(Album(2, "Abbey Road", "The Beatles", "Reino Unido", 1969, "abbey_road_cover.jpg", "George Martin", "Apple Records", "Abbey Road Studios"), listaCancionesAlbum, listalinksalbum);
     cout<<"inserte hasta aca"<<endl;

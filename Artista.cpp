@@ -121,10 +121,12 @@ void Artista::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artis
         if (lista[i].getId() == idEditar) {
             encontrado = true;
             cout << "Artista encontrado. Datos actuales:\n";
-            cout << "1. Nombre real: " << lista[i].getNomReal() << "\n";
-            cout << "2. Nombre artístico: " << lista[i].getNomArtist() << "\n";
-            cout << "3. País de origen: " << lista[i].getPaisOrigen() << "\n";
-            cout << "4. Instrumento principal: " << lista[i].getInstrumInter() << "\n";
+            cout << "1. ID Canción: " << lista[i].getIdCancion() << "\n";
+            cout << "2. ID Versión: " << lista[i].getIdVersion() << "\n";
+            cout << "3. Nombre real: " << lista[i].getNomReal() << "\n";
+            cout << "4. Nombre artístico: " << lista[i].getNomArtist() << "\n";
+            cout << "5. País de origen: " << lista[i].getPaisOrigen() << "\n";
+            cout << "6. Instrumento principal: " << lista[i].getInstrumInter() << "\n";
 
             int opcion;
             while (true) {
@@ -140,21 +142,31 @@ void Artista::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artis
                 string nuevoValor;
                 switch (opcion) {
                     case 1:
+                        cout << "Nuevo ID Canción: ";
+                        cin >> nuevoValor;
+                        lista[i].setIdCancion(stoi(nuevoValor));
+                        break;
+                    case 2:
+                        cout << "Nuevo ID Versión: ";
+                        cin >> nuevoValor;
+                        lista[i].setIdVersion(stoi(nuevoValor));
+                        break;
+                    case 3:
                         cout << "Nuevo nombre real: ";
                         getline(cin, nuevoValor);
                         lista[i].setNomReal(nuevoValor);
                         break;
-                    case 2:
+                    case 4:
                         cout << "Nuevo nombre artístico: ";
                         getline(cin, nuevoValor);
                         lista[i].setNomArtist(nuevoValor);
                         break;
-                    case 3:
+                    case 5:
                         cout << "Nuevo país de origen: ";
                         getline(cin, nuevoValor);
                         lista[i].setPaisOrigen(nuevoValor);
                         break;
-                    case 4:
+                    case 6:
                         cout << "Nuevo instrumento principal: ";
                         getline(cin, nuevoValor);
                         lista[i].setInstrumInter(nuevoValor);

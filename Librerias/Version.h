@@ -6,7 +6,7 @@
 #include "multilista_version.h"
 #include "Links.h"
 #include "estructuras.h"
-
+#include "Artista.h"
 using namespace std;
 Multilista_version multi_version;
 

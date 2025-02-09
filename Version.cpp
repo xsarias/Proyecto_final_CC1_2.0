@@ -1,7 +1,7 @@
 #include "Librerias/Version.h"
 #include <iostream>
 #include <fstream>
-
+#include "Librerias/Artista.h"
 using namespace std;
 
 void Version::insertar_cabeceras() {

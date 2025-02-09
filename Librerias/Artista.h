@@ -38,10 +38,21 @@ public:
     void imprimir_artista(Artista Artista);
     nodo_artistas insertar_artista(Artista artista);
 
+    // Setters
+    void setId(int nuevoId) { id = nuevoId; }
+    void setIdCancion(int nuevoIdCancion) { id_cancion = nuevoIdCancion; }
+    void setIdVersion(int nuevoIdVersion) { id_version = nuevoIdVersion; }
+    void setNomReal(const string& nuevoNomReal) { nom_real = nuevoNomReal; }
+    void setNomArtist(const string& nuevoNomArtist) { nom_artist = nuevoNomArtist; }
+    void setPaisOrigen(const string& nuevoPaisOrigen) { pais_origen = nuevoPaisOrigen; }
+    void setInstrumInter(const string& nuevoInstrumInter) { instrum_inter = nuevoInstrumInter; }
+
+
     // Métodos para guardar y leer desde archivo
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Artista>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
+    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
 
 };
 

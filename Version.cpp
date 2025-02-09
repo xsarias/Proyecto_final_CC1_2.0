@@ -107,7 +107,7 @@ void Version::eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& 
                  << "Ciudad Grabación: " << lista[i].getCiudadGrab() << "\n"
                  << "País Grabación: " << lista[i].getPaisGra() << "\n"
                  << "Género: " << lista[i].getGenero() << "\n"
-                 << "Arreglo Musical: " << lista[i].getArrMusic() << "\n";
+                 << "Arreglo Musical: " << lista[i].getArtistaPrincipal() << "\n";
 
             char confirmacion;
             cout << "Confirmar eliminación (y/n): ";
@@ -130,4 +130,92 @@ void Version::eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& 
 
     // Guardar la lista actualizada en el archivo
     guardarEnArchivo(nombreArchivo, lista);
+}
+
+void Version::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista) {
+    int idEditar;
+    cout << "Ingrese el ID de la versión que desea editar: ";
+    cin >> idEditar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getIdVersion() == idEditar) {
+            encontrado = true;
+            cout << "Versión encontrada. Datos actuales:\n";
+            cout << "1. Título: " << lista[i].getTituloVer() << "\n";
+            cout << "2. Tipo de Versión: " << lista[i].getTipVersion() << "\n";
+            cout << "3. Año: " << lista[i].getAnio() << "\n";
+            cout << "4. Ciudad de Grabación: " << lista[i].getCiudadGrab() << "\n";
+            cout << "5. País de Grabación: " << lista[i].getPaisGra() << "\n";
+            cout << "6. Género: " << lista[i].getGenero() << "\n";
+            cout << "7. Artista Principal: " << lista[i].getArtistaPrincipal() << "\n";
+
+            int opcion;
+            while (true) {
+                cout << "Ingrese el número del atributo que desea modificar (0 para salir): ";
+                cin >> opcion;
+                cin.ignore(); // Limpiar buffer
+
+                if (opcion == 0) {
+                    cout << "Saliendo del modo de edición...\n";
+                    break;
+                }
+
+                string nuevoValor;
+                int nuevoAnio;
+                switch (opcion) {
+                    case 1:
+                        cout << "Nuevo título: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setTituloVer(nuevoValor);
+                        break;
+                    case 2:
+                        cout << "Nuevo tipo de versión: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setTipVersion(nuevoValor);
+                        break;
+                    case 3:
+                        cout << "Nuevo año de publicación: ";
+                        cin >> nuevoAnio;
+                        lista[i].setAnio(nuevoAnio);
+                        cin.ignore(); // Limpiar buffer
+                        break;
+                    case 4:
+                        cout << "Nueva ciudad de grabación: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setCiudadGrab(nuevoValor);
+                        break;
+                    case 5:
+                        cout << "Nuevo país de grabación: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setPaisGra(nuevoValor);
+                        break;
+                    case 6:
+                        cout << "Nuevo género: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setGenero(nuevoValor);
+                        break;
+                    case 7:
+                        cout << "Nuevo artista principal: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setArtistaPrincipal(nuevoValor);
+                        break;
+                    default:
+                        cout << "Opción no válida. Intente de nuevo.\n";
+                        continue;
+                }
+                cout << "Cambio realizado con éxito.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró una versión con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
+    cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }

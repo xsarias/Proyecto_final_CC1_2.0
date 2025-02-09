@@ -118,10 +118,13 @@ void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>&
         if (lista[i].getId() == idEditar) {
             encontrado = true;
             cout << "Link encontrado. Datos actuales:\n";
-            cout << "1. ID Canción: " << lista[i].getIdCancion() << "\n";  // 🔹 Nuevo campo
-            cout << "2. Plataforma: " << lista[i].getNomPlat() << "\n";
-            cout << "3. Link Álbum: " << lista[i].getLinkAlbum() << "\n";
-            cout << "4. Link Canción: " << lista[i].getLinkCancion() << "\n";
+            cout << "1. ID: " << lista[i].getId() << "\n";
+            cout << "2. ID Canción: " << lista[i].getIdCancion() << "\n";
+            cout << "3. ID Álbum: " << lista[i].getIdAlbum() << "\n";
+            cout << "4. ID Versión: " << lista[i].getIdVersion() << "\n";
+            cout << "5. Plataforma: " << lista[i].getNomPlat() << "\n";
+            cout << "6. Link Álbum: " << lista[i].getLinkAlbum() << "\n";
+            cout << "7. Link Canción: " << lista[i].getLinkCancion() << "\n";
 
             int opcion;
             while (true) {
@@ -134,29 +137,56 @@ void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>&
                     break;
                 }
 
-                string nuevoValor;
                 switch (opcion) {
-                    case 1:
+                    case 1: {
+                        int nuevoId;
+                        cout << "Nuevo ID: ";
+                        cin >> nuevoId;
+                        lista[i].setId(nuevoId);
+                        break;
+                    }
+                    case 2: {
                         int nuevoIdCancion;
                         cout << "Nuevo ID de la canción: ";
                         cin >> nuevoIdCancion;
-                        lista[i].setIdCancion(nuevoIdCancion);  // 🔹 Nuevo campo
+                        lista[i].setIdCancion(nuevoIdCancion);
                         break;
-                    case 2:
-                        cout << "Nuevo nombre de plataforma: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setNomPlat(nuevoValor);
+                    }
+                    case 3: {
+                        int nuevoIdAlbum;
+                        cout << "Nuevo ID del álbum: ";
+                        cin >> nuevoIdAlbum;
+                        lista[i].setIdAlbum(nuevoIdAlbum);
                         break;
-                    case 3:
+                    }
+                    case 4: {
+                        int nuevoIdVersion;
+                        cout << "Nuevo ID de la versión: ";
+                        cin >> nuevoIdVersion;
+                        lista[i].setIdVersion(nuevoIdVersion);
+                        break;
+                    }
+                    case 5: {
+                        string nuevaPlataforma;
+                        cout << "Nuevo nombre de la plataforma: ";
+                        getline(cin, nuevaPlataforma);
+                        lista[i].setNomPlat(nuevaPlataforma);
+                        break;
+                    }
+                    case 6: {
+                        string nuevoLinkAlbum;
                         cout << "Nuevo link del álbum: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setLinkAlbum(nuevoValor);
+                        getline(cin, nuevoLinkAlbum);
+                        lista[i].setLinkAlbum(nuevoLinkAlbum);
                         break;
-                    case 4:
+                    }
+                    case 7: {
+                        string nuevoLinkCancion;
                         cout << "Nuevo link de la canción: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setLinkCancion(nuevoValor);
+                        getline(cin, nuevoLinkCancion);
+                        lista[i].setLinkCancion(nuevoLinkCancion);
                         break;
+                    }
                     default:
                         cout << "Opción no válida. Intente de nuevo.\n";
                         continue;
@@ -175,5 +205,3 @@ void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>&
     // Guardar la lista actualizada en el archivo
     guardarEnArchivo(nombreArchivo, lista);
 }
-
-

@@ -56,6 +56,7 @@ void  Cancion :: insertar_cabeceras(){
 nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<nodo_versiones> version){
     nodo_canciones cancion_nueva;
     cancion_nueva.id = cancion.id;
+    cancion_nueva.id_album = cancion.id_album;
     cancion_nueva.nom_cancion = cancion.nombreCancion;
     cancion_nueva.nom_artistico = cancion.nom_artistico;
     cancion_nueva.arrMusic = cancion.arrMusic;
@@ -110,8 +111,16 @@ void Cancion::leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& l
 
     lista.clear();
 
-    int id, anioPublicacion;
+    int id, id_album, anioPublicacion;
     string nombreCancion, nomArtistico, genero, duracion;
+    int numArtistasPrincipales;  
+    string composLetra;  
+    string composMusica;  
+    string arrMusic;  
+    string ciudadGrabacion; 
+    string paisGrabacion; 
+    int anioPublicacion; 
+    string genero;  
     while (archivo >> id) {
         archivo.ignore();
         getline(archivo, nombreCancion, ',');
@@ -120,7 +129,7 @@ void Cancion::leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& l
         archivo >> anioPublicacion;
         archivo.ignore();
         getline(archivo, duracion);
-        lista.push_back(Cancion(id, nombreCancion, nomArtistico, genero, anioPublicacion, duracion));
+        lista.push_back(Cancion(id, id_album, nombreCancion, nomArtistico, genero, anioPublicacion, duracion,composLetra, composMusica, arrMusic, ciudadGrabacion, paisGrabacion, numArtistasPrincipales));
     }
 
     archivo.close();

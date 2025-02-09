@@ -21,6 +21,7 @@ cabeza duracion_can = {"Duracion", 0 };
 class Cancion {
 private:
     int id;
+    int id_album;
     string nombreCancion;
     string nom_artistico;  
     string duracion;  
@@ -36,12 +37,21 @@ private:
     MiVector<nodo_links> listPlataf;  
     MiVector<Version> listVersiones;
 public:
-    // Constructor por defecto necesario para MiVector
-    Cancion() : id(0), nombreCancion(""), nom_artistico(""), genero(""), anioPublicacion(0), duracion("") {}
-    
+    Cancion() : id(0), id_album(0), nombreCancion(""), nom_artistico(""), genero(""), 
+    anioPublicacion(0), duracion(""), composLetra(""), composMusica(""), 
+    arrMusic(""), ciudadGrabacion(""), paisGrabacion(""), numArtistasPrincipales(0) {}
+
     // Constructor con parámetros
-    Cancion(int id, const string& nombreCancion, const string& nomArtistico, const string& genero, int anioPublicacion, const string& duracion)
-    : id(id), nombreCancion(nombreCancion), nom_artistico(nomArtistico), genero(genero), anioPublicacion(anioPublicacion), duracion(duracion) {}
+    Cancion(int id, int id_album, const string& nombreCancion, const string& nomArtistico, const string& genero, 
+    int anioPublicacion, const string& duracion, const string& composLetra, const string& composMusica, 
+    const string& arrMusic, const string& ciudadGrabacion, const string& paisGrabacion, 
+    int numArtistasPrincipales)
+    : id(id), id_album(id_album), nombreCancion(nombreCancion), nom_artistico(nomArtistico), 
+    genero(genero), anioPublicacion(anioPublicacion), duracion(duracion), 
+    composLetra(composLetra), composMusica(composMusica), arrMusic(arrMusic), 
+    ciudadGrabacion(ciudadGrabacion), paisGrabacion(paisGrabacion), numArtistasPrincipales(numArtistasPrincipales) {}
+
+
 
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);

@@ -22,26 +22,23 @@ class Version {
 private:
     int idVersion;
     int idCancion;  // ID foráneo de la canción
-    int idAlbum;    // ID foráneo del álbum
     string tituloVer;  
     string tipVersion;  
-    string artistasPrin;  
+    string artistaPrin;  
     string ciudadGrab;  
-    string paisGra;  
-    string arrMusic;  
+    string paisGra; 
     string genero;  
     int anio; 
-    MiVector<nodo_links> listLinksVers;  
 
 public:
     // Constructores
-    Version() : idVersion(0), idCancion(0), idAlbum(0), tituloVer(""), tipVersion(""), anio(0), ciudadGrab(""), paisGra(""), genero(""), arrMusic("") {}
+    Version() : idVersion(0), idCancion(0), tituloVer(""), tipVersion(""), artistaPrin(""), anio(0), ciudadGrab(""), paisGra(""), genero("") {}
 
-    Version(int id, int idCancion, int idAlbum, const string& tituloVer, const string& tipVersion, int anio,
+    Version(int id, int idCancion, const string& tituloVer, const string& tipVersion, const string&artistaPrin, int anio,
             const string& ciudadGrab = "", const string& paisGra = "",
-            const string& genero = "", const string& arrMusic = "")
-        : idVersion(id), idCancion(idCancion), idAlbum(idAlbum), tituloVer(tituloVer), tipVersion(tipVersion), anio(anio),
-          ciudadGrab(ciudadGrab), paisGra(paisGra), genero(genero), arrMusic(arrMusic) {}
+            const string& genero = "")
+        : idVersion(id), idCancion(idCancion), tituloVer(tituloVer), tipVersion(tipVersion), artistaPrin(artistaPrin), anio(anio),
+          ciudadGrab(ciudadGrab), paisGra(paisGra), genero(genero) {}
 
     // Métodos
     void insertar_cabeceras(); 
@@ -50,15 +47,14 @@ public:
 
     // Getters
     int getIdVersion() const { return idVersion; }
-    int getIdCancion() const { return idCancion; } // Nuevo getter
-    int getIdAlbum() const { return idAlbum; }     // Nuevo getter
+    int getIdCancion() const { return idCancion; } 
     string getTituloVer() const { return tituloVer; }
     string getTipVersion() const { return tipVersion; }
     int getAnio() const { return anio; }
     string getCiudadGrab() const { return ciudadGrab; }
     string getPaisGra() const { return paisGra; }
     string getGenero() const { return genero; }
-    string getArrMusic() const { return arrMusic; }
+    string getArtistaPrincipal () const {return artistaPrin;}
 
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Version>& lista);

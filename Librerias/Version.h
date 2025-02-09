@@ -6,6 +6,7 @@
 #include "multilista_version.h"
 #include "Links.h"
 #include "estructuras.h"
+#include "Artista.h"
 using namespace std;
 Multilista_version multi_version;
 
@@ -43,7 +44,7 @@ public:
     // Métodos
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);
-    void insertar_version(Version version);
+    nodo_versiones  insertar_version(Version version,  MiVector<Artista> artistas_version, MiVector<Links> links_version);
 
     // Getters
     int getIdVersion() const { return idVersion; }

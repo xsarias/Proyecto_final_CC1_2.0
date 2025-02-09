@@ -4,7 +4,9 @@
 #include "Librerias/MiVector.h"
 
 nodo_links Links::insertar_link(Links links) {
+
     nodo_links nuevo_link;
+    nuevo_link.id = links.id;
     nuevo_link.link_album = links.linkAlbum;
     nuevo_link.link_cancion = links.linkCancion;
     nuevo_link.nom_plat = links.nomPlat;

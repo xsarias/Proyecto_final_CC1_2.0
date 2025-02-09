@@ -9,7 +9,8 @@ using namespace std;
 
 class Artista {
 private:
-    int id;
+    int id_cancion;
+    int id_version;
     string nom_real; 
     string nom_artist; 
     string pais_origen;  
@@ -17,14 +18,14 @@ private:
 
 public:
     // Constructor por defecto necesario para MiVector
-    Artista() : id(0), nom_real(""), nom_artist(""), pais_origen(""), instrum_inter("") {}
+    Artista() : id_cancion(0), id_version(0), nom_real(""), nom_artist(""), pais_origen(""), instrum_inter("") {}
 
     // Constructor con parámetros
-    Artista(int id, const string& nomReal, const string& nomArtist, const string& paisOrigen, const string& instrumInter)
-        : id(id), nom_real(nomReal), nom_artist(nomArtist), pais_origen(paisOrigen), instrum_inter(instrumInter) {}
+    Artista(int id, int id_cancion, int id_version, const string& nomReal, const string& nomArtist, const string& paisOrigen, const string& instrumInter)
+        : id_cancion(id_cancion), id_version(id_version), nom_real(nomReal), nom_artist(nomArtist), pais_origen(paisOrigen), instrum_inter(instrumInter) {}
 
     // Getters
-    int getId() const { return id; }
+    
     string getNomReal() const { return nom_real; }
     string getNomArtist() const { return nom_artist; }
     string getPaisOrigen() const { return pais_origen; }
@@ -37,6 +38,8 @@ public:
     // Métodos para guardar y leer desde archivo
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Artista>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
+    static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
+
 };
 
 

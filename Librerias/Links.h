@@ -51,6 +51,8 @@ public:
     // Métodos para leer y guardar en archivo
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Links>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
+    static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
+
 };
 
 #endif

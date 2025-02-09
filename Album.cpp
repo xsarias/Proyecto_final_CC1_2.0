@@ -88,3 +88,47 @@ void Album::leerDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista
 
     archivo.close();
 }
+
+void Album::eliminarDeArchivo(const string& nombreArchivo, MiVector<Album>& lista) {
+    int idEliminar;
+    cout << "Ingrese el ID del álbum que desea eliminar: ";
+    cin >> idEliminar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getId() == idEliminar) {
+            encontrado = true;
+            cout << "Está seguro de eliminar el siguiente álbum? (y/n)\n";
+            cout << "ID: " << lista[i].getId() << "\n"
+                 << "Título: " << lista[i].getTitulo() << "\n"
+                 << "Artista: " << lista[i].getNombreArt() << "\n"
+                 << "País de grabación: " << lista[i].getPaisGrab() << "\n"
+                 << "Año de publicación: " << lista[i].getAnioPub() << "\n"
+                 << "Cover Art: " << lista[i].getCoverArt() << "\n"
+                 << "Fotografía: " << lista[i].getFotogra() << "\n"
+                 << "Editora: " << lista[i].getEditora() << "\n"
+                 << "Estudio de grabación: " << lista[i].getEstudioGrab() << "\n";
+
+            char confirmacion;
+            cout << "Confirmar eliminación (y/n): ";
+            cin >> confirmacion;
+
+            if (confirmacion == 'y' || confirmacion == 'Y') {
+                lista.erase(i);  // Eliminar de la lista
+                cout << "Álbum eliminado con éxito.\n";
+            } else {
+                cout << "Eliminación cancelada.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró un álbum con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
+}
+

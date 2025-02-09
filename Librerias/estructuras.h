@@ -20,7 +20,8 @@ struct nodo_links{
     int sig_nomPlata, sig_linkAlb, sig_linkCan;
 };
 struct nodo_artistas{
-    int id;
+    int id_cancion;
+    int id_version;
     string nom_real;
     string nom_artistico;
     string pais_origen;
@@ -30,6 +31,7 @@ struct nodo_artistas{
 
 struct nodo_versiones{
     int id; 
+    int id_cancion;
     string titulos, tipo_version, pais_grab, artista_princ, ciudad_grab, genero;
     int anio_pub;
     MiVector<nodo_links> lista_links;
@@ -41,6 +43,7 @@ struct nodo_versiones{
 
 struct nodo_canciones{
     int id;
+    int id_album;
     string nom_artistico;
     string nom_cancion;
     string duracion;

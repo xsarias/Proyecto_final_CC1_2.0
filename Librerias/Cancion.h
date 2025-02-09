@@ -25,7 +25,6 @@ private:
     string nombreCancion;
     string nom_artistico;  
     string duracion;  
-    MiVector<Artista> listArtistas;
     int numArtistasPrincipales;  
     string composLetra;  
     string composMusica;  
@@ -34,8 +33,7 @@ private:
     string paisGrabacion; 
     int anioPublicacion; 
     string genero;  
-    MiVector<nodo_links> listPlataf;  
-    MiVector<Version> listVersiones;
+
 public:
     Cancion() : id(0), id_album(0), nombreCancion(""), nom_artistico(""), genero(""), 
     anioPublicacion(0), duracion(""), composLetra(""), composMusica(""), 
@@ -71,10 +69,25 @@ public:
     string getCiudadGrabacion() const { return ciudadGrabacion; }
     string getPaisGrabacion() const { return paisGrabacion; }
 
+
+    // Setters
+    void setNombre(const string& nuevoNombre) { nombreCancion = nuevoNombre; }
+    void setNomArtistico(const string& nuevoNomArtistico) { nom_artistico = nuevoNomArtistico; }
+    void setGenero(const string& nuevoGenero) { genero = nuevoGenero; }
+    void setAnioPublicacion(int nuevoAnio) { anioPublicacion = nuevoAnio; }
+    void setDuracion(const string& nuevaDuracion) { duracion = nuevaDuracion; }
+    void setComposLetra(const string& nuevaComposLetra) { composLetra = nuevaComposLetra; }
+    void setComposMusica(const string& nuevaComposMusica) { composMusica = nuevaComposMusica; }
+    void setArrMusic(const string& nuevoArrMusic) { arrMusic = nuevoArrMusic; }
+    void setCiudadGrabacion(const string& nuevaCiudad) { ciudadGrabacion = nuevaCiudad; }
+    void setPaisGrabacion(const string& nuevoPais) { paisGrabacion = nuevoPais; }
+
+
     // Métodos para guardar y leer desde archivo
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Cancion>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
+    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
 
     
 };

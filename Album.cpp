@@ -137,3 +137,95 @@ void Album::eliminarDeArchivo(const string& nombreArchivo, MiVector<Album>& list
     guardarEnArchivo(nombreArchivo, lista);
 }
 
+void Album::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista) {
+    int idEditar;
+    cout << "Ingrese el ID del álbum que desea editar: ";
+    cin >> idEditar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getId() == idEditar) {
+            encontrado = true;
+            cout << "Álbum encontrado. Datos actuales:\n";
+            cout << "1. Título: " << lista[i].getTitulo() << "\n";
+            cout << "2. Nombre del artista: " << lista[i].getNombreArt() << "\n";
+            cout << "3. País de grabación: " << lista[i].getPaisGrab() << "\n";
+            cout << "4. Año de publicación: " << lista[i].getAnioPub() << "\n";
+            cout << "5. Cover Art: " << lista[i].getCoverArt() << "\n";
+            cout << "6. Fotografía: " << lista[i].getFotogra() << "\n";
+            cout << "7. Editora: " << lista[i].getEditora() << "\n";
+            cout << "8. Estudio de grabación: " << lista[i].getEstudioGrab() << "\n";
+
+            int opcion;
+            while (true) {
+                cout << "Ingrese el número del atributo que desea modificar (0 para salir): ";
+                cin >> opcion;
+                cin.ignore(); // Limpiar buffer
+
+                if (opcion == 0) {
+                    cout << "Saliendo del modo de edición...\n";
+                    break;
+                }
+
+                string nuevoValor;
+                int nuevoAnio;
+                switch (opcion) {
+                    case 1:
+                        cout << "Nuevo título: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setTitulo(nuevoValor);
+                        break;
+                    case 2:
+                        cout << "Nuevo nombre del artista: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setNombreArt(nuevoValor);
+                        break;
+                    case 3:
+                        cout << "Nuevo país de grabación: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setPaisGrab(nuevoValor);
+                        break;
+                    case 4:
+                        cout << "Nuevo año de publicación: ";
+                        cin >> nuevoAnio;
+                        lista[i].setAnioPub(nuevoAnio);
+                        break;
+                    case 5:
+                        cout << "Nuevo cover art: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setCoverArt(nuevoValor);
+                        break;
+                    case 6:
+                        cout << "Nueva fotografía: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setFotogra(nuevoValor);
+                        break;
+                    case 7:
+                        cout << "Nueva editora: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setEditora(nuevoValor);
+                        break;
+                    case 8:
+                        cout << "Nuevo estudio de grabación: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setEstudioGrab(nuevoValor);
+                        break;
+                    default:
+                        cout << "Opción no válida. Intente de nuevo.\n";
+                        continue;
+                }
+                cout << "Cambio realizado con éxito.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró un álbum con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
+    cout << "Los cambios han sido guardados correctamente en el archivo.\n";
+}

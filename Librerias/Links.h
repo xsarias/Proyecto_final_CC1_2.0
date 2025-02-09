@@ -26,10 +26,21 @@ public:
     // Getters
     int getId() const { return id; }
     int getIdAlbum() const { return idAlbum; }
+    int getIdCancion() const { return idCancion; }
     int getIdVersion() const { return idVersion; }
     string getNomPlat() const { return nomPlat; }
     string getLinkAlbum() const { return linkAlbum; }
     string getLinkCancion() const { return linkCancion; }
+
+    // Setters
+    void setId(int newId) { id = newId; }
+    void setIdCancion(int newIdCancion) { idCancion = newIdCancion; }
+    void setIdAlbum(int newIdAlbum) { idAlbum = newIdAlbum; }
+    void setIdVersion(int newIdVersion) { idVersion = newIdVersion; }
+    void setNomPlat(const string& newNomPlat) { nomPlat = newNomPlat; }
+    void setLinkAlbum(const string& newLinkAlbum) { linkAlbum = newLinkAlbum; }
+    void setLinkCancion(const string& newLinkCancion) { linkCancion = newLinkCancion; }
+
 
     // Método para obtener el link completo
     string obtenerLink() const {
@@ -53,6 +64,7 @@ public:
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Links>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
+    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
 
 };
 

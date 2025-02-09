@@ -68,7 +68,9 @@ public:
     string getArrMusic() const { return arrMusic; }
     string getCiudadGrabacion() const { return ciudadGrabacion; }
     string getPaisGrabacion() const { return paisGrabacion; }
-
+    int getIdAlbum() const { return id_album; }
+    int getNumArtistasPrincipales() const { return numArtistasPrincipales; }
+    
 
     // Setters
     void setNombre(const string& nuevoNombre) { nombreCancion = nuevoNombre; }
@@ -81,7 +83,8 @@ public:
     void setArrMusic(const string& nuevoArrMusic) { arrMusic = nuevoArrMusic; }
     void setCiudadGrabacion(const string& nuevaCiudad) { ciudadGrabacion = nuevaCiudad; }
     void setPaisGrabacion(const string& nuevoPais) { paisGrabacion = nuevoPais; }
-
+    void setIdAlbum(int nuevoIdAlbum) { id_album = nuevoIdAlbum; }
+    void setNumArtistasPrincipales(int nuevoNum) { numArtistasPrincipales = nuevoNum; }
 
     // Métodos para guardar y leer desde archivo
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Cancion>& lista);

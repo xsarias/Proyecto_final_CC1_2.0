@@ -57,6 +57,8 @@ public:
     string getArtistaPrincipal () const {return artistaPrin;}
     
     // Setters
+    void setIdVersion(int nuevoIdVersion) { idVersion = nuevoIdVersion; }
+    void setIdCancion(int nuevoIdCancion) { idCancion = nuevoIdCancion; }
     void setTituloVer(const string& nuevoTitulo) { tituloVer = nuevoTitulo; }
     void setTipVersion(const string& nuevoTipo) { tipVersion = nuevoTipo; }
     void setAnio(int nuevoAnio) { anio = nuevoAnio; }

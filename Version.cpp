@@ -107,7 +107,8 @@ void Version::eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& 
                  << "Ciudad Grabación: " << lista[i].getCiudadGrab() << "\n"
                  << "País Grabación: " << lista[i].getPaisGra() << "\n"
                  << "Género: " << lista[i].getGenero() << "\n"
-                 << "Arreglo Musical: " << lista[i].getArtistaPrincipal() << "\n";
+                 << "Arreglo Musical: " << lista[i].getArtistaPrincipal() 
+                 << "ID Cancion: " << lista[i].getIdVersion() << "\n";
 
             char confirmacion;
             cout << "Confirmar eliminación (y/n): ";
@@ -142,13 +143,15 @@ void Version::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Versi
         if (lista[i].getIdVersion() == idEditar) {
             encontrado = true;
             cout << "Versión encontrada. Datos actuales:\n";
-            cout << "1. Título: " << lista[i].getTituloVer() << "\n";
-            cout << "2. Tipo de Versión: " << lista[i].getTipVersion() << "\n";
-            cout << "3. Año: " << lista[i].getAnio() << "\n";
-            cout << "4. Ciudad de Grabación: " << lista[i].getCiudadGrab() << "\n";
-            cout << "5. País de Grabación: " << lista[i].getPaisGra() << "\n";
-            cout << "6. Género: " << lista[i].getGenero() << "\n";
-            cout << "7. Artista Principal: " << lista[i].getArtistaPrincipal() << "\n";
+            cout << "1. ID de la versión: " << lista[i].getIdVersion() << "\n";
+            cout << "2. ID de la canción: " << lista[i].getIdCancion() << "\n";
+            cout << "3. Título: " << lista[i].getTituloVer() << "\n";
+            cout << "4. Tipo de Versión: " << lista[i].getTipVersion() << "\n";
+            cout << "5. Año: " << lista[i].getAnio() << "\n";
+            cout << "6. Ciudad de Grabación: " << lista[i].getCiudadGrab() << "\n";
+            cout << "7. País de Grabación: " << lista[i].getPaisGra() << "\n";
+            cout << "8. Género: " << lista[i].getGenero() << "\n";
+            cout << "9. Artista Principal: " << lista[i].getArtistaPrincipal() << "\n";
 
             int opcion;
             while (true) {
@@ -162,40 +165,50 @@ void Version::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Versi
                 }
 
                 string nuevoValor;
-                int nuevoAnio;
+                int nuevoId, nuevoAnio;
                 switch (opcion) {
                     case 1:
+                        cout << "Nuevo ID de la versión: ";
+                        cin >> nuevoId;
+                        lista[i].setIdVersion(nuevoId);
+                        break;
+                    case 2:
+                        cout << "Nuevo ID de la canción: ";
+                        cin >> nuevoId;
+                        lista[i].setIdCancion(nuevoId);
+                        break;
+                    case 3:
                         cout << "Nuevo título: ";
                         getline(cin, nuevoValor);
                         lista[i].setTituloVer(nuevoValor);
                         break;
-                    case 2:
+                    case 4:
                         cout << "Nuevo tipo de versión: ";
                         getline(cin, nuevoValor);
                         lista[i].setTipVersion(nuevoValor);
                         break;
-                    case 3:
+                    case 5:
                         cout << "Nuevo año de publicación: ";
                         cin >> nuevoAnio;
                         lista[i].setAnio(nuevoAnio);
                         cin.ignore(); // Limpiar buffer
                         break;
-                    case 4:
+                    case 6:
                         cout << "Nueva ciudad de grabación: ";
                         getline(cin, nuevoValor);
                         lista[i].setCiudadGrab(nuevoValor);
                         break;
-                    case 5:
+                    case 7:
                         cout << "Nuevo país de grabación: ";
                         getline(cin, nuevoValor);
                         lista[i].setPaisGra(nuevoValor);
                         break;
-                    case 6:
+                    case 8:
                         cout << "Nuevo género: ";
                         getline(cin, nuevoValor);
                         lista[i].setGenero(nuevoValor);
                         break;
-                    case 7:
+                    case 9:
                         cout << "Nuevo artista principal: ";
                         getline(cin, nuevoValor);
                         lista[i].setArtistaPrincipal(nuevoValor);

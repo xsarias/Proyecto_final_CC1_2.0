@@ -142,14 +142,15 @@ void Album::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>&
         if (lista[i].getId() == idEditar) {
             encontrado = true;
             cout << "Álbum encontrado. Datos actuales:\n";
-            cout << "1. Título: " << lista[i].getTitulo() << "\n";
-            cout << "2. Nombre del artista: " << lista[i].getNombreArt() << "\n";
-            cout << "3. País de grabación: " << lista[i].getPaisGrab() << "\n";
-            cout << "4. Año de publicación: " << lista[i].getAnioPub() << "\n";
-            cout << "5. Cover Art: " << lista[i].getCoverArt() << "\n";
-            cout << "6. Fotografía: " << lista[i].getFotogra() << "\n";
-            cout << "7. Editora: " << lista[i].getEditora() << "\n";
-            cout << "8. Estudio de grabación: " << lista[i].getEstudioGrab() << "\n";
+            cout << "1. ID: " << lista[i].getId() << "\n";
+            cout << "2. Título: " << lista[i].getTitulo() << "\n";
+            cout << "3. Nombre del artista: " << lista[i].getNombreArt() << "\n";
+            cout << "4. País de grabación: " << lista[i].getPaisGrab() << "\n";
+            cout << "5. Año de publicación: " << lista[i].getAnioPub() << "\n";
+            cout << "6. Cover Art: " << lista[i].getCoverArt() << "\n";
+            cout << "7. Fotografía: " << lista[i].getFotogra() << "\n";
+            cout << "8. Editora: " << lista[i].getEditora() << "\n";
+            cout << "9. Estudio de grabación: " << lista[i].getEstudioGrab() << "\n";
 
             int opcion;
             while (true) {
@@ -163,44 +164,49 @@ void Album::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>&
                 }
 
                 string nuevoValor;
-                int nuevoAnio;
+                int nuevoId, nuevoAnio;
                 switch (opcion) {
                     case 1:
+                        cout << "Nuevo ID: ";
+                        cin >> nuevoId;
+                        lista[i].setId(nuevoId);
+                        break;
+                    case 2:
                         cout << "Nuevo título: ";
                         getline(cin, nuevoValor);
                         lista[i].setTitulo(nuevoValor);
                         break;
-                    case 2:
+                    case 3:
                         cout << "Nuevo nombre del artista: ";
                         getline(cin, nuevoValor);
                         lista[i].setNombreArt(nuevoValor);
                         break;
-                    case 3:
+                    case 4:
                         cout << "Nuevo país de grabación: ";
                         getline(cin, nuevoValor);
                         lista[i].setPaisGrab(nuevoValor);
                         break;
-                    case 4:
+                    case 5:
                         cout << "Nuevo año de publicación: ";
                         cin >> nuevoAnio;
                         lista[i].setAnioPub(nuevoAnio);
                         break;
-                    case 5:
+                    case 6:
                         cout << "Nuevo cover art: ";
                         getline(cin, nuevoValor);
                         lista[i].setCoverArt(nuevoValor);
                         break;
-                    case 6:
+                    case 7:
                         cout << "Nueva fotografía: ";
                         getline(cin, nuevoValor);
                         lista[i].setFotogra(nuevoValor);
                         break;
-                    case 7:
+                    case 8:
                         cout << "Nueva editora: ";
                         getline(cin, nuevoValor);
                         lista[i].setEditora(nuevoValor);
                         break;
-                    case 8:
+                    case 9:
                         cout << "Nuevo estudio de grabación: ";
                         getline(cin, nuevoValor);
                         lista[i].setEstudioGrab(nuevoValor);
@@ -224,3 +230,4 @@ void Album::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>&
     guardarEnArchivo(nombreArchivo, lista);
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
+

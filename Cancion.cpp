@@ -32,8 +32,9 @@ void Cancion :: imprimir_lista(string parametro, int pos_cab) {
             pos_actual = multi_cancion.retornar_pos(pos_actual, "sig_compositor");
         } else if (parametro == "interprete") {
             pos_actual = multi_cancion.retornar_pos(pos_actual, "sig_interprete");
-        } else {
-            // Si el parámetro no coincide con ninguno de los anteriores, salir del bucle
+        } else if(parametro == "duracion"){
+            pos_actual=multi_cancion.retornar_pos(pos_actual,"duracion" );
+        }else{
             cout << "Parámetro no válido." << endl;
             break;
         }
@@ -49,6 +50,7 @@ void  Cancion :: insertar_cabeceras(){
     multi_cancion.insertar(ciudad);  //6
     multi_cancion.insertar(genero_); //7
     multi_cancion.insertar(anio_pub); //8
+    multi_cancion.insertar(duracion_can);
 
 }
 nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista){

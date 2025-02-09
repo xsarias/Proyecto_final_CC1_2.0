@@ -42,6 +42,14 @@ void Multilista_version:: insertar(cabeza Cabeza) {
 void Multilista_version:: insertar(nodo_versiones Dato) {
     lista_versiones.push_back(Dato);
     num_dat = lista_versiones.size();
+    por_titulo(num_dat, lista_versiones[num_dat].titulos);
+    por_tipo_version(num_dat, lista_versiones[num_dat].tipo_version);
+    por_anio(num_dat, to_string(lista_versiones[num_dat].anio_pub));
+    por_pais_grab(num_dat, lista_versiones[num_dat].pais_grab);
+    por_artista_princ(num_dat, lista_versiones[num_dat].artista_princ);
+    por_ciudad(num_dat, lista_versiones[num_dat].ciudad_grab);
+    por_genero(num_dat, lista_versiones[num_dat].genero);
+
 }
 
 bool Multilista_version:: Multilista_vacia(){

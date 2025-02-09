@@ -17,6 +17,7 @@ cabeza pais = {"Pais grabacion", 0};
 cabeza ciudad = {"Ciudad grabación", 0};
 cabeza genero_ = {"Género canción ", 0};
 cabeza anio_pub = {"Año publicación", 0};
+cabeza duracion_can = {"Duracion", 0 };
 class Cancion {
 private:
     int id;

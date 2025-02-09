@@ -29,6 +29,7 @@ public:
     void por_compositor_musica(int pos, string dato);
     void por_pais(int pos, string dato);
     void por_ciudad(int pos, string dato);
+    void por_duracion(int pos, string dato);
     bool lista_llena();
 };
 
@@ -50,6 +51,7 @@ void Multilista_cancion::insertar(nodo_canciones Dato) {
     por_genero(num_dat, lista_datos[num_dat].genero);
     por_nom_cancion(num_dat, lista_datos[num_dat].nom_cancion);
     por_pais(num_dat, lista_datos[num_dat].paisGrabacion);
+    por_duracion(num_dat, lista_datos[num_dat].duracion);
 }
 
 void Multilista_cancion::por_nom_artistico(int pos, string dato) {
@@ -198,6 +200,24 @@ void Multilista_cancion::por_ciudad(int pos, string dato) {
     }
 
 }
+void Multilista_cancion::por_duracion(int pos, string dato){
+    int pos_cab = 9;
+    int cab = lista_cabeceras[pos_cab].pos_cabeza;
+    if (cab == 0 || dato < retornar_dato(cab, "duracion")) {
+        lista_datos[pos].sig_duracion = cab;
+        lista_cabeceras[pos_cab].pos_cabeza = pos;
+    } else {
+        int ant = cab;
+        int sig = retornar_pos(cab, "sig_duracion");
+
+        while (sig != 0 && dato > retornar_dato(sig, "duracion")) {
+            ant = sig;
+            sig = retornar_pos(sig, "sig_duracion");
+        }
+        lista_datos[pos].sig_duracion= sig;
+        lista_datos[ant].sig_duracion = pos;
+    }    
+}
 
 int Multilista_cancion::retornar_pos(int x, string parametro) {
     if (parametro == "sig_genero") return lista_datos[x].sig_genero;
@@ -209,6 +229,7 @@ int Multilista_cancion::retornar_pos(int x, string parametro) {
     if (parametro == "sig_pais") return lista_datos[x].sig_pais;
     if (parametro == "sig_ciudad") return lista_datos[x].sig_ciudad;
     if (parametro == "pos_cabeza") return lista_cabeceras[x].pos_cabeza;
+    if(parametro == "duracion") return lista_datos[x].sig_duracion;
     return -1;
 }
 

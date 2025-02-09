@@ -20,17 +20,20 @@ int main() {
     Cancion cancioncita;
 	cancioncita.insertar_cabeceras();
     // Agregar algunas canciones de prueba
-    listaCanciones.push_back(Cancion(1, "Bohemian Rhapsody", "Queen", "Rock", 1975, "5:55"));
-    listaCanciones.push_back(Cancion(2, "Imagine", "John Lennon", "Soft Rock", 1971, "3:07"));
-    listaCanciones.push_back(Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01"));
+    listaCanciones.push_back(Cancion(1, "Bohemian Rhapsody", "Queen", "Rock", 1975, "1:23:00"));
+    listaCanciones.push_back(Cancion(2, "Imagine", "John Lennon", "Soft Rock", 1971, "00:03:07"));
+    listaCanciones.push_back(Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "00:50:01"));
     listalinkscancion.push_back(Links(1, "Spotify", "https://open.spotify.com/album/123", "https://open.spotify.com/track/456"));
     listalinkscancion.push_back(Links(2, "Apple Music", "https://music.apple.com/album/789", "https://music.apple.com/track/012"));
     listaartisas.push_back(Artista(1, "Paul David Hewson", "Bono", "Irlanda", "color"));
 	listaartisas.push_back(Artista(2, "Paul David Hewson", "Bono", "Irlanda", "color2"));
-    cancion_insertada = cancioncita.insertar_cancion((Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "5:01")), listalinkscancion, listaartisas);
+    cancion_insertada = cancioncita.insertar_cancion((Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "50:00:01")), listalinkscancion, listaartisas);
+	cancioncita.insertar_cancion((Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "00:50:01")), listalinkscancion, listaartisas);
+	cancioncita.insertar_cancion((Cancion(3, "Smells Like Teen Spirit", "Nirvana", "Grunge", 1991, "00:00:01")), listalinkscancion, listaartisas);
     for(int i=1; i<= cancion_insertada.list_artist.size(); i++){
         cout<< cancion_insertada.list_artist[i].instru_interpre;
     }
+	cancioncita.imprimir_lista("duracion", 9);
     // Guardar las canciones en un archivo
     string nombreArchivo = "canciones.txt";
     Cancion::guardarEnArchivo(nombreArchivo, listaCanciones);
@@ -41,16 +44,16 @@ int main() {
     cout << "Canciones cargadas desde el archivo:\n";
 
     // Mostrar las versiones leídas
-    for (size_t i = 1; i <= listaVersiones.size(); i++) {
-        cout << "ID: " << listaVersiones[i].getIdVersion()
-             << ", Título: " << listaVersiones[i].getTituloVer()
-             << ", Tipo: " << listaVersiones[i].getTipVersion()
-             << ", Año: " << listaVersiones[i].getAnio()
-             << ", Ciudad: " << listaVersiones[i].getCiudadGrab()
-             << ", País: " << listaVersiones[i].getPaisGra()
-             << ", Género: " << listaVersiones[i].getGenero()
-             << ", Artista: " << listaVersiones[i].getArrMusic() << endl;
-    }
+    //for (size_t i = 1; i <= listaVersiones.size(); i++) {
+      //  cout << "ID: " << listaVersiones[i].getIdVersion()
+        //     << ", Título: " << listaVersiones[i].getTituloVer()
+          //   << ", Tipo: " << listaVersiones[i].getTipVersion()
+            // << ", Año: " << listaVersiones[i].getAnio()
+            // << ", Ciudad: " << listaVersiones[i].getCiudadGrab()
+            // << ", País: " << listaVersiones[i].getPaisGra()
+             //<< ", Género: " << listaVersiones[i].getGenero()
+             //<< ", Artista: " << listaVersiones[i].getArrMusic() << endl;
+    //}
 
     return 0;
 }

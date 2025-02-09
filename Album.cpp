@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "Librerias/Album.h"
+#include "Librerias/Links.h"
+#include "Librerias/Cancion.h"
 
 using namespace std;
 
@@ -230,4 +232,62 @@ void Album::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>&
     guardarEnArchivo(nombreArchivo, lista);
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
+
+Album Album::buscarAlbumConRelacionados(const string& nombreArchivoAlbum, 
+    const string& nombreArchivoLinks, 
+    const string& nombreArchivoCanciones, 
+    MiVector<Links>& listaLinks, 
+    MiVector<Cancion>& listaCanciones) 
+{
+int idBuscado;
+cout << "Ingrese el ID del álbum a buscar: ";
+cin >> idBuscado;
+
+MiVector<Album> listaAlbumes;
+leerDesdeArchivo(nombreArchivoAlbum, listaAlbumes);
+
+Album albumEncontrado;
+bool encontrado = false;
+
+// Buscar el álbum por ID
+for (size_t i = 1; i <= listaAlbumes.size(); i++) {
+if (listaAlbumes[i].getId() == idBuscado) {
+albumEncontrado = listaAlbumes[i];
+encontrado = true;
+break;
+}
+}
+
+if (!encontrado) {
+cout << "No se encontró un álbum con el ID especificado.\n";
+return Album();
+}
+
+// Leer registros de Links
+MiVector<Links> todosLosLinks;
+Links::leerDesdeArchivo(nombreArchivoLinks, todosLosLinks);
+
+// Filtrar los links relacionados con este álbum
+listaLinks.clear();
+for (size_t i = 1; i <= todosLosLinks.size(); i++) {
+if (todosLosLinks[i].getIdAlbum() == idBuscado) {
+listaLinks.push_back(todosLosLinks[i]);
+}
+}
+
+// Leer registros de Canciones
+MiVector<Cancion> todasLasCanciones;
+Cancion::leerDesdeArchivo(nombreArchivoCanciones, todasLasCanciones);
+
+// Filtrar las canciones relacionadas con este álbum
+listaCanciones.clear();
+for (size_t i = 1; i <= todasLasCanciones.size(); i++) {
+if (todasLasCanciones[i].getIdAlbum() == idBuscado) {
+listaCanciones.push_back(todasLasCanciones[i]);
+}
+}
+
+return albumEncontrado;
+}
+
 

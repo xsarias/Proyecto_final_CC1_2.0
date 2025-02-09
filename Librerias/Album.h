@@ -7,6 +7,7 @@
 #include "Artista.h"
 #include "Links.h"
 #include <fstream>
+#include "Cancion.h"
 
 Multilista_album multi_album;
 
@@ -73,6 +74,12 @@ public:
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
     static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
+    static Album buscarAlbumConRelacionados(const string& nombreArchivoAlbum,  
+      const string& nombreArchivoLinks, 
+      const string& nombreArchivoCanciones, 
+      MiVector<Links>& listaLinks, 
+      MiVector<Cancion>& listaCanciones);
+
    
 };
 

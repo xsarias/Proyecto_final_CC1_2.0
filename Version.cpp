@@ -1,7 +1,7 @@
 #include "Librerias/Version.h"
 #include <iostream>
 #include <fstream>
-
+#include "Librerias/Artista.h"
 using namespace std;
 
 void Version::insertar_cabeceras() {
@@ -87,4 +87,47 @@ void Version::leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& l
     }
 
     archivo.close();
+}
+
+// Método para eliminar una versión del archivo
+void Version::eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& lista) {
+    int idEliminar;
+    cout << "Ingrese el ID de la versión que desea eliminar: ";
+    cin >> idEliminar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getIdVersion() == idEliminar) {
+            encontrado = true;
+            cout << "Está seguro de eliminar la siguiente versión? (y/n)\n";
+            cout << "ID: " << lista[i].getIdVersion() << "\n"
+                 << "Título: " << lista[i].getTituloVer() << "\n"
+                 << "Tipo: " << lista[i].getTipVersion() << "\n"
+                 << "Año: " << lista[i].getAnio() << "\n"
+                 << "Ciudad Grabación: " << lista[i].getCiudadGrab() << "\n"
+                 << "País Grabación: " << lista[i].getPaisGra() << "\n"
+                 << "Género: " << lista[i].getGenero() << "\n"
+                 << "Arreglo Musical: " << lista[i].getArrMusic() << "\n";
+
+            char confirmacion;
+            cout << "Confirmar eliminación (y/n): ";
+            cin >> confirmacion;
+
+            if (confirmacion == 'y' || confirmacion == 'Y') {
+                lista.erase(i);  // Eliminar de la lista
+                cout << "Versión eliminada con éxito.\n";
+            } else {
+                cout << "Eliminación cancelada.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró una versión con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
 }

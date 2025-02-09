@@ -6,7 +6,7 @@
 #include "multilista_version.h"
 #include "Links.h"
 #include "estructuras.h"
-
+#include "Artista.h"
 using namespace std;
 Multilista_version multi_version;
 
@@ -59,6 +59,8 @@ public:
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Version>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
+    static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
+
 };
 
 #endif

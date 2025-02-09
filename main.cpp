@@ -32,13 +32,23 @@ void insertar_prueba(){
     listalinkscancion.clear();
     listaArtistas.clear();
     listaVersiones.clear();
-
+    listaCanciones.push_back(Cancion(1, 1, "Quisiera", "CNCO", "pop", 2016, "00:03:05", "Sebastian Yatra", "Luis Veleza", "Sofia Perez", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(2, 1, "Tu luz", "CNCO", "balada", 2016, "00:03:53", "Richard Camacho", "Luis Veleza", "Sofia Perez", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(3, 1, "Cien", "CNCO", "pop", 2016, "00:03:07", "Saray Rojas", "Maria Magdalena", "Andres Botia", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(4, 1, "Más Allá", "CNCO", "pop", 2016, "00:03:40", "Saray Rojas", "Maria Magdalena", "Andres Botia", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(5, 1, "Para enamorarte", "CNCO", "pop", 2016, "00:03:07", "Saray Rojas", "Maria Magdalena", "Andres Botia", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(6, 1, "Tan Fácil", "CNCO", "pop", 2016, "00:04:07", "Saray Rojas", "Maria Magdalena", "Andres Botia", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(7, 1, "Primera cita", "CNCO", "pop", 2016, "00:02:57", "Saray Rojas", "Maria Magdalena", "Andres Botia", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(8, 1, "cometa", "CNCO", "pop", 2016, "00:03:28", "Santiago Lopez", "Alejandra Murillo", "Andres Botia", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(9, 1, "Volverte a ver", "CNCO", "pop", 2016, "00:03:00", "Saray Rojas", "Maria Magdalena", "Marisol Guerrero", "Miami", "US", 5));
+    listaCanciones.push_back(Cancion(10, 1, "Reggaeton Lento", "CNCO", "reggaeton", 2016, "00:02:48", "Saray Rojas", "Maria Magdalena", "Marisol Guerrero", "Miami", "US", 5));
     // Canción 1
     listalinkscancion.push_back(Links(3, 1, 0, 0, "youtube", "https://youtube.com/playlist?list=OLAK5uy_nttgDedsyufhdeu=sjdhdej", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(1, 8, 0, "Joel Pimentel de Leon", "DE LEON", "México", "voz"));
     listaArtistas.push_back(Artista(2, 8, 0, "Christopher Velez", "Chris", "Ecuador", "guitarra"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[0], listalinkscancion, listaArtistas, listaVersiones));
-
+    cout << "inserteeeee";
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[1], listalinkscancion, listaArtistas, listaVersiones));
+    cout<< "toy aqui";
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
     listaArtistas.clear();
@@ -48,7 +58,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(5, 2, 0, 0, "spotify", "https://open.spotify.com/intl/song/K5uy_nttgDeefedsyufhdeu=sjdhde=ejfejj", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(3, 2, 0, "Zabdiel de Jesús", "Zabdiel", "Puerto Rico", "piano"));
     listaArtistas.push_back(Artista(4, 2, 0, "Erick Brian Colon", "Erick", "Cuba", "guitarra"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[1], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[2], listalinkscancion, listaArtistas, listaVersiones));
 
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
@@ -59,7 +69,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(6, 3, 0, 0, "youtube", "https://youtube.com/playlist?list=OLAK5uy_nttgDedsyufhdeu=sjdhdej", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(5, 3, 0, "Saray Rojas", "Saray", "Colombia", "voz"));
     listaArtistas.push_back(Artista(6, 3, 0, "Maria Magdalena", "Magdalena", "México", "bajo"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[2], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[3], listalinkscancion, listaArtistas, listaVersiones));
 
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
@@ -70,7 +80,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(7, 4, 0, 0, "spotify", "https://open.spotify.com/intl/song/K5uy_nttgDeefedsyufhdeu=sjdhde=ejfejj", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(7, 4, 0, "Andres Botia", "Botia", "Colombia", "batería"));
     listaArtistas.push_back(Artista(8, 4, 0, "Sofia Perez", "Sofia", "Argentina", "teclado"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[3], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[4], listalinkscancion, listaArtistas, listaVersiones));
 
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
@@ -81,7 +91,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(8, 5, 0, 0, "youtube", "https://youtube.com/playlist?list=OLAK5uy_nttgDedsyufhdeu=sjdhdej", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(9, 5, 0, "Luis Veleza", "Veleza", "México", "voz"));
     listaArtistas.push_back(Artista(10, 5, 0, "Santiago Lopez", "Santiago", "Colombia", "guitarra"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[4], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[5], listalinkscancion, listaArtistas, listaVersiones));
 
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
@@ -92,7 +102,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(9, 6, 0, 0, "spotify", "https://open.spotify.com/intl/song/K5uy_nttgDeefedsyufhdeu=sjdhde=ejfejj", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(11, 6, 0, "Alejandra Murillo", "Alejandra", "México", "voz"));
     listaArtistas.push_back(Artista(12, 6, 0, "Marisol Guerrero", "Marisol", "Colombia", "bajo"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[5], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[6], listalinkscancion, listaArtistas, listaVersiones));
 
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
@@ -103,7 +113,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(10, 7, 0, 0, "youtube", "https://youtube.com/playlist?list=OLAK5uy_nttgDedsyufhdeu=sjdhdej", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(13, 7, 0, "Richard Camacho", "Richard", "Ecuador", "voz"));
     listaArtistas.push_back(Artista(14, 7, 0, "Saray Rojas", "Saray", "Colombia", "guitarra"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[6], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[7], listalinkscancion, listaArtistas, listaVersiones));
 
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
@@ -114,7 +124,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(11, 8, 0, 0, "spotify", "https://open.spotify.com/intl/song/K5uy_nttgDeefedsyufhdeu=sjdhde=ejfejj", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(15, 8, 0, "Juan Luis Morera Luna", "Wisin", "Puerto Rico", "voz"));
     listaArtistas.push_back(Artista(16, 8, 0, "Christopher Velez", "Chris", "Ecuador", "guitarra"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[7], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[8], listalinkscancion, listaArtistas, listaVersiones));
 
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
@@ -125,7 +135,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(12, 9, 0, 0, "youtube", "https://youtube.com/playlist?list=OLAK5uy_nttgDedsyufhdeu=sjdhdej", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(17, 9, 0, "Zabdiel de Jesús", "Zabdiel", "Puerto Rico", "piano"));
     listaArtistas.push_back(Artista(18, 9, 0, "Erick Brian Colon", "Erick", "Cuba", "guitarra"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[8], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[9], listalinkscancion, listaArtistas, listaVersiones));
 
     // Limpiamos los vectores para la siguiente canción
     listalinkscancion.clear();
@@ -136,7 +146,7 @@ void insertar_prueba(){
     listalinkscancion.push_back(Links(13, 10, 0, 0, "spotify", "https://open.spotify.com/intl/song/K5uy_nttgDeefedsyufhdeu=sjdhde=ejfejj", "https://youtube.com/playlist?list=OLAK5uy_nttgDeXu2YSQIFRbzBvyHu_FuYzznbgWg&si=71klPGOS79S5wRqI"));
     listaArtistas.push_back(Artista(19, 10, 0, "Saray Rojas", "Saray", "Colombia", "voz"));
     listaArtistas.push_back(Artista(20, 10, 0, "Maria Magdalena", "Magdalena", "México", "bajo"));
-    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[9], listalinkscancion, listaArtistas, listaVersiones));
+    listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[10], listalinkscancion, listaArtistas, listaVersiones));
 
     // Insertamos el álbum con todas las canciones
     album.insertar_album(Album(1, "Primera Cita", "CNCO", "US", 2016, "Edward Frank", "Luisa Restrepo", "Sony Music Latin", "5020 studio miami"), listaCancionesAlbum, listalinksalbum);

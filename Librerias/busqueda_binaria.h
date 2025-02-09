@@ -7,6 +7,7 @@ using namespace std;
 
 template <typename T>
 class Busqueda_binaria {
+    
 public:
     // Constructor que recibe un vector
     Busqueda_binaria(MiVectorT>& datos) : datos(datos) {}

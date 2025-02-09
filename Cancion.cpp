@@ -67,16 +67,19 @@ nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> lin
     cancion_nueva.composMusica = cancion.composLetra;
     cancion_nueva.duracion = cancion.duracion; 
     cancion_nueva.genero = cancion.genero;
-    cancion_nueva.numArtistasPrincipales = artista.size();
+    cancion_nueva.numArtistasPrincipales = cancion.numArtistasPrincipales;
     for(int i=1; i<=artista.size(); i++){
         cancion_nueva.list_artist.push_back(artista[i].insertar_artista(artista[i]));
     }
     for(int i=1; i<=links.size(); i++){
         cancion_nueva.list_links.push_back(links[i].insertar_link(links[i]));
     }
-    for(int i=1; i<=version.size(); i++){
-        cancion_nueva.list_versiones.push_back(version[i]);
+    if(version.size()>0){
+        for(int i=1; i<=version.size(); i++){
+            cancion_nueva.list_versiones.push_back(version[i]);
+        }
     }
+    
     multi_cancion.insertar(cancion_nueva);
     cout<<"canción insertada"<<endl;
     return cancion_nueva;

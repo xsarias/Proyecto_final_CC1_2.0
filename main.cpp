@@ -11,7 +11,7 @@
 #include "Album.cpp"
 using namespace std;
 #include <iostream>
-/*void insertar_prueba(){
+void insertar_prueba(){
     MiVector<Cancion> listaCanciones;
     MiVector<Links> listalinkscancion, listalinksalbum, listalinkversion;
     MiVector<Artista> listaArtistas, lista_artis_vers;
@@ -191,20 +191,8 @@ void menu_consultas(){
     cout << "11. Volver al menú principal"<<endl;
     cout << "Seleccione una opción: ";
 }
-*/
+
 int main() {
-    MiVector<nodo_canciones> listaCancionesAlbum;
-    MiVector<Artista> listaArtistas, lista_artis_vers;
-    MiVector<Links> listalinkscancion, listalinksalbum, listalinkversion;
-    Album album;
-    album.insertar_album(Album(1, "Thriller", "Michael Jackson", "EE. UU.", 1982, "thriller_cover.jpg", "John Smith", "Epic Records", "Westlake Recording Studios"), listaCancionesAlbum, listalinksalbum);
-    cout << "album 1 insertado" << endl;
-    album.insertar_album(Album(1, "Thriller", "jaime", "EE. UU.", 1982, "thriller_cover.jpg", "John Smith", "Epic Records", "Westlake Recording Studios"), listaCancionesAlbum, listalinksalbum);
-    cout << "album 2 insertado" << endl;
-    album.insertar_album(Album(1, "Thriller", "Michael Jackson", "EE. UU.", 1982, "thriller_cover.jpg", "John Smith", "Epic Records", "Westlake Recording Studios"), listaCancionesAlbum, listalinksalbum);
-    cout << "album 3 insertado" << endl;
-    album.consultar_por_atributo("titulo", 1, "Michael Jackson");
-    /*
     int opcion;
     do {
         mostrarMenu();
@@ -265,5 +253,5 @@ int main() {
         }
     } while (opcion != 8);
 
-    return 0;*/
+    return 0;
 }

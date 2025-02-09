@@ -36,6 +36,8 @@ void Version::guardarEnArchivo(const string& nombreArchivo, const MiVector<Versi
 
     for (size_t i = 1; i <= lista.size(); i++) {
         archivo << lista[i].getIdVersion() << ","
+                << lista[i].getIdCancion() << "," // Nuevo campo
+                << lista[i].getIdAlbum() << ","   // Nuevo campo
                 << lista[i].getTituloVer() << ","
                 << lista[i].getTipVersion() << ","
                 << lista[i].getAnio() << ","
@@ -58,11 +60,13 @@ void Version::leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& l
 
     lista.clear();
 
-    int id, anio;
+    int id, idCancion, idAlbum, anio;
     string tituloVer, tipVersion, ciudadGrab, paisGra, genero, arrMusic;
 
     while (archivo >> id) {
         archivo.ignore();
+        archivo >> idCancion; archivo.ignore(); // Leer idCancion
+        archivo >> idAlbum; archivo.ignore();   // Leer idAlbum
         getline(archivo, tituloVer, ',');
         getline(archivo, tipVersion, ',');
         archivo >> anio;
@@ -72,7 +76,7 @@ void Version::leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& l
         getline(archivo, genero, ',');
         getline(archivo, arrMusic);
 
-        lista.push_back(Version(id, tituloVer, tipVersion, anio, ciudadGrab, paisGra, genero, arrMusic));
+        lista.push_back(Version(id, idCancion, idAlbum, tituloVer, tipVersion, anio, ciudadGrab, paisGra, genero, arrMusic));
     }
 
     archivo.close();

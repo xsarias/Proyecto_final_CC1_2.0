@@ -4,10 +4,11 @@
 #include <string>
 #include "MiVector.h"
 #include "estructuras.h"
+#include "busqueda_binaria.h"
 using namespace std;
 
 class Multilista_album{
-    int num_dat, num_cab, centinela;
+    int num_dat, num_cab, cab;
      // Contadores de datos y cabeceras
     MiVector<cabeza>lista_cabeceras; // Puntero a la lista de cabeceras
     MiVector<nodo_album>lista_datos;      // Puntero al primer nodo de datos
@@ -25,6 +26,7 @@ public:
     int retornar_pos(int x, std::string parametro);
     void ordenar_alfabeticamente(int pos, std::string dato, std::string atributo, std::string apuntador);
     void ordenar_alfabeticamente_centinelas(int pos, std::string dato, std::string atributo, std::string apuntador);
+    void consulta_por_atributo(std:: string atributo, int cab, std::string contex);
     bool lista_llena();
 };
 
@@ -47,7 +49,6 @@ void Multilista_album::insertar(cabeza Cabeza) {
 }
 void Multilista_album::ordenar_alfabeticamente(int pos, std::string dato, std::string atributo, std::string apuntador){
     int pos_cab;
-    int cab;
     if(atributo == "titulo"){
         pos_cab = 1;
         cab = lista_cabeceras[pos_cab].pos_cabeza;
@@ -104,7 +105,6 @@ void Multilista_album::ordenar_alfabeticamente(int pos, std::string dato, std::s
 }
 void Multilista_album::ordenar_alfabeticamente_centinelas(int pos, string dato, string atributo, string apuntador){
     int pos_cab;
-    int cab;
     if(atributo == "cover"){
         pos_cab = 4;
         cab = lista_cabeceras[pos_cab].pos_cabeza;
@@ -191,6 +191,7 @@ int Multilista_album::retornar_pos(int x, std::string parametro){
     if (parametro == "sig_fotografia") return lista_datos[x].sig_fotografia;
     if (parametro == "sig_editora") return lista_datos[x].sig_editora;
     if (parametro == "sig_anioPublic") return lista_datos[x].sig_anioPublic;
+    if (parametro == "pos_cabeza") return lista_cabeceras[x].pos_cabeza;
     return -1;
 }
 
@@ -203,6 +204,21 @@ string Multilista_album::retornar_dato(int x, std::string parametro) {
     if (parametro == "estudio_grab") return lista_datos[x].estudio_grab;
     if (parametro == "anio_pub") return lista_datos[x].anio_pub;
     return "Parámetro desconocido";
+}
+void Multilista_album:: consulta_por_atributo(std::string atributo, int cabecera, std:: string contex){
+    cab = retornar_pos( cabecera, "pos_cabeza");
+    MiVector<nodo_busqueda> lista_busqueda;
+    while(cab!=0){
+        nodo_busqueda elemento_busqueda;
+        elemento_busqueda.indice = cab;
+        elemento_busqueda.clave = retornar_dato(cab, atributo);
+        lista_busqueda.push_back(elemento_busqueda);
+
+    }
+    Busqueda_binaria consultados(lista_busqueda,contex);
+    MiVector <int> lista_consultada = consultados.busquedaBinaria();
+
+
 }
 
 #endif

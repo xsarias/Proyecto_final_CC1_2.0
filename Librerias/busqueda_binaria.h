@@ -13,8 +13,9 @@ private:
     MiVector<nodo_busqueda> lista_a_comsultar;
     std:: string referencia;
 public:
-    Busqueda_binaria(MiVector<nodo_busqueda> lista_busqueda, std::string contex):
-    lista_a_comsultar(lista_busqueda), referencia(contex){
+    Busqueda_binaria(MiVector<nodo_busqueda> lista_busqueda, std::string contex){
+        referencia = contex;
+        lista_a_comsultar = lista_busqueda;
         inicio = 1;
         fin = lista_a_comsultar.size();
         centinela = 0;
@@ -22,28 +23,36 @@ public:
     MiVector<int> busquedaBinaria();
 
 };
-MiVector<int> Busqueda_binaria:: busquedaBinaria(){
-    while (inicio <= fin && centinela == 0){
-        mitad = (fin + inicio) / 2;
-        if(referencia == lista_a_comsultar[mitad].clave){
+MiVector<int> Busqueda_binaria::busquedaBinaria() {
+    while (inicio <= fin && centinela == 0) {
+        mitad = inicio + (fin - inicio) / 2;  // Evita desbordamiento
+
+        if (referencia == lista_a_comsultar[mitad].clave) {
             lista_encontrados.push_back(lista_a_comsultar[mitad].indice);
-            while(lista_a_comsultar[mitad-1].clave == referencia && (mitad-1 != 0)){
-                mitad = mitad - 1;
-                lista_encontrados.push_back(lista_a_comsultar[mitad].indice);
+
+            // Buscar elementos repetidos a la izquierda
+            int temp = mitad;
+            while (temp > 1 && lista_a_comsultar[temp - 1].clave == referencia) {
+                temp--;
+                lista_encontrados.push_back(lista_a_comsultar[temp].indice);
             }
-            mitad = (fin + inicio) / 2;
-            while (lista_a_comsultar[mitad + 1].clave == referencia && (mitad+1 != 0)){
-                mitad = mitad + 1;
-                lista_encontrados.push_back(lista_a_comsultar[mitad].indice);
+
+            // Buscar elementos repetidos a la derecha
+            temp = mitad;
+            while (temp < lista_a_comsultar.size() - 1 && lista_a_comsultar[temp + 1].clave == referencia) {
+                temp++;
+                lista_encontrados.push_back(lista_a_comsultar[temp].indice);
             }
+
             centinela = 1;
             return lista_encontrados;
-        }else if(referencia < lista_a_comsultar[mitad].clave){
-            fin = mitad -1;
-        }else{
+        } else if (referencia < lista_a_comsultar[mitad].clave) {
+            fin = mitad - 1;
+        } else {
             inicio = mitad + 1;
         }
     }
+
     return lista_encontrados;
 }
 

@@ -205,23 +205,64 @@ string Multilista_album::retornar_dato(int x, std::string parametro) {
     if (parametro == "anio_pub") return lista_datos[x].anio_pub;
     return "Parámetro desconocido";
 }
-void Multilista_album:: consulta_por_atributo(std::string atributo, int cabecera, std:: string contex){
-    cab = retornar_pos( cabecera, "pos_cabeza");
+void Multilista_album::consulta_por_atributo(std::string atributo, int cabecera, std::string contex) {
+    cout << "Llegué al método de búsqueda binaria" << endl;
+
+    // Obtener la posición de la cabecera
+    cab = retornar_pos(cabecera, "pos_cabeza");
+
+    // Crear una lista de búsqueda
     MiVector<nodo_busqueda> lista_busqueda;
-    while(cab!=0){
+
+    // Recorrer la lista ordenada según el atributo
+    int actual = cab;
+    while (actual != 0) { // 0 indica el final de la lista
         nodo_busqueda elemento_busqueda;
-        elemento_busqueda.indice = cab;
-        elemento_busqueda.clave = retornar_dato(cab, atributo);
+        elemento_busqueda.indice = actual; // Guarda la posición en lista_datos
+        elemento_busqueda.clave = retornar_dato(actual, atributo); // Obtiene el valor del atributo
+        cout<<elemento_busqueda.clave<<endl;
         lista_busqueda.push_back(elemento_busqueda);
 
-    }
-    Busqueda_binaria consultados(lista_busqueda,contex);
-    MiVector <int> lista_consultada = consultados.busquedaBinaria();
-    for(int i = 1; i <= lista_consultada.size(); i++){
-        cout<<lista_consultada[i]<<"es la paosicion donde esta" << contex <<endl;
+        // Avanzar al siguiente elemento en la lista ordenada
+        if (atributo == "titulo") {
+            actual = lista_datos[actual].sig_titulo;
+        } else if (atributo == "nom_artis") {
+            actual = lista_datos[actual].sig_nomArtis;
+        } else if (atributo == "anio_pub") {
+            actual = lista_datos[actual].sig_anioPublic;
+        } else if (atributo == "cover") {
+            actual = lista_datos[actual].sig_cover;
+        } else if (atributo == "fotografia") {
+            actual = lista_datos[actual].sig_fotografia;
+        } else if (atributo == "estudio_grab") {
+            actual = lista_datos[actual].sig_estudioGrab;
+        } else if (atributo == "editora") {
+            actual = lista_datos[actual].sig_editora;
+        } else {
+            cout << "Atributo no válido: " << atributo << endl;
+            return;
+        }
     }
 
+    // Realizar la búsqueda binaria
+    Busqueda_binaria consultados(lista_busqueda, contex);
+    MiVector<int> lista_consultada = consultados.busquedaBinaria();
 
+    // Verificar si se encontraron resultados
+    if (lista_consultada.size() == 0) {
+        cout << "No se encontraron resultados para: " << contex << endl;
+    } else {
+        // Mostrar los resultados
+        cout << "Resultados de la búsqueda:" << endl;
+        for (int i = 1; i <= lista_consultada.size(); i++) {
+            int pos = lista_consultada[i];
+            if (pos >= 1 && pos <= lista_datos.size()) { // Verificar que el índice sea válido
+                cout << "Posición: " << pos << ", Valor: " << retornar_dato(pos, atributo) << endl;
+            } else {
+                cout << "Índice inválido: " << pos << endl;
+            }
+        }
+    }
 }
 
 #endif

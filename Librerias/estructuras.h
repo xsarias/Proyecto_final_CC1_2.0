@@ -14,6 +14,9 @@ struct nodo_busqueda{
 };
 struct nodo_links{
     int id;
+    int id_cancion;
+    int id_version;
+    int id_album;
     string nom_plat;
     string link_album;
     string link_cancion;

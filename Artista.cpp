@@ -28,6 +28,8 @@ void Artista::guardarEnArchivo(const string& nombreArchivo, const MiVector<Artis
 
     for (size_t i = 1; i <= lista.size(); i++) {
         archivo << lista[i].getId() << ","
+                << lista[i].getIdCancion() << ","
+                << lista[i].getIdVersion() << ","
                 << lista[i].getNomReal() << ","
                 << lista[i].getNomArtist() << ","
                 << lista[i].getPaisOrigen() << ","
@@ -47,19 +49,26 @@ void Artista::leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& l
 
     lista.clear();
 
-    int id;
+    int id, id_cancion, id_version;
     string nomReal, nomArtist, paisOrigen, instrumInter;
     while (archivo >> id) {
+        archivo.ignore();
+        archivo >> id_cancion;
+        archivo.ignore();
+        archivo >> id_version;
         archivo.ignore();
         getline(archivo, nomReal, ',');
         getline(archivo, nomArtist, ',');
         getline(archivo, paisOrigen, ',');
         getline(archivo, instrumInter);
-        lista.push_back(Artista(id, nomReal, nomArtist, paisOrigen, instrumInter));
+
+        lista.push_back(Artista(id, id_cancion, id_version, nomReal, nomArtist, paisOrigen, instrumInter));
     }
 
     archivo.close();
 }
+
+// Método para eliminar un Artista del archivo
 void Artista::eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& lista) {
     int idEliminar;
     cout << "Ingrese el ID del artista que desea eliminar: ";
@@ -71,6 +80,8 @@ void Artista::eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& 
             encontrado = true;
             cout << "Está seguro de eliminar el siguiente artista? (y/n)\n";
             cout << "ID: " << lista[i].getId() << "\n"
+                 << "ID Canción: " << lista[i].getIdCancion() << "\n"
+                 << "ID Versión: " << lista[i].getIdVersion() << "\n"
                  << "Nombre real: " << lista[i].getNomReal() << "\n"
                  << "Nombre artístico: " << lista[i].getNomArtist() << "\n"
                  << "País de origen: " << lista[i].getPaisOrigen() << "\n"
@@ -98,4 +109,3 @@ void Artista::eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& 
     // Guardar la lista actualizada en el archivo
     guardarEnArchivo(nombreArchivo, lista);
 }
-

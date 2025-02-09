@@ -9,6 +9,7 @@ using namespace std;
 
 class Artista {
 private:
+    int id;
     int id_cancion;
     int id_version;
     string nom_real; 
@@ -18,7 +19,7 @@ private:
 
 public:
     // Constructor por defecto necesario para MiVector
-    Artista() : id_cancion(0), id_version(0), nom_real(""), nom_artist(""), pais_origen(""), instrum_inter("") {}
+    Artista() : id(0), id_cancion(0), id_version(0), nom_real(""), nom_artist(""), pais_origen(""), instrum_inter("") {}
 
     // Constructor con parámetros
     Artista(int id, int id_cancion, int id_version, const string& nomReal, const string& nomArtist, const string& paisOrigen, const string& instrumInter)
@@ -30,7 +31,9 @@ public:
     string getNomArtist() const { return nom_artist; }
     string getPaisOrigen() const { return pais_origen; }
     string getInstrumInter() const { return instrum_inter; }
-
+    int getId() const { return id; }
+    int getIdCancion() const { return id_cancion; }
+    int getIdVersion() const { return id_version; }
     void mostrarInformacion();
     void imprimir_artista(Artista Artista);
     nodo_artistas insertar_artista(Artista artista);

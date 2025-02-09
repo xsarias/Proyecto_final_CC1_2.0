@@ -8,6 +8,7 @@ using namespace std;
 class Links {
 private:
     int id;         // ID único del link
+    int idCancion;  // ID de la canción asociada (clave foránea)
     int idAlbum;    // ID del Álbum asociado (clave foránea)
     int idVersion;  // ID de la Versión asociada (clave foránea)
     string nomPlat; // Nombre de la plataforma
@@ -16,11 +17,11 @@ private:
 
 public:
     // Constructor por defecto
-    Links() : id(0), idAlbum(0), idVersion(0), nomPlat(" "), linkAlbum(" "), linkCancion(" ") {}
+    Links() : id(0), idCancion(0), idAlbum(0), idVersion(0), nomPlat(" "), linkAlbum(" "), linkCancion(" ") {}
 
     // Constructor con parámetros
-    Links(int id, int idAlbum, int idVersion, const string& nomPlat, const string& linkAlbum, const string& linkCancion)
-        : id(id), idAlbum(idAlbum), idVersion(idVersion), nomPlat(nomPlat), linkAlbum(linkAlbum), linkCancion(linkCancion) {}
+    Links(int id,int idCancion, int idAlbum, int idVersion, const string& nomPlat, const string& linkAlbum, const string& linkCancion)
+        : id(id), idCancion(idCancion), idAlbum(idAlbum), idVersion(idVersion), nomPlat(nomPlat), linkAlbum(linkAlbum), linkCancion(linkCancion) {}
 
     // Getters
     int getId() const { return id; }

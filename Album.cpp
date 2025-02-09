@@ -26,9 +26,11 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album
     album_nuevo.anio_pub = album.anio_pub;
     for(int i=1; i<= canciones_album.size(); i++){
         album_nuevo.lista_caciones.push_back(canciones_album[i]);
+        cout << "cancion insertada 1 insertado" << endl;
     }
     for(int j=1; j<=links_album.size(); j++){
         album_nuevo.lista_links.push_back(links_album[j].insertar_link(links_album[j]));
+        cout << "links 1 insertado" << endl;
     }
     
     multi_album.insertar(album_nuevo);

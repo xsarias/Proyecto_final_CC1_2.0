@@ -106,8 +106,7 @@ void Version::eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& 
                  << "Año: " << lista[i].getAnio() << "\n"
                  << "Ciudad Grabación: " << lista[i].getCiudadGrab() << "\n"
                  << "País Grabación: " << lista[i].getPaisGra() << "\n"
-                 << "Género: " << lista[i].getGenero() << "\n"
-                 << "Arreglo Musical: " << lista[i].getArrMusic() << "\n";
+                 << "Género: " << lista[i].getGenero() << "\n";
 
             char confirmacion;
             cout << "Confirmar eliminación (y/n): ";

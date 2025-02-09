@@ -11,7 +11,7 @@
 #include "Album.cpp"
 using namespace std;
 #include <iostream>
-void insertar_prueba(){
+/*void insertar_prueba(){
     MiVector<Cancion> listaCanciones;
     MiVector<Links> listalinkscancion, listalinksalbum, listalinkversion;
     MiVector<Artista> listaArtistas, lista_artis_vers;
@@ -50,7 +50,7 @@ void insertar_prueba(){
     listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[1], listalinkscancion, listaArtistas, listaVersiones ));
 
     lista_artis_vers.push_back(Artista(3, 0, 1, "Juan Luis Morera Luna", "Wisin", "Puerto Rico", "voz"));
-    listalinkversion.push_back(Links(0, 0, 1, "apple music", "", "https://music.apple.com/us/album/random/1440833094?i=1440833101"));
+    listalinkversion.push_back(Links(0, 0, 1, "apple music", "Yandel", "https://music.apple.com/us/album/random/1440833094?i=1440833101",""));
     listaVersiones.push_back(vers.insertar_version(Version(1, 6, "Tan Facil(feat. Wisim)-Urban Remix", "remix", "Wisin", 2017, "Lima", "Perú", "urbano"), lista_artis_vers, listalinkversion));
     
 }
@@ -92,15 +92,18 @@ void menu_consultas(){
     cout << "11. Volver al menú principal"<<endl;
     cout << "Seleccione una opción: ";
 }
-
+*/
 int main() {
     MiVector<nodo_canciones> listaCancionesAlbum;
     MiVector<Artista> listaArtistas, lista_artis_vers;
     MiVector<Links> listalinkscancion, listalinksalbum, listalinkversion;
     Album album;
     album.insertar_album(Album(1, "Thriller", "Michael Jackson", "EE. UU.", 1982, "thriller_cover.jpg", "John Smith", "Epic Records", "Westlake Recording Studios"), listaCancionesAlbum, listalinksalbum);
+    cout << "album 1 insertado" << endl;
     album.insertar_album(Album(1, "Thriller", "jaime", "EE. UU.", 1982, "thriller_cover.jpg", "John Smith", "Epic Records", "Westlake Recording Studios"), listaCancionesAlbum, listalinksalbum);
+    cout << "album 2 insertado" << endl;
     album.insertar_album(Album(1, "Thriller", "Michael Jackson", "EE. UU.", 1982, "thriller_cover.jpg", "John Smith", "Epic Records", "Westlake Recording Studios"), listaCancionesAlbum, listalinksalbum);
+    cout << "album 3 insertado" << endl;
     album.consultar_por_atributo("titulo", 1, "Michael Jackson");
     /*
     int opcion;

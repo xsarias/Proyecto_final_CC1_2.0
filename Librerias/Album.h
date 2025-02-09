@@ -10,6 +10,14 @@
 
 Multilista_album multi_album;
 
+    cabeza titulo = {"titulo", 0};
+    cabeza nom_artis = {"nombre_artis", 0};
+    cabeza anio_publi = {"anio_pub", 0};
+    cabeza cover = {"cover", 0};
+    cabeza fotografia = {"fotografia", 0};
+    cabeza estudio_grabaci = {"estudio_grab", 0};
+    cabeza editorial = {"editora", 0};
+
 class Album {
 private:
     int id;
@@ -23,14 +31,6 @@ private:
     string estudio_grab;
     MiVector<nodo_links> lista_links;
     MiVector<nodo_canciones> lista_canciones;
-
-    cabeza titulo = {"titulo", 0};
-    cabeza nom_artis = {"nombre_artis", 0};
-    cabeza anio_publi = {"anio_pub", 0};
-    cabeza cover = {"cover", 0};
-    cabeza fotografia = {"fotografia", 0};
-    cabeza estudio_grabaci = {"estudio_grab", 0};
-    cabeza editorial = {"editora", 0};
 
 public:
     // Constructores

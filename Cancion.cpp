@@ -110,7 +110,6 @@ void Cancion::leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& l
     }
 
     lista.clear();
-
     int id, id_album, anioPublicacion;
     string nombreCancion, nomArtistico, genero, duracion;
     int numArtistasPrincipales;  
@@ -120,7 +119,8 @@ void Cancion::leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& l
     string ciudadGrabacion; 
     string paisGrabacion; 
     int anioPublicacion; 
-    string genero;  
+    string genero; 
+ 
     while (archivo >> id) {
         archivo.ignore();
         getline(archivo, nombreCancion, ',');

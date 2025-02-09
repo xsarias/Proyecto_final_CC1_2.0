@@ -217,6 +217,9 @@ void Multilista_album:: consulta_por_atributo(std::string atributo, int cabecera
     }
     Busqueda_binaria consultados(lista_busqueda,contex);
     MiVector <int> lista_consultada = consultados.busquedaBinaria();
+    for(int i = 1; i <= lista_consultada.size(); i++){
+        cout<<lista_consultada[i]<<endl;
+    }
 
 
 }

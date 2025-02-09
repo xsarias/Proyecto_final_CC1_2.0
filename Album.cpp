@@ -34,6 +34,9 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album
     multi_album.insertar(album_nuevo);
     cout << "Álbum insertado" << endl;
 }
+void Album:: consultar_por_atributo(string atributo, int cabecera, string contex){
+    multi_album.consulta_por_atributo(atributo, cabecera, contex);
+}
 
 // Guardar lista de álbumes en archivo
 void Album::guardarEnArchivo(const string& nombreArchivo, const MiVector<Album>& lista) {

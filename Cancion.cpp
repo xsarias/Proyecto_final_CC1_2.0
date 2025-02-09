@@ -290,3 +290,60 @@ void Cancion::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Canci
     // Guardar la lista actualizada en el archivo
     guardarEnArchivo(nombreArchivo, lista);
 }
+
+Cancion Cancion::buscarCancionConRelacionados(const string& nombreArchivoCancion,  
+    const string& nombreArchivoLinks,  
+    const string& nombreArchivoArtistas,  
+    MiVector<Links>& listaLinks,  
+    MiVector<Artista>& listaArtistas)  
+{  
+    int idBuscado;  
+    cout << "Ingrese el ID de la canción a buscar: ";  
+    cin >> idBuscado;  
+
+    MiVector<Cancion> listaCanciones;  
+    leerDesdeArchivo(nombreArchivoCancion, listaCanciones);  
+
+    Cancion cancionEncontrada;  
+    bool encontrado = false;  
+
+    // Buscar la canción por ID  
+    for (size_t i = 1; i <= listaCanciones.size(); i++) {  
+        if (listaCanciones[i].getId() == idBuscado) {  
+            cancionEncontrada = listaCanciones[i];  
+            encontrado = true;  
+            break;  
+        }  
+    }  
+
+    if (!encontrado) {  
+        cout << "No se encontró una canción con el ID especificado.\n";  
+        return Cancion();  
+    }  
+
+    // Leer registros de Links  
+    MiVector<Links> todosLosLinks;  
+    Links::leerDesdeArchivo(nombreArchivoLinks, todosLosLinks);  
+
+    // Filtrar los links relacionados con esta canción  
+    listaLinks.clear();  
+    for (size_t i = 1; i <= todosLosLinks.size(); i++) {  
+        if (todosLosLinks[i].getIdCancion() == idBuscado) {  
+            listaLinks.push_back(todosLosLinks[i]);  
+        }  
+    }  
+
+    // Leer registros de Artistas  
+    MiVector<Artista> todosLosArtistas;  
+    Artista::leerDesdeArchivo(nombreArchivoArtistas, todosLosArtistas);  
+
+    // Filtrar los artistas relacionados con esta canción  
+    listaArtistas.clear();  
+    for (size_t i = 1; i <= todosLosArtistas.size(); i++) {  
+        if (todosLosArtistas[i].getIdCancion() == idBuscado) {  
+            listaArtistas.push_back(todosLosArtistas[i]);  
+        }  
+    }  
+
+    return cancionEncontrada;  
+}

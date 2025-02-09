@@ -91,7 +91,12 @@ public:
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
     static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
-
+    static Cancion buscarCancionConRelacionados(const string& nombreArchivoCancion,  
+        const string& nombreArchivoLinks, 
+        const string& nombreArchivoArtistas, 
+        MiVector<Links>& listaLinks, 
+        MiVector<Artista>& listaArtistas);
+  
     
 };
 

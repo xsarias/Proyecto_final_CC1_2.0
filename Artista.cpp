@@ -109,3 +109,72 @@ void Artista::eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& 
     // Guardar la lista actualizada en el archivo
     guardarEnArchivo(nombreArchivo, lista);
 }
+
+
+void Artista::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista) {
+    int idEditar;
+    cout << "Ingrese el ID del artista que desea editar: ";
+    cin >> idEditar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getId() == idEditar) {
+            encontrado = true;
+            cout << "Artista encontrado. Datos actuales:\n";
+            cout << "1. Nombre real: " << lista[i].getNomReal() << "\n";
+            cout << "2. Nombre artístico: " << lista[i].getNomArtist() << "\n";
+            cout << "3. País de origen: " << lista[i].getPaisOrigen() << "\n";
+            cout << "4. Instrumento principal: " << lista[i].getInstrumInter() << "\n";
+
+            int opcion;
+            while (true) {
+                cout << "Ingrese el número del atributo que desea modificar (0 para salir): ";
+                cin >> opcion;
+                cin.ignore(); // Limpiar buffer
+
+                if (opcion == 0) {
+                    cout << "Saliendo del modo de edición...\n";
+                    break;
+                }
+
+                string nuevoValor;
+                switch (opcion) {
+                    case 1:
+                        cout << "Nuevo nombre real: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setNomReal(nuevoValor);
+                        break;
+                    case 2:
+                        cout << "Nuevo nombre artístico: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setNomArtist(nuevoValor);
+                        break;
+                    case 3:
+                        cout << "Nuevo país de origen: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setPaisOrigen(nuevoValor);
+                        break;
+                    case 4:
+                        cout << "Nuevo instrumento principal: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setInstrumInter(nuevoValor);
+                        break;
+                    default:
+                        cout << "Opción no válida. Intente de nuevo.\n";
+                        continue;
+                }
+                cout << "Cambio realizado con éxito.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró un artista con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
+    cout << "Los cambios han sido guardados correctamente en el archivo.\n";
+}

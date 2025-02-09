@@ -55,11 +55,21 @@ public:
     string getPaisGra() const { return paisGra; }
     string getGenero() const { return genero; }
     string getArtistaPrincipal () const {return artistaPrin;}
+    
+    // Setters
+    void setTituloVer(const string& nuevoTitulo) { tituloVer = nuevoTitulo; }
+    void setTipVersion(const string& nuevoTipo) { tipVersion = nuevoTipo; }
+    void setAnio(int nuevoAnio) { anio = nuevoAnio; }
+    void setCiudadGrab(const string& nuevaCiudad) { ciudadGrab = nuevaCiudad; }
+    void setPaisGra(const string& nuevoPais) { paisGra = nuevoPais; }
+    void setGenero(const string& nuevoGenero) { genero = nuevoGenero; }
+    void setArtistaPrincipal(const string& nuevoArtista) { artistaPrin = nuevoArtista; }
 
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Version>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
+    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
 
 };
 

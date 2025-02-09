@@ -172,3 +172,77 @@ void Cancion::eliminarDeArchivo(const string& nombreArchivo, MiVector<Cancion>& 
     // Guardar la lista actualizada en el archivo
     guardarEnArchivo(nombreArchivo, lista);
 }
+
+void Cancion::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista) {
+    int idEditar;
+    cout << "Ingrese el ID de la canción que desea editar: ";
+    cin >> idEditar;
+
+    bool encontrado = false;
+    for (size_t i = 1; i <= lista.size(); i++) {
+        if (lista[i].getId() == idEditar) {
+            encontrado = true;
+            cout << "Canción encontrada. Datos actuales:\n";
+            cout << "1. Nombre: " << lista[i].getNombreCancion() << "\n";
+            cout << "2. Artista: " << lista[i].getNomArtistico() << "\n";
+            cout << "3. Género: " << lista[i].getGenero() << "\n";
+            cout << "4. Año de publicación: " << lista[i].getAnioPublicacion() << "\n";
+            cout << "5. Duración: " << lista[i].getDuracion() << "\n";
+
+            int opcion;
+            while (true) {
+                cout << "Ingrese el número del atributo que desea modificar (0 para salir): ";
+                cin >> opcion;
+                cin.ignore(); // Limpiar buffer
+
+                if (opcion == 0) {
+                    cout << "Saliendo del modo de edición...\n";
+                    break;
+                }
+
+                string nuevoValor;
+                switch (opcion) {
+                    case 1:
+                        cout << "Nuevo nombre de la canción: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setNombre(nuevoValor);
+                        break;
+                    case 2:
+                        cout << "Nuevo nombre del artista: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setNomArtistico(nuevoValor);
+                        break;
+                    case 3:
+                        cout << "Nuevo género: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setGenero(nuevoValor);
+                        break;
+                    case 4:
+                        int nuevoAnio;
+                        cout << "Nuevo año de publicación: ";
+                        cin >> nuevoAnio;
+                        lista[i].setAnioPublicacion(nuevoAnio);
+                        break;
+                    case 5:
+                        cout << "Nueva duración: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setDuracion(nuevoValor);
+                        break;
+                    default:
+                        cout << "Opción no válida. Intente de nuevo.\n";
+                        continue;
+                }
+                cout << "Cambio realizado con éxito.\n";
+            }
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontró una canción con el ID especificado.\n";
+        return;
+    }
+
+    // Guardar la lista actualizada en el archivo
+    guardarEnArchivo(nombreArchivo, lista);
+}

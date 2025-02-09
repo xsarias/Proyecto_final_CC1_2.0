@@ -21,8 +21,6 @@ private:
     string fotogra;
     string editora;
     string estudio_grab;
-    MiVector<nodo_links> lista_links;
-    MiVector<nodo_canciones> lista_canciones;
 
     cabeza titulo = {"titulo", 0};
     cabeza nom_artis = {"nombre_artis", 0};
@@ -53,7 +51,18 @@ public:
     string getFotogra() const { return fotogra; }
     string getEditora() const { return editora; }
     string getEstudioGrab() const { return estudio_grab; }
-    
+
+    // Setters
+    void setId(int nuevoId) { id = nuevoId; }
+    void setTitulo(const string& nuevoTitulo) { titulo_alb = nuevoTitulo; }
+    void setNombreArt(const string& nuevoNombreArt) { nombre_art = nuevoNombreArt; }
+    void setPaisGrab(const string& nuevoPaisGrab) { pais_grab = nuevoPaisGrab; }
+    void setAnioPub(int nuevoAnioPub) { anio_pub = nuevoAnioPub; }
+    void setCoverArt(const string& nuevoCoverArt) { cover_art = nuevoCoverArt; }
+    void setFotogra(const string& nuevaFotogra) { fotogra = nuevaFotogra; }
+    void setEditora(const string& nuevaEditora) { editora = nuevaEditora; }
+    void setEstudioGrab(const string& nuevoEstudioGrab) { estudio_grab = nuevoEstudioGrab; }
+
     // Métodos
     void insertar_cabeceras();
     void imprimir_lista(string parametro, int pos_cab);
@@ -63,7 +72,7 @@ public:
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Album>& lista);
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
-
+    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
    
 };
 

@@ -67,16 +67,19 @@ nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> lin
     cancion_nueva.composMusica = cancion.composLetra;
     cancion_nueva.duracion = cancion.duracion; 
     cancion_nueva.genero = cancion.genero;
-    cancion_nueva.numArtistasPrincipales = artista.size();
+    cancion_nueva.numArtistasPrincipales = cancion.numArtistasPrincipales;
     for(int i=1; i<=artista.size(); i++){
         cancion_nueva.list_artist.push_back(artista[i].insertar_artista(artista[i]));
     }
     for(int i=1; i<=links.size(); i++){
         cancion_nueva.list_links.push_back(links[i].insertar_link(links[i]));
     }
-    for(int i=1; i<=version.size(); i++){
-        cancion_nueva.list_versiones.push_back(version[i]);
+    if(version.size()>0){
+        for(int i=1; i<=version.size(); i++){
+            cancion_nueva.list_versiones.push_back(version[i]);
+        }
     }
+    
     multi_cancion.insertar(cancion_nueva);
     cout<<"canción insertada"<<endl;
     return cancion_nueva;
@@ -182,11 +185,18 @@ void Cancion::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Canci
         if (lista[i].getId() == idEditar) {
             encontrado = true;
             cout << "Canción encontrada. Datos actuales:\n";
-            cout << "1. Nombre: " << lista[i].getNombreCancion() << "\n";
-            cout << "2. Artista: " << lista[i].getNomArtistico() << "\n";
-            cout << "3. Género: " << lista[i].getGenero() << "\n";
-            cout << "4. Año de publicación: " << lista[i].getAnioPublicacion() << "\n";
-            cout << "5. Duración: " << lista[i].getDuracion() << "\n";
+            cout << "1. ID Álbum: " << lista[i].getIdAlbum() << "\n";
+            cout << "2. Nombre: " << lista[i].getNombreCancion() << "\n";
+            cout << "3. Artista: " << lista[i].getNomArtistico() << "\n";
+            cout << "4. Género: " << lista[i].getGenero() << "\n";
+            cout << "5. Año de publicación: " << lista[i].getAnioPublicacion() << "\n";
+            cout << "6. Duración: " << lista[i].getDuracion() << "\n";
+            cout << "7. Número de artistas principales: " << lista[i].getNumArtistasPrincipales() << "\n";
+            cout << "8. Compositor de la letra: " << lista[i].getComposLetra() << "\n";
+            cout << "9. Compositor de la música: " << lista[i].getComposMusica() << "\n";
+            cout << "10. Arreglista musical: " << lista[i].getArrMusic() << "\n";
+            cout << "11. Ciudad de grabación: " << lista[i].getCiudadGrabacion() << "\n";
+            cout << "12. País de grabación: " << lista[i].getPaisGrabacion() << "\n";
 
             int opcion;
             while (true) {
@@ -200,32 +210,67 @@ void Cancion::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Canci
                 }
 
                 string nuevoValor;
+                int nuevoInt;
                 switch (opcion) {
                     case 1:
+                        cout << "Nuevo ID del álbum: ";
+                        cin >> nuevoInt;
+                        lista[i].setIdAlbum(nuevoInt);
+                        break;
+                    case 2:
                         cout << "Nuevo nombre de la canción: ";
                         getline(cin, nuevoValor);
                         lista[i].setNombre(nuevoValor);
                         break;
-                    case 2:
+                    case 3:
                         cout << "Nuevo nombre del artista: ";
                         getline(cin, nuevoValor);
                         lista[i].setNomArtistico(nuevoValor);
                         break;
-                    case 3:
+                    case 4:
                         cout << "Nuevo género: ";
                         getline(cin, nuevoValor);
                         lista[i].setGenero(nuevoValor);
                         break;
-                    case 4:
-                        int nuevoAnio;
-                        cout << "Nuevo año de publicación: ";
-                        cin >> nuevoAnio;
-                        lista[i].setAnioPublicacion(nuevoAnio);
-                        break;
                     case 5:
+                        cout << "Nuevo año de publicación: ";
+                        cin >> nuevoInt;
+                        lista[i].setAnioPublicacion(nuevoInt);
+                        break;
+                    case 6:
                         cout << "Nueva duración: ";
                         getline(cin, nuevoValor);
                         lista[i].setDuracion(nuevoValor);
+                        break;
+                    case 7:
+                        cout << "Nuevo número de artistas principales: ";
+                        cin >> nuevoInt;
+                        lista[i].setNumArtistasPrincipales(nuevoInt);
+                        break;
+                    case 8:
+                        cout << "Nuevo compositor de la letra: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setComposLetra(nuevoValor);
+                        break;
+                    case 9:
+                        cout << "Nuevo compositor de la música: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setComposMusica(nuevoValor);
+                        break;
+                    case 10:
+                        cout << "Nuevo arreglista musical: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setArrMusic(nuevoValor);
+                        break;
+                    case 11:
+                        cout << "Nueva ciudad de grabación: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setCiudadGrabacion(nuevoValor);
+                        break;
+                    case 12:
+                        cout << "Nuevo país de grabación: ";
+                        getline(cin, nuevoValor);
+                        lista[i].setPaisGrabacion(nuevoValor);
                         break;
                     default:
                         cout << "Opción no válida. Intente de nuevo.\n";

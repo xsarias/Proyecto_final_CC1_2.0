@@ -7,9 +7,6 @@ nodo_links Links::insertar_link(Links links) {
 
     nodo_links nuevo_link;
     nuevo_link.id = links.id;
-    nuevo_link.id_album = links.idAlbum;
-    nuevo_link.id_cancion = links.idCancion;
-    nuevo_link.id_version = links.idVersion;
     nuevo_link.link_album = links.linkAlbum;
     nuevo_link.link_cancion = links.linkCancion;
     nuevo_link.nom_plat = links.nomPlat;
@@ -29,6 +26,7 @@ void Links::guardarEnArchivo(const string& nombreArchivo, const MiVector<Links>&
         archivo << lista[i].getId() << ","
                 << lista[i].getIdAlbum() << ","
                 << lista[i].getIdVersion() << ","
+                << lista[i].getIdCancion() << ","  
                 << lista[i].getNomPlat() << ","
                 << lista[i].getLinkAlbum() << ","
                 << lista[i].getLinkCancion() << endl;
@@ -36,6 +34,7 @@ void Links::guardarEnArchivo(const string& nombreArchivo, const MiVector<Links>&
 
     archivo.close();
 }
+
 
 // Método para leer la lista de Links desde un archivo
 void Links::leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista) {
@@ -47,22 +46,26 @@ void Links::leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista
 
     lista.clear();  // Limpiar la lista antes de cargar datos nuevos
 
-    int id, idAlbum, idVersion;
+    int id, idAlbum, idVersion, idCancion;
     string nomPlat, linkAlbum, linkCancion;
     while (archivo >> id) { // Leer ID
-        archivo.ignore();   // Ignorar la coma
+        archivo.ignore();
         archivo >> idAlbum;
         archivo.ignore();
         archivo >> idVersion;
         archivo.ignore();
+        archivo >> idCancion;  // 🔹 Nuevo campo
+        archivo.ignore();
         getline(archivo, nomPlat, ',');
         getline(archivo, linkAlbum, ',');
         getline(archivo, linkCancion);
-        lista.push_back(Links(id, idAlbum, idVersion, nomPlat, linkAlbum, linkCancion));
+
+        lista.push_back(Links(id, idAlbum, idVersion, idCancion, nomPlat, linkAlbum, linkCancion));
     }
 
     archivo.close();
 }
+
 
 void Links::eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& lista) {
     int idEliminar;
@@ -77,6 +80,7 @@ void Links::eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& list
             cout << "ID: " << lista[i].getId() << "\n"
                  << "ID Álbum: " << lista[i].getIdAlbum() << "\n"
                  << "ID Versión: " << lista[i].getIdVersion() << "\n"
+                 << "ID Canción: " << lista[i].getIdCancion() << "\n"  // 🔹 Nuevo campo
                  << "Plataforma: " << lista[i].getNomPlat() << "\n"
                  << "Link Álbum: " << lista[i].getLinkAlbum() << "\n"
                  << "Link Canción: " << lista[i].getLinkCancion() << "\n";
@@ -104,9 +108,6 @@ void Links::eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& list
     guardarEnArchivo(nombreArchivo, lista);
 }
 
-<<<<<<< HEAD
-
-=======
 void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista) {
     int idEditar;
     cout << "Ingrese el ID del link que desea editar: ";
@@ -204,4 +205,3 @@ void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>&
     // Guardar la lista actualizada en el archivo
     guardarEnArchivo(nombreArchivo, lista);
 }
->>>>>>> fd345c8ce35ac2dfce6ac3ff890bef9e50ac6765

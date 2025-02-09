@@ -21,6 +21,7 @@ public:
 
     void push_back(T valor);
     void pop_back();
+    void erase(size_t i);
     T& operator[](size_t i);
     const T& operator[](size_t i) const;
     size_t size() const;
@@ -42,6 +43,20 @@ MiVector<T>::~MiVector() {
 template <typename T>
 MiVector<T>::MiVector(const MiVector& otro) : datos(nullptr), capacidad(0), tam(1) {
     *this = otro;
+}
+
+// Nuevo método erase para eliminar un elemento en la posición `i`
+template <typename T>
+void MiVector<T>::erase(size_t i) {
+    if (i == 0 || i >= tam) { // Validar índice (sin incluir el 0)
+        throw std::out_of_range("Índice fuera de rango");
+    }
+
+    for (size_t j = i; j < tam - 1; j++) {
+        datos[j] = datos[j + 1]; // Desplazar elementos a la izquierda
+    }
+    
+    tam--; // Reducir tamaño
 }
 
 template <typename T>

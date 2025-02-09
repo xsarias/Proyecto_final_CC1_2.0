@@ -8,12 +8,10 @@ struct cabeza{
     string nombre_list;
     int pos_cabeza;
 };
-struct nodo_duracion{
-    int horas;
-    int minutos;
-    int segundos;
+struct nodo_busqueda{
+    string clave;
+    int indice ;
 };
-
 struct nodo_links{
     int id;
     int id_cancion;

@@ -11,6 +11,14 @@
 
 Multilista_album multi_album;
 
+    cabeza titulo = {"titulo", 0};
+    cabeza nom_artis = {"nombre_artis", 0};
+    cabeza anio_publi = {"anio_pub", 0};
+    cabeza cover = {"cover", 0};
+    cabeza fotografia = {"fotografia", 0};
+    cabeza estudio_grabaci = {"estudio_grab", 0};
+    cabeza editorial = {"editora", 0};
+
 class Album {
 private:
     int id;
@@ -22,14 +30,6 @@ private:
     string fotogra;
     string editora;
     string estudio_grab;
-
-    cabeza titulo = {"titulo", 0};
-    cabeza nom_artis = {"nombre_artis", 0};
-    cabeza anio_publi = {"anio_pub", 0};
-    cabeza cover = {"cover", 0};
-    cabeza fotografia = {"fotografia", 0};
-    cabeza estudio_grabaci = {"estudio_grab", 0};
-    cabeza editorial = {"editora", 0};
 
 public:
     // Constructores
@@ -68,6 +68,7 @@ public:
     void insertar_cabeceras();
     void imprimir_lista(string parametro, int pos_cab);
     void insertar_album(Album cancion, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album);
+    void consultar_por_atributo(string atributo, int cabecera, string contex);
 
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Album>& lista);

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "Librerias/Album.h"
+#include "Librerias/Links.h"
+#include "Librerias/Cancion.h"
 
 using namespace std;
 
@@ -26,11 +28,9 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album
     album_nuevo.anio_pub = album.anio_pub;
     for(int i=1; i<= canciones_album.size(); i++){
         album_nuevo.lista_caciones.push_back(canciones_album[i]);
-        cout << "cancion insertada 1 insertado" << endl;
     }
     for(int j=1; j<=links_album.size(); j++){
         album_nuevo.lista_links.push_back(links_album[j].insertar_link(links_album[j]));
-        cout << "links 1 insertado" << endl;
     }
     
     multi_album.insertar(album_nuevo);
@@ -235,4 +235,62 @@ void Album::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>&
     guardarEnArchivo(nombreArchivo, lista);
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
+
+Album Album::buscarAlbumConRelacionados(const string& nombreArchivoAlbum, 
+    const string& nombreArchivoLinks, 
+    const string& nombreArchivoCanciones, 
+    MiVector<Links>& listaLinks, 
+    MiVector<Cancion>& listaCanciones) 
+{
+int idBuscado;
+cout << "Ingrese el ID del álbum a buscar: ";
+cin >> idBuscado;
+
+MiVector<Album> listaAlbumes;
+leerDesdeArchivo(nombreArchivoAlbum, listaAlbumes);
+
+Album albumEncontrado;
+bool encontrado = false;
+
+// Buscar el álbum por ID
+for (size_t i = 1; i <= listaAlbumes.size(); i++) {
+if (listaAlbumes[i].getId() == idBuscado) {
+albumEncontrado = listaAlbumes[i];
+encontrado = true;
+break;
+}
+}
+
+if (!encontrado) {
+cout << "No se encontró un álbum con el ID especificado.\n";
+return Album();
+}
+
+// Leer registros de Links
+MiVector<Links> todosLosLinks;
+Links::leerDesdeArchivo(nombreArchivoLinks, todosLosLinks);
+
+// Filtrar los links relacionados con este álbum
+listaLinks.clear();
+for (size_t i = 1; i <= todosLosLinks.size(); i++) {
+if (todosLosLinks[i].getIdAlbum() == idBuscado) {
+listaLinks.push_back(todosLosLinks[i]);
+}
+}
+
+// Leer registros de Canciones
+MiVector<Cancion> todasLasCanciones;
+Cancion::leerDesdeArchivo(nombreArchivoCanciones, todasLasCanciones);
+
+// Filtrar las canciones relacionadas con este álbum
+listaCanciones.clear();
+for (size_t i = 1; i <= todasLasCanciones.size(); i++) {
+if (todasLasCanciones[i].getIdAlbum() == idBuscado) {
+listaCanciones.push_back(todasLasCanciones[i]);
+}
+}
+
+return albumEncontrado;
+}
+
 

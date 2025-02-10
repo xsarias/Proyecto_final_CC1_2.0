@@ -10,7 +10,7 @@ nodo_links Links::insertar_link(Links links) {
     nuevo_link.link_album = links.linkAlbum;
     nuevo_link.link_cancion = links.linkCancion;
     nuevo_link.nom_plat = links.nomPlat;
-
+    //cout << "link insertado" <<endl;
     return nuevo_link;
 }
 
@@ -204,4 +204,23 @@ void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>&
 
     // Guardar la lista actualizada en el archivo
     guardarEnArchivo(nombreArchivo, lista);
+}
+
+Links Links::buscarLinkPorId(const string& nombreArchivoLinks) {
+    int idBuscado;
+    cout << "Ingrese el ID del link a buscar: ";
+    cin >> idBuscado;
+
+    MiVector<Links> listaLinks;
+    leerDesdeArchivo(nombreArchivoLinks, listaLinks);
+
+    // Buscar el link por ID
+    for (size_t i = 1; i <= listaLinks.size(); i++) {
+        if (listaLinks[i].getId() == idBuscado) {
+            return listaLinks[i]; // Devuelve el link encontrado
+        }
+    }
+
+    cout << "No se encontró un link con el ID especificado.\n";
+    return Links(); // Devuelve un objeto vacío si no se encuentra
 }

@@ -72,7 +72,11 @@ public:
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
     static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
-
+    static Version buscarVersionConRelacionados(const string& nombreArchivoCancion,  
+        const string& nombreArchivoLinks, 
+        const string& nombreArchivoArtistas, 
+        MiVector<Links>& listaLinks, 
+        MiVector<Artista>& listaArtistas);
 };
 
 #endif

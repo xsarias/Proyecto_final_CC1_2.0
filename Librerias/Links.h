@@ -65,6 +65,7 @@ public:
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
     static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
+    static Links buscarLinkPorId(const string& nombreArchivoLinks);
 
 };
 

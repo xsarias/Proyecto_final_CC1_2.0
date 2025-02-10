@@ -52,7 +52,6 @@ void Multilista_cancion::insertar(nodo_canciones Dato) {
     por_nom_cancion(num_dat, lista_datos[num_dat].nom_cancion);
     por_pais(num_dat, lista_datos[num_dat].paisGrabacion);
     por_duracion(num_dat, lista_datos[num_dat].duracion);
-    cout<<"se esta ordenadnooo";
 }
 
 void Multilista_cancion::por_nom_artistico(int pos, string dato) {

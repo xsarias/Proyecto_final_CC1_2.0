@@ -54,6 +54,7 @@ public:
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);
     nodo_canciones insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<nodo_versiones> version);
+    nodo_canciones insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista);
     void insertar_artista(Artista artista);
 
     // Getters
@@ -91,7 +92,12 @@ public:
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
     static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
-
+    static Cancion buscarCancionConRelacionados(const string& nombreArchivoCancion,  
+        const string& nombreArchivoLinks, 
+        const string& nombreArchivoArtistas, 
+        MiVector<Links>& listaLinks, 
+        MiVector<Artista>& listaArtistas);
+  
     
 };
 

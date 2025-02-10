@@ -12,7 +12,8 @@
 using namespace std;
 #include <iostream>
 MiVector<Cancion> canciones_archivo;
-void insertar_prueba(){
+void insertar_prueba()
+{
     MiVector<Cancion> listaCanciones;
     MiVector<Links> listalinkscancion, listalinksalbum, listalinkversion;
     MiVector<Artista> listaArtistas, lista_artis_vers;
@@ -32,7 +33,7 @@ void insertar_prueba(){
     Links::leerDesdeArchivo("ArchivosPlanos/links.txt");
     Album::leerDesdeArchivo("ArchivosPlanos/albums.txt");
     Version::leerDesdeArchivo("ArchivosPlanos/versiones.txt");
-    
+
     // Ahora podemos imprimir o hacer lo que sea necesario con la lista de canciones en el album.
     album.insertar_album(Album(2, "Fiesta Tropical", "Carlos Vives", "Colombia", 2019, "Carlos Vives", "Carlos Vives", "Sony Music Latin", "Miami, FL"), listaCancionesAlbum, listalinksalbum);
     Cancion::guardarEnArchivo("ArchivosPlanos/canciones.txt");
@@ -40,9 +41,9 @@ void insertar_prueba(){
     Links::guardarEnArchivo("ArchivosPlanos/links.txt");
     Album::guardarEnArchivo("ArchivosPlanos/albums.txt");
     Version::guardarEnArchivo("ArchivosPlanos/versiones.txt");
-
 }
-void mostrarMenu() {
+void mostrarMenu()
+{
     cout << "Menú:" << endl;
     cout << "1. Insertar álbumes." << endl;
     cout << "2. Insertar canciones." << endl;
@@ -50,34 +51,35 @@ void mostrarMenu() {
     cout << "4. Eliminar álbumes." << endl;
     cout << "5. Eliminar canciones." << endl;
     cout << "6. Eliminar versiones." << endl;
-    cout << "7. Realizar consultas" <<endl;
+    cout << "7. Realizar consultas" << endl;
     cout << "8. Salir" << endl;
     cout << "Seleccione una opción: ";
 }
-void menu_consultas(){
+void menu_consultas()
+{
     cout << "Menú consultas:" << endl;
-    //clasificada por año de publicación y nombre artistico.
+    // clasificada por año de publicación y nombre artistico.
     cout << "1. Albúm de una editora." << endl;
-    //clasificados por año y país de grabación.
+    // clasificados por año y país de grabación.
     cout << "2. Albumes y canciones grabados en un estudio dado." << endl;
-    //clasificado por ciudad de grabación. Incluyendo arreglista, autores de letra y de la música.
+    // clasificado por ciudad de grabación. Incluyendo arreglista, autores de letra y de la música.
     cout << "3. Canciones cuya duración es mayor a un tiempo dado." << endl;
-    //Incluir nombre de la canción, nombre artístico y los datos del artista que interpreta el instrumento.
+    // Incluir nombre de la canción, nombre artístico y los datos del artista que interpreta el instrumento.
     cout << "4. Listado de canciones de un género y un instrumento dado." << endl;
-    //clasificado por género y año de la grabación.
+    // clasificado por género y año de la grabación.
     cout << "5. Número de canciones que tienen una cantidad de versiones mayor o igual a un número dado." << endl;
-    //Incluir el título de la versión, nombre artista principal, género, año, país de publicación, nombre obra original, 
-    //plataformas en las que se encuentra
+    // Incluir el título de la versión, nombre artista principal, género, año, país de publicación, nombre obra original,
+    // plataformas en las que se encuentra
     cout << "6. Versiones que pertenecen a un tipo de versión dada, que se encuentren en más de una plataforma." << endl;
-    //Incluir nombre de la plataforma y link.
-    cout << "7. Links de las plataformas donde se encuentra una canción dada y sus versiones." <<endl;
-    //Clasificado por género y año de publicación. Incluyendo nombre del encargado, el género y el año.
+    // Incluir nombre de la plataforma y link.
+    cout << "7. Links de las plataformas donde se encuentra una canción dada y sus versiones." << endl;
+    // Clasificado por género y año de publicación. Incluyendo nombre del encargado, el género y el año.
     cout << "8. Número de canciones y versiones que ha creado cada encargado del cover." << endl;
-    //Clasificado por país de grabación.
+    // Clasificado por país de grabación.
     cout << "9. Albumes dado el nombre del encargado de fotografía y del estudio de grabación." << endl;
-    //incluyendo género, año, nombre canción, album al que pertenece, número plataformas en las que se encuentra.
+    // incluyendo género, año, nombre canción, album al que pertenece, número plataformas en las que se encuentra.
     cout << "10. Canciones escritas por un compositor de letra dado." << endl;
-    cout << "11. Volver al menú principal"<<endl;
+    cout << "11. Volver al menú principal" << endl;
     cout << "Seleccione una opción: ";
 }
 
@@ -99,7 +101,8 @@ int main() {
     
     
     int opcion;
-    do {
+    do
+    {
         mostrarMenu();
         cin >> opcion;
         switch (opcion) {

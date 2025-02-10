@@ -1,0 +1,38 @@
+1,8,0,Joel Pimentel de Leon,DE LEON,México,voz
+2,8,0,Christopher Velez,Chris,Ecuador,guitarra
+3,2,0,Zabdiel de Jesús,Zabdiel,Puerto Rico,piano
+4,2,0,Erick Brian Colon,Erick,Cuba,guitarra
+5,3,0,Saray Rojas,Saray,Colombia,voz
+6,3,0,Maria Magdalena,Magdalena,México,bajo
+7,4,0,Andres Botia,Botia,Colombia,batería
+8,4,0,Sofia Perez,Sofia,Argentina,teclado
+9,5,0,Luis Veleza,Veleza,México,voz
+10,5,0,Santiago Lopez,Santiago,Colombia,guitarra
+11,6,0,Alejandra Murillo,Alejandra,México,voz
+12,6,0,Marisol Guerrero,Marisol,Colombia,bajo
+13,7,0,Richard Camacho,Richard,Ecuador,voz
+14,7,0,Saray Rojas,Saray,Colombia,guitarra
+15,8,0,Juan Luis Morera Luna,Wisin,Puerto Rico,voz
+16,8,0,Christopher Velez,Chris,Ecuador,guitarra
+17,9,0,Zabdiel de Jesús,Zabdiel,Puerto Rico,piano
+18,9,0,Erick Brian Colon,Erick,Cuba,guitarra
+19,10,0,Saray Rojas,Saray,Colombia,voz
+20,10,0,Maria Magdalena,Magdalena,México,bajo
+19,11,0,Carlos Vives,Carlos,Colombia,voz
+20,11,0,Carlos Vives,Carlos,Colombia,guitarra
+21,12,0,Shakira,Shakira,Colombia,voz
+22,12,0,Carlos Vives,Carlos,Colombia,guitarra
+23,13,0,Enrique Iglesias,Enrique,España,voz
+24,13,0,Descemer Bueno,Descemer,Cuba,piano
+25,14,0,Luis Fonsi,Luis,Puerto Rico,voz
+26,14,0,Daddy Yankee,Daddy,Puerto Rico,rap
+27,15,0,Bad Bunny,Bad Bunny,Puerto Rico,voz
+28,15,0,Jhay Cortez,Jhay,Puerto Rico,voz
+29,16,0,Maria Becerra,Maria,Argentina,voz
+30,16,0,TINI,TINI,Argentina,voz
+31,17,0,Shakira,Shakira,Colombia,voz
+32,17,0,Anuel AA,Anuel,Puerto Rico,rap
+33,18,0,Maluma,Maluma,Colombia,voz
+34,19,0,Marc Anthony,Marc,Puerto Rico,voz
+35,20,0,Gente de Zona,Gente de Zona,Cuba,voz
+36,20,0,Marc Anthony,Marc,Puerto Rico,voz

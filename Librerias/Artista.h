@@ -53,6 +53,7 @@ public:
     static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
     static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
     static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista);
+    static Artista buscarArtistaPorId(const string& nombreArchivoArtistas);
 
 };
 

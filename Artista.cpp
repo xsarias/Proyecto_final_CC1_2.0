@@ -190,3 +190,22 @@ void Artista::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artis
     guardarEnArchivo(nombreArchivo, lista);
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
+
+Artista Artista::buscarArtistaPorId(const string& nombreArchivoArtistas) {
+    int idBuscado;
+    cout << "Ingrese el ID del artista a buscar: ";
+    cin >> idBuscado;
+
+    MiVector<Artista> listaArtistas;
+    leerDesdeArchivo(nombreArchivoArtistas, listaArtistas);
+
+    // Buscar el artista por ID
+    for (size_t i = 1; i <= listaArtistas.size(); i++) {
+        if (listaArtistas[i].getId() == idBuscado) {
+            return listaArtistas[i]; // Devuelve el artista encontrado
+        }
+    }
+
+    cout << "No se encontró un artista con el ID especificado.\n";
+    return Artista(); // Devuelve un objeto vacío si no se encuentra
+}

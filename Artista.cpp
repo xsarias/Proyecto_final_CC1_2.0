@@ -15,6 +15,7 @@ nodo_artistas Artista :: insertar_artista(Artista artista){
     artista_nuevo.nom_real = artista.nom_real;
     artista_nuevo.pais_origen = artista.pais_origen;
     artista_nuevo.instru_interpre = artista.instrum_inter;
+    //cout<<"artista insertado"<<endl;
     return artista_nuevo;
 }
 

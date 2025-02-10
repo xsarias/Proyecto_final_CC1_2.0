@@ -32,6 +32,7 @@ nodo_versiones Version::insertar_version(Version version, MiVector<Artista> arti
         version_nueva.lista_links.push_back(links_version[i].insertar_link(links_version[i]));
     }
     multi_version.insertar(version_nueva);
+    //cout<< "version insertada";
     return version_nueva;
 }
 

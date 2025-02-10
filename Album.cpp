@@ -15,6 +15,7 @@ void Album::insertar_cabeceras()
     multi_album.insertar(fotografia);
     multi_album.insertar(estudio_grabaci);
     multi_album.insertar(editorial);
+    multi_album.insertar(pais);
 }
 
 void Album ::insertar_album(Album album, MiVector<nodo_canciones> canciones_album, MiVector<Links> links_album)
@@ -29,6 +30,7 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones> canciones_albu
     album_nuevo.editora = album.editora;
     album_nuevo.estudio_grab = album.estudio_grab;
     album_nuevo.anio_pub = to_string(album.anio_pub);
+    album_nuevo.paisGrab = album.pais_grab;
     for(int i=1; i<= canciones_album.size(); i++){
         album_nuevo.lista_caciones.push_back(canciones_album[i]);
     }
@@ -40,13 +42,34 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones> canciones_albu
     multi_album.insertar(album_nuevo);
     cout << "Álbum insertado" << endl;
 }
-void Album:: consultar_por_atributo(string atributo, int cabecera, string contex, string clav_orden){
-    MiVector<nodo_album> lista_porAnio;
-    lista_porAnio = multi_album.consulta_por_atributo(atributo, cabecera, contex, clav_orden);
-    cout << lista_porAnio[1].anio_pub << endl;
-    cout << lista_porAnio[2].anio_pub << endl;
-}
+bool Album:: consultar_por_atributoAlbum(string atributo, int cabecera){
+    cout<<"entro papi"<<endl;
+    MiVector<nodo_album> lista_porAnio, lista_porNomArt;
+    string contex;
+    cin>>contex;
 
+    lista_porAnio = multi_album.consulta_por_atributo(atributo, cabecera, contex, "anio_pub");
+    //lista_porNomArt = multi_album.consulta_por_atributo(atributo, cabecera, contex, "nom_artis");
+    while(lista_porAnio.size() == 0){
+        cout << " La editora que ingresaste no se ha encotrado. Vuelvelo a intentar" << endl;
+        cin >> contex;
+        lista_porAnio = multi_album.consulta_por_atributo(atributo, cabecera, contex, "anio_pub");
+    }
+    if(atributo == "editora"){
+        for(int i = 1; i <= lista_porAnio.size(); i++){
+        cout<< "entre al fot"<<endl;
+            cout << "Año -> "<< lista_porAnio[i].anio_pub << endl;
+            cout << "Editora ->" << lista_porAnio[i].editora << "Nombre artistico: " << lista_porAnio[i].nom_artis<<endl; 
+        }
+    }else if(atributo == "estudio_grab"){
+        for(int i = 1; i <= lista_porAnio.size(); i++){
+            cout<< "entre al fot"<<endl;
+            cout << "Año -> "<< lista_porAnio[i].anio_pub << endl;
+            cout << "Edtudio de Grabacion ->" << lista_porAnio[i].estudio_grab << "País " << lista_porAnio[i].paisGrab <<endl; 
+        }
+    }
+    return true;
+}
 // Guardar lista de álbumes en archivo
 void Album::guardarEnArchivo(const string &nombreArchivo)
 {

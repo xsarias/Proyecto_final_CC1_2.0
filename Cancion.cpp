@@ -7,7 +7,7 @@ void Cancion :: imprimir_lista(string parametro, int pos_cab) {
     // Obtener la posición inicial de la cabeza para el orden del parámetro
     int cab = multi_cancion.retornar_pos(pos_cab, "pos_cabeza");
     int cont;
-    if (cab < 0) {
+    if (cab < 1) {
         cout << "La lista está vacía o no se ha ordenado." << endl;
         return;
     }
@@ -63,8 +63,8 @@ nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> lin
     cancion_nueva.anioPublicacion = cancion.anioPublicacion;
     cancion_nueva.arrMusic = cancion.arrMusic;
     cancion_nueva.ciudadGrabacion = cancion.ciudadGrabacion;
-    cancion_nueva.composLetra = cancion.ciudadGrabacion;
-    cancion_nueva.composMusica = cancion.composLetra;
+    cancion_nueva.composLetra = cancion.composLetra;
+    cancion_nueva.composMusica = cancion.composMusica;
     cancion_nueva.duracion = cancion.duracion; 
     cancion_nueva.genero = cancion.genero;
     cancion_nueva.numArtistasPrincipales = cancion.numArtistasPrincipales;

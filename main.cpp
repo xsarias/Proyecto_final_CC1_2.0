@@ -150,7 +150,7 @@ void insertar_prueba(){
 
     // Insertamos el álbum con todas las canciones
     album.insertar_album(Album(1, "Primera Cita", "CNCO", "US", 2016, "Edward Frank", "Luisa Restrepo", "Sony Music Latin", "5020 studio miami"), listaCancionesAlbum, listalinksalbum);
-
+    album.consultar_por_atributo("titulo", 1, "Primera Cita");
 }
 void mostrarMenu() {
     insertar_prueba();
@@ -194,6 +194,7 @@ void menu_consultas(){
 
 int main() {
     int opcion;
+    insertar_prueba();
     do {
         mostrarMenu();
         cin >> opcion;

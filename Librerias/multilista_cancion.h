@@ -230,7 +230,7 @@ int Multilista_cancion::retornar_pos(int x, string parametro) {
     if (parametro == "sig_pais") return lista_datos[x].sig_pais;
     if (parametro == "sig_ciudad") return lista_datos[x].sig_ciudad;
     if (parametro == "pos_cabeza") return lista_cabeceras[x].pos_cabeza;
-    if(parametro == "duracion") return lista_datos[x].sig_duracion;
+    if(parametro == "sig_duracion") return lista_datos[x].sig_duracion;
     return -1;
 }
 
@@ -251,7 +251,7 @@ string Multilista_cancion::retornar_dato(int x, string parametro) {
     return "Parámetro desconocido";
 }
 bool Multilista_cancion::Multilista_vacia() {
-    return num_dat == 0;
+    return num_dat == 1;
 }
 
 bool Multilista_cancion::lista_llena() {

@@ -68,10 +68,10 @@ public:
     void setArtistaPrincipal(const string& nuevoArtista) { artistaPrin = nuevoArtista; }
 
     // Métodos de archivos
-    static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Version>& lista);
-    static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
-    static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
-    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista);
+    static void guardarEnArchivo(const string& nombreArchivo);
+    static void leerDesdeArchivo(const string& nombreArchivo);
+    static void eliminarDeArchivo(const string& nombreArchivo);
+    static void actualizarDesdeArchivo(const string& nombreArchivo);
     static Version buscarVersionConRelacionados(const string& nombreArchivoCancion,  
         const string& nombreArchivoLinks, 
         const string& nombreArchivoArtistas, 

@@ -32,9 +32,12 @@ private:
     string ciudadGrabacion; 
     string paisGrabacion; 
     int anioPublicacion; 
-    string genero;  
+    string genero;
+    
 
+    
 public:
+    
     Cancion() : id(0), id_album(0), nombreCancion(""), nom_artistico(""), genero(""), 
     anioPublicacion(0), duracion(""), composLetra(""), composMusica(""), 
     arrMusic(""), ciudadGrabacion(""), paisGrabacion(""), numArtistasPrincipales(0) {}
@@ -49,14 +52,11 @@ public:
     composLetra(composLetra), composMusica(composMusica), arrMusic(arrMusic), 
     ciudadGrabacion(ciudadGrabacion), paisGrabacion(paisGrabacion), numArtistasPrincipales(numArtistasPrincipales) {}
 
-
-
     void insertar_cabeceras(); 
     void imprimir_lista(string parametro, int pos_cab);
     nodo_canciones insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<nodo_versiones> version);
     nodo_canciones insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista);
-    void insertar_artista(Artista artista);
-
+    
     // Getters
     int getId() const { return id; }
     string getNombreCancion() const { return nombreCancion; }
@@ -88,10 +88,10 @@ public:
     void setNumArtistasPrincipales(int nuevoNum) { numArtistasPrincipales = nuevoNum; }
 
     // Métodos para guardar y leer desde archivo
-    static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Cancion>& lista);
-    static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
-    static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
-    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Cancion>& lista);
+    static void guardarEnArchivo(const string& nombreArchivo);
+    static void leerDesdeArchivo(const string& nombreArchivo);
+    static void eliminarDeArchivo(const string& nombreArchivo);
+    static void actualizarDesdeArchivo(const string& nombreArchivo);
     static Cancion buscarCancionConRelacionados(const string& nombreArchivoCancion,  
         const string& nombreArchivoLinks, 
         const string& nombreArchivoArtistas, 

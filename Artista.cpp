@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "Librerias/Artista.h"
+MiVector<Artista>artistas_archivo;
 void Artista::imprimir_artista(Artista artista){
     cout << artista.nom_real << endl;
     cout << artista.nom_artist << endl;
@@ -8,7 +9,9 @@ void Artista::imprimir_artista(Artista artista){
     cout << artista.instrum_inter << endl;
 }
 nodo_artistas Artista :: insertar_artista(Artista artista){
+    artistas_archivo.push_back(artista);
     nodo_artistas artista_nuevo;
+    artista_nuevo.id = artista.id;
     artista_nuevo.id_cancion = artista.id_cancion;
     artista_nuevo.id_version = artista.id_version;
     artista_nuevo.nom_artistico = artista.nom_artist;
@@ -20,35 +23,35 @@ nodo_artistas Artista :: insertar_artista(Artista artista){
 }
 
 // Método para guardar la lista de Artistas en un archivo
-void Artista::guardarEnArchivo(const string& nombreArchivo, const MiVector<Artista>& lista) {
+void Artista::guardarEnArchivo(const string& nombreArchivo) {
     ofstream archivo(nombreArchivo);
     if (!archivo) {
         cerr << "Error al abrir el archivo para escritura." << endl;
         return;
     }
 
-    for (size_t i = 1; i <= lista.size(); i++) {
-        archivo << lista[i].getId() << ","
-                << lista[i].getIdCancion() << ","
-                << lista[i].getIdVersion() << ","
-                << lista[i].getNomReal() << ","
-                << lista[i].getNomArtist() << ","
-                << lista[i].getPaisOrigen() << ","
-                << lista[i].getInstrumInter() << endl;
+    for (int i = 1; i <= artistas_archivo.size(); i++) {
+        archivo << artistas_archivo[i].getId() << ","
+                << artistas_archivo[i].getIdCancion() << ","
+                << artistas_archivo[i].getIdVersion() << ","
+                << artistas_archivo[i].getNomReal() << ","
+                << artistas_archivo[i].getNomArtist() << ","
+                << artistas_archivo[i].getPaisOrigen() << ","
+                << artistas_archivo[i].getInstrumInter() << endl;
     }
 
     archivo.close();
 }
 
 // Método para leer la lista de Artistas desde un archivo
-void Artista::leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista) {
+void Artista::leerDesdeArchivo(const string& nombreArchivo) {
     ifstream archivo(nombreArchivo);
     if (!archivo) {
         cerr << "Error al abrir el archivo para lectura." << endl;
         return;
     }
 
-    lista.clear();
+    artistas_archivo.clear();
 
     int id, id_cancion, id_version;
     string nomReal, nomArtist, paisOrigen, instrumInter;
@@ -63,37 +66,37 @@ void Artista::leerDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& l
         getline(archivo, paisOrigen, ',');
         getline(archivo, instrumInter);
 
-        lista.push_back(Artista(id, id_cancion, id_version, nomReal, nomArtist, paisOrigen, instrumInter));
+        artistas_archivo.push_back(Artista(id, id_cancion, id_version, nomReal, nomArtist, paisOrigen, instrumInter));
     }
 
     archivo.close();
 }
 
 // Método para eliminar un Artista del archivo
-void Artista::eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& lista) {
+void Artista::eliminarDeArchivo(const string& nombreArchivo) {
     int idEliminar;
     cout << "Ingrese el ID del artista que desea eliminar: ";
     cin >> idEliminar;
 
     bool encontrado = false;
-    for (size_t i = 1; i <= lista.size(); i++) {
-        if (lista[i].getId() == idEliminar) {
+    for (size_t i = 1; i <= artistas_archivo.size(); i++) {
+        if (artistas_archivo[i].getId() == idEliminar) {
             encontrado = true;
             cout << "Está seguro de eliminar el siguiente artista? (y/n)\n";
-            cout << "ID: " << lista[i].getId() << "\n"
-                 << "ID Canción: " << lista[i].getIdCancion() << "\n"
-                 << "ID Versión: " << lista[i].getIdVersion() << "\n"
-                 << "Nombre real: " << lista[i].getNomReal() << "\n"
-                 << "Nombre artístico: " << lista[i].getNomArtist() << "\n"
-                 << "País de origen: " << lista[i].getPaisOrigen() << "\n"
-                 << "Instrumento principal: " << lista[i].getInstrumInter() << "\n";
+            cout << "ID: " << artistas_archivo[i].getId() << "\n"
+                 << "ID Canción: " << artistas_archivo[i].getIdCancion() << "\n"
+                 << "ID Versión: " << artistas_archivo[i].getIdVersion() << "\n"
+                 << "Nombre real: " << artistas_archivo[i].getNomReal() << "\n"
+                 << "Nombre artístico: " << artistas_archivo[i].getNomArtist() << "\n"
+                 << "País de origen: " << artistas_archivo[i].getPaisOrigen() << "\n"
+                 << "Instrumento principal: " << artistas_archivo[i].getInstrumInter() << "\n";
 
             char confirmacion;
             cout << "Confirmar eliminación (y/n): ";
             cin >> confirmacion;
 
             if (confirmacion == 'y' || confirmacion == 'Y') {
-                lista.erase(i);  // Eliminar de la lista
+                artistas_archivo.erase(i);  // Eliminar de la lista
                 cout << "Artista eliminado con éxito.\n";
             } else {
                 cout << "Eliminación cancelada.\n";
@@ -108,26 +111,26 @@ void Artista::eliminarDeArchivo(const string& nombreArchivo, MiVector<Artista>& 
     }
 
     // Guardar la lista actualizada en el archivo
-    guardarEnArchivo(nombreArchivo, lista);
+    guardarEnArchivo(nombreArchivo);
 }
 
 
-void Artista::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artista>& lista) {
+void Artista::actualizarDesdeArchivo(const string& nombreArchivo) {
     int idEditar;
     cout << "Ingrese el ID del artista que desea editar: ";
     cin >> idEditar;
 
     bool encontrado = false;
-    for (size_t i = 1; i <= lista.size(); i++) {
-        if (lista[i].getId() == idEditar) {
+    for (size_t i = 1; i <= artistas_archivo.size(); i++) {
+        if (artistas_archivo[i].getId() == idEditar) {
             encontrado = true;
             cout << "Artista encontrado. Datos actuales:\n";
-            cout << "1. ID Canción: " << lista[i].getIdCancion() << "\n";
-            cout << "2. ID Versión: " << lista[i].getIdVersion() << "\n";
-            cout << "3. Nombre real: " << lista[i].getNomReal() << "\n";
-            cout << "4. Nombre artístico: " << lista[i].getNomArtist() << "\n";
-            cout << "5. País de origen: " << lista[i].getPaisOrigen() << "\n";
-            cout << "6. Instrumento principal: " << lista[i].getInstrumInter() << "\n";
+            cout << "1. ID Canción: " << artistas_archivo[i].getIdCancion() << "\n";
+            cout << "2. ID Versión: " << artistas_archivo[i].getIdVersion() << "\n";
+            cout << "3. Nombre real: " << artistas_archivo[i].getNomReal() << "\n";
+            cout << "4. Nombre artístico: " << artistas_archivo[i].getNomArtist() << "\n";
+            cout << "5. País de origen: " << artistas_archivo[i].getPaisOrigen() << "\n";
+            cout << "6. Instrumento principal: " << artistas_archivo[i].getInstrumInter() << "\n";
 
             int opcion;
             while (true) {
@@ -145,32 +148,32 @@ void Artista::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artis
                     case 1:
                         cout << "Nuevo ID Canción: ";
                         cin >> nuevoValor;
-                        lista[i].setIdCancion(stoi(nuevoValor));
+                        artistas_archivo[i].setIdCancion(stoi(nuevoValor));
                         break;
                     case 2:
                         cout << "Nuevo ID Versión: ";
                         cin >> nuevoValor;
-                        lista[i].setIdVersion(stoi(nuevoValor));
+                        artistas_archivo[i].setIdVersion(stoi(nuevoValor));
                         break;
                     case 3:
                         cout << "Nuevo nombre real: ";
                         getline(cin, nuevoValor);
-                        lista[i].setNomReal(nuevoValor);
+                        artistas_archivo[i].setNomReal(nuevoValor);
                         break;
                     case 4:
                         cout << "Nuevo nombre artístico: ";
                         getline(cin, nuevoValor);
-                        lista[i].setNomArtist(nuevoValor);
+                        artistas_archivo[i].setNomArtist(nuevoValor);
                         break;
                     case 5:
                         cout << "Nuevo país de origen: ";
                         getline(cin, nuevoValor);
-                        lista[i].setPaisOrigen(nuevoValor);
+                        artistas_archivo[i].setPaisOrigen(nuevoValor);
                         break;
                     case 6:
                         cout << "Nuevo instrumento principal: ";
                         getline(cin, nuevoValor);
-                        lista[i].setInstrumInter(nuevoValor);
+                        artistas_archivo[i].setInstrumInter(nuevoValor);
                         break;
                     default:
                         cout << "Opción no válida. Intente de nuevo.\n";
@@ -188,7 +191,7 @@ void Artista::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Artis
     }
 
     // Guardar la lista actualizada en el archivo
-    guardarEnArchivo(nombreArchivo, lista);
+    guardarEnArchivo(nombreArchivo);
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
 
@@ -198,7 +201,7 @@ Artista Artista::buscarArtistaPorId(const string& nombreArchivoArtistas) {
     cin >> idBuscado;
 
     MiVector<Artista> listaArtistas;
-    leerDesdeArchivo(nombreArchivoArtistas, listaArtistas);
+    leerDesdeArchivo(nombreArchivoArtistas);
 
     // Buscar el artista por ID
     for (size_t i = 1; i <= listaArtistas.size(); i++) {

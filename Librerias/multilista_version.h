@@ -28,8 +28,8 @@ public:
     void por_artista_princ(int pos, string dato);
     void por_ciudad(int pos, string dato);
     void por_genero(int pos, string dato);
-    
-
+    MiVector<nodo_versiones> consultar_por_atributo(string atributo, int cabecera, string contex, string clav_orden);
+    MiVector<nodo_busqueda> obtener_vectorOrdenado(string atributo, int cabecera);
 
 };
 

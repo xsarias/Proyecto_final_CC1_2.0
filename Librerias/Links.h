@@ -17,11 +17,11 @@ private:
 
 public:
     // Constructor por defecto
-    Links() : id(0), idCancion(0), idAlbum(0), idVersion(0), nomPlat(" "), linkAlbum(" "), linkCancion(" ") {}
+    Links() : id(0), idCancion(0), idAlbum(0), idVersion(0), nomPlat(""), linkAlbum(""), linkCancion("") {}
 
     // Constructor con parámetros
-    Links(int id,int idCancion, int idAlbum, int idVersion, const string& nomPlat, const string& linkAlbum, const string& linkCancion)
-        : id(id), idCancion(idCancion), idAlbum(idAlbum), idVersion(idVersion), nomPlat(nomPlat), linkAlbum(linkAlbum), linkCancion(linkCancion) {}
+    Links(int id, int idCancion, int idAlbum, int idVersion, const string& nomPlat, const string& linkAlbum, const string& linkCancion)
+    : id(id), idCancion(idCancion), idAlbum(idAlbum), idVersion(idVersion), nomPlat(nomPlat), linkAlbum(linkAlbum), linkCancion(linkCancion) {}
 
     // Getters
     int getId() const { return id; }
@@ -61,10 +61,10 @@ public:
     nodo_links insertar_link(Links links);
 
     // Métodos para leer y guardar en archivo
-    static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Links>& lista);
-    static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
-    static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
-    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista);
+    static void guardarEnArchivo(const string& nombreArchivo);
+    static void leerDesdeArchivo(const string& nombreArchivo);
+    static void eliminarDeArchivo(const string& nombreArchivo);
+    static void actualizarDesdeArchivo(const string& nombreArchivo);
     static Links buscarLinkPorId(const string& nombreArchivoLinks);
 
 };

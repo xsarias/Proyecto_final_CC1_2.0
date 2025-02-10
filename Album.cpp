@@ -40,11 +40,14 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones> canciones_albu
     multi_album.insertar(album_nuevo);
     cout << "Álbum insertado" << endl;
 }
-void Album:: consultar_por_atributo(string atributo, int cabecera, string contex, string clav_orden){
-    MiVector<nodo_album> lista_porAnio;
-    lista_porAnio = multi_album.consulta_por_atributo(atributo, cabecera, contex, clav_orden);
-    cout << lista_porAnio[1].anio_pub << endl;
-    cout << lista_porAnio[2].anio_pub << endl;
+void Album:: consultar_por_atributo(string atributo, int cabecera, string contex){
+    MiVector<nodo_album> lista_porAnio, lista_porNomArt;
+    lista_porAnio = multi_album.consulta_por_atributo(atributo, cabecera, contex, "anio_pub");
+    lista_porNomArt = multi_album.consulta_por_atributo(atributo, cabecera, contex, "nom_artis");
+    for(int i = 1; i <= lista_porAnio.size(); i++){
+        cout << "Año -> "<< lista_porAnio[i].anio_pub << endl;
+        cout << "Editora ->" << lista_porAnio[i].editora << "Nombre artistico: " << lista_porAnio[i].nom_artis<<endl; 
+    }
 }
 
 // Guardar lista de álbumes en archivo

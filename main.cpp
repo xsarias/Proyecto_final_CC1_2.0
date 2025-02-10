@@ -82,6 +82,19 @@ void menu_consultas(){
 }
 
 int main() {
+    Cancion::leerDesdeArchivo("ArchivosPlanos/canciones.txt");
+    Artista::leerDesdeArchivo("ArchivosPlanos/artistas.txt");
+    Links::leerDesdeArchivo("ArchivosPlanos/links.txt");
+    Album::leerDesdeArchivo("ArchivosPlanos/albums.txt");
+    Version::leerDesdeArchivo("ArchivosPlanos/versiones.txt");
+    
+    // Ahora podemos imprimir o hacer lo que sea necesario con la lista de canciones en el album.
+    Cancion::guardarEnArchivo("ArchivosPlanos/canciones.txt");
+    Artista::guardarEnArchivo("ArchivosPlanos/artistas.txt");
+    Links::guardarEnArchivo("ArchivosPlanos/links.txt");
+    Album::guardarEnArchivo("ArchivosPlanos/albums.txt");
+    Version::guardarEnArchivo("ArchivosPlanos/versiones.txt");
+
     
     
     
@@ -110,9 +123,11 @@ int main() {
                 int op_cons;
                 do{
                     menu_consultas();
+                    cin >> op_cons;
                     switch(op_cons){
                         case 1:
                             cout << "Consulta 1" << endl;
+                            Album::consultar_por_atributo("editora", 7, )
                             break;
                         case 2:
                             cout << "Consulta 2" << endl;

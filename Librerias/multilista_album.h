@@ -235,8 +235,8 @@ MiVector<nodo_album> Multilista_album::consulta_por_atributo(std::string atribut
     }
     if (clav_orden == "anio_pub") {
         list_porAtributo = ordenarVector(list_porAtributo, &nodo_album::anio_pub);
-    } else if (clav_orden == "titulo") {
-        list_porAtributo = ordenarVector(list_porAtributo, &nodo_album::titulo);
+    } else if (clav_orden == "nom_artis") {
+        list_porAtributo = ordenarVector(list_porAtributo, &nodo_album::nom_artis);
     }
     return list_porAtributo;
    

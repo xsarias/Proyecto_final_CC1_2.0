@@ -68,7 +68,7 @@ public:
     void insertar_cabeceras();
     void imprimir_lista(string parametro, int pos_cab);
     void insertar_album(Album cancion, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album);
-    void consultar_por_atributo(string atributo, int cabecera, string contex, string clave_orden);
+    void consultar_por_atributo(string atributo, int cabecera, string contex);
 
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo);

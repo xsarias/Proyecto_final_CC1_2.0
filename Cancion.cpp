@@ -50,8 +50,33 @@ void  Cancion :: insertar_cabeceras(){
     multi_cancion.insertar(ciudad);  //6
     multi_cancion.insertar(genero_); //7
     multi_cancion.insertar(anio_pub); //8
-    multi_cancion.insertar(duracion_can);
+    multi_cancion.insertar(duracion_can); //9
 
+}
+nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista){
+    nodo_canciones cancion_nueva;
+    cancion_nueva.id = cancion.id;
+    cancion_nueva.id_album = cancion.id_album;
+    cancion_nueva.nom_cancion = cancion.nombreCancion;
+    cancion_nueva.nom_artistico = cancion.nom_artistico;
+    cancion_nueva.arrMusic = cancion.arrMusic;
+    cancion_nueva.anioPublicacion = cancion.anioPublicacion;
+    cancion_nueva.arrMusic = cancion.arrMusic;
+    cancion_nueva.ciudadGrabacion = cancion.ciudadGrabacion;
+    cancion_nueva.composLetra = cancion.composLetra;
+    cancion_nueva.composMusica = cancion.composMusica;
+    cancion_nueva.duracion = cancion.duracion; 
+    cancion_nueva.genero = cancion.genero;
+    cancion_nueva.numArtistasPrincipales = cancion.numArtistasPrincipales;
+    for(int i=1; i<=artista.size(); i++){
+        cancion_nueva.list_artist.push_back(artista[i].insertar_artista(artista[i]));
+    }
+    for(int i=1; i<=links.size(); i++){
+        cancion_nueva.list_links.push_back(links[i].insertar_link(links[i]));
+    } 
+    multi_cancion.insertar(cancion_nueva);
+    //cout<<"canción insertada"<<endl;
+    return cancion_nueva;
 }
 nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<nodo_versiones> version){
     nodo_canciones cancion_nueva;
@@ -63,27 +88,27 @@ nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> lin
     cancion_nueva.anioPublicacion = cancion.anioPublicacion;
     cancion_nueva.arrMusic = cancion.arrMusic;
     cancion_nueva.ciudadGrabacion = cancion.ciudadGrabacion;
-    cancion_nueva.composLetra = cancion.ciudadGrabacion;
-    cancion_nueva.composMusica = cancion.composLetra;
+    cancion_nueva.composLetra = cancion.composLetra;
+    cancion_nueva.composMusica = cancion.composMusica;
     cancion_nueva.duracion = cancion.duracion; 
     cancion_nueva.genero = cancion.genero;
     cancion_nueva.numArtistasPrincipales = cancion.numArtistasPrincipales;
-    for(int i=1; i<=artista.size(); i++){
+    for(size_t i=1; i<=artista.size(); i++){
         cancion_nueva.list_artist.push_back(artista[i].insertar_artista(artista[i]));
     }
-    for(int i=1; i<=links.size(); i++){
+    for(size_t i=1; i<=links.size(); i++){
         cancion_nueva.list_links.push_back(links[i].insertar_link(links[i]));
     }
-    if(version.size()>0){
-        for(int i=1; i<=version.size(); i++){
-            cancion_nueva.list_versiones.push_back(version[i]);
-        }
+    for(int i=1; i<=version.size(); i++){
+        cancion_nueva.list_versiones.push_back(version[i]);
     }
+    
     
     multi_cancion.insertar(cancion_nueva);
     cout<<"canción insertada"<<endl;
     return cancion_nueva;
 }
+
 // Método para guardar la lista de Canciones en un archivo
 void Cancion::guardarEnArchivo(const string& nombreArchivo, const MiVector<Cancion>& lista) {
     ofstream archivo(nombreArchivo);

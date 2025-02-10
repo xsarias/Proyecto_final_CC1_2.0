@@ -10,7 +10,7 @@ nodo_links Links::insertar_link(Links links) {
     nuevo_link.link_album = links.linkAlbum;
     nuevo_link.link_cancion = links.linkCancion;
     nuevo_link.nom_plat = links.nomPlat;
-
+    //cout << "link insertado" <<endl;
     return nuevo_link;
 }
 

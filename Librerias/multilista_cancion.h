@@ -52,7 +52,6 @@ void Multilista_cancion::insertar(nodo_canciones Dato) {
     por_nom_cancion(num_dat, lista_datos[num_dat].nom_cancion);
     por_pais(num_dat, lista_datos[num_dat].paisGrabacion);
     por_duracion(num_dat, lista_datos[num_dat].duracion);
-    cout<<"se esta ordenadnooo";
 }
 
 void Multilista_cancion::por_nom_artistico(int pos, string dato) {
@@ -230,7 +229,7 @@ int Multilista_cancion::retornar_pos(int x, string parametro) {
     if (parametro == "sig_pais") return lista_datos[x].sig_pais;
     if (parametro == "sig_ciudad") return lista_datos[x].sig_ciudad;
     if (parametro == "pos_cabeza") return lista_cabeceras[x].pos_cabeza;
-    if(parametro == "duracion") return lista_datos[x].sig_duracion;
+    if(parametro == "sig_duracion") return lista_datos[x].sig_duracion;
     return -1;
 }
 

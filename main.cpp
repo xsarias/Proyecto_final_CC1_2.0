@@ -127,7 +127,7 @@ int main() {
                     switch(op_cons){
                         case 1:
                             cout << "Consulta 1" << endl;
-                            Album::consultar_por_atributo("editora", 7, )
+                            Album::consultar_por_atributo("editora", 7, "" )
                             break;
                         case 2:
                             cout << "Consulta 2" << endl;

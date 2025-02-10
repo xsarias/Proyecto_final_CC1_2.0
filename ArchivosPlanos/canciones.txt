@@ -1,0 +1,20 @@
+1,1,Quisiera,CNCO,00:03:05,5,Sebastian Yatra,Luis Veleza,Sofia Perez,Miami,US,2016,pop
+2,1,Tu luz,CNCO,00:03:53,5,Richard Camacho,Luis Veleza,Sofia Perez,Miami,US,2016,balada
+3,1,Cien,CNCO,00:03:07,5,Saray Rojas,Maria Magdalena,Andres Botia,Miami,US,2016,pop
+4,1,Más Allá,CNCO,00:03:40,5,Saray Rojas,Maria Magdalena,Andres Botia,Miami,US,2016,pop
+5,1,Para enamorarte,CNCO,00:03:07,5,Saray Rojas,Maria Magdalena,Andres Botia,Miami,US,2016,pop
+6,1,Tan Fácil,CNCO,00:04:07,5,Saray Rojas,Maria Magdalena,Andres Botia,Miami,US,2016,pop
+7,1,Primera cita,CNCO,00:02:57,5,Saray Rojas,Maria Magdalena,Andres Botia,Miami,US,2016,pop
+8,1,cometa,CNCO,00:03:28,5,Santiago Lopez,Alejandra Murillo,Andres Botia,Miami,US,2016,pop
+9,1,Volverte a ver,CNCO,00:03:00,5,Saray Rojas,Maria Magdalena,Marisol Guerrero,Miami,US,2016,pop
+10,1,Reggaeton Lento,CNCO,00:02:48,5,Saray Rojas,Maria Magdalena,Marisol Guerrero,Miami,US,2016,reggaeton
+11,2,Solo Tú,Carlos Vives,00:03:35,2,Carlos Vives,Luis Veleza,Sofia Perez,Santa Marta,Colombia,2019,vallenato
+12,2,La Bicicleta,Carlos Vives & Shakira,00:03:51,1,Carlos Vives,Luis Veleza,Sofia Perez,Barranquilla,Colombia,2016,pop
+13,2,Bailando,Enrique Iglesias,00:04:00,3,Enrique Iglesias,Luis Veleza,Sofia Perez,Miami,US,2014,pop
+14,2,Despacito,Luis Fonsi & Daddy Yankee,00:03:49,4,Luis Fonsi,Daddy Yankee,Sofia Perez,San Juan,Puerto Rico,2017,reggaeton
+15,2,Dákiti,Bad Bunny & Jhay Cortez,00:03:34,6,Bad Bunny,Jhay Cortez,Sofia Perez,San Juan,Puerto Rico,2020,reggaeton
+16,2,Mienteme,Maria Becerra & TINI,00:03:14,2,Maria Becerra,TINI,Sofia Perez,Buenos Aires,Argentina,2021,pop
+17,2,Me Gusta,Shakira & Anuel AA,00:03:34,3,Shakira,Anuel AA,Sofia Perez,Barranquilla,Colombia,2019,reggaeton
+18,2,Felices los 4,Maluma,00:03:43,3,Maluma,Sofia Perez,Luis Veleza,Medellín,Colombia,2017,reggaeton
+19,2,Vivir Mi Vida,Marc Anthony,00:04:13,1,Marc Anthony,Luis Veleza,Sofia Perez,New York,US,2013,salsa
+20,2,La Gozadera,Gente de Zona & Marc Anthony,00:04:02,2,Gente de Zona,Marc Anthony,Sofia Perez,Havana,Cuba,2015,salsa

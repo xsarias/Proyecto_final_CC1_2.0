@@ -12,6 +12,8 @@
 using namespace std;
 #include <iostream>
 MiVector<Cancion> canciones_archivo;
+
+
 void insertar_prueba()
 {
     MiVector<Cancion> listaCanciones;

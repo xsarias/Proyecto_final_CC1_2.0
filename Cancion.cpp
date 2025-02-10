@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include "Librerias/MiVector.h"
+#include <utility> 
+
 MiVector<Cancion> lista_canciones_archivo;
 void Cancion :: imprimir_lista(string parametro, int pos_cab) {
     // Obtener la posición inicial de la cabeza para el orden del parámetro
@@ -396,4 +398,86 @@ Cancion Cancion::buscarCancionConRelacionados(const string& nombreArchivoCancion
     }  
 
     return cancionEncontrada;  
+}
+int Cancion::contarVersiones(const string& titulo) {
+    MiVector<Cancion> listaCanciones;
+    leerDesdeArchivo("canciones.txt"); // Asegúrate de usar el nombre correcto del archivo
+
+    int idBuscado = -1;
+
+    // Buscar la canción por título para obtener su ID
+    for (size_t i = 0; i < listaCanciones.size(); i++) {  // Cambio: i inicia en 0
+        if (listaCanciones[i].getNombreCancion() == titulo) {
+            idBuscado = listaCanciones[i].getId();
+            break;
+        }
+    }
+
+    if (idBuscado == -1) {
+        cout << "No se encontró la canción con título: " << titulo << endl;
+        return 0;
+    }
+
+    // Leer registros de Links
+    MiVector<Links> todosLosLinks;
+    Links::leerDesdeArchivo("links.txt"); // Ajusta el nombre del archivo si es diferente
+
+    // Contar los links relacionados con esta canción (que representan versiones)
+    int contadorVersiones = 0;
+    for (size_t i = 0; i < todosLosLinks.size(); i++) {  // Cambio: i inicia en 0
+        if (todosLosLinks[i].getIdCancion() == idBuscado) {
+            contadorVersiones++;
+        }
+    }
+
+    return contadorVersiones;
+}
+
+// ------------------- CONSULTA 5 -------------------
+void consultaNumeroVersiones(int numeroVersiones) {
+    // Obtener todas las canciones
+    MiVector<nodo_canciones> todasLasCanciones = multi_cancion.consulta_por_atributo("nom_cancion", 2, "", "");
+
+    // Verificar si hay canciones
+    if (todasLasCanciones.size() == 0) {
+        std::cout << "No hay canciones disponibles." << std::endl;
+        return;
+    }
+
+    // Vector para almacenar los resultados clasificados por género y año
+    MiVector<std::pair<std::pair<std::string, int>, int>> resultados;
+
+    for (int i = 0; i < todasLasCanciones.size(); i++) {  // Cambio: i inicia en 0
+        nodo_canciones cancion = todasLasCanciones[i];
+        int numVersiones = Cancion::contarVersiones(cancion.nom_cancion);
+
+        if (numVersiones >= numeroVersiones) {
+            std::string genero = cancion.genero;
+            int anioPublicacion = cancion.anioPublicacion;
+
+            // Buscar si ya existe una entrada para este género y año
+            bool encontrado = false;
+            for (int j = 0; j < resultados.size(); j++) {  // Cambio: j inicia en 0
+                if (resultados[j].first.first == genero &&
+                    resultados[j].first.second == anioPublicacion) {
+                    // Incrementar el contador de canciones para este género y año
+                    resultados[j].second++;
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            // Si no se encontró una entrada existente, agregar una nueva
+            if (!encontrado) {
+                resultados.push_back({{genero, anioPublicacion}, 1});
+            }
+        }
+    }
+
+    // Mostrar los resultados
+    for (int i = 0; i < resultados.size(); i++) {  // Cambio: i inicia en 0
+        std::cout << "Género: " << resultados[i].first.first
+                  << ", Año: " << resultados[i].first.second
+                  << " - Número de canciones: " << resultados[i].second << std::endl;
+    }
 }

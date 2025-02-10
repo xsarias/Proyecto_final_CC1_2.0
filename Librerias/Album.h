@@ -18,6 +18,7 @@ Multilista_album multi_album;
     cabeza fotografia = {"fotografia", 0};
     cabeza estudio_grabaci = {"estudio_grab", 0};
     cabeza editorial = {"editora", 0};
+    cabeza pais = {"Pais",0};
 
 class Album {
 private:
@@ -68,7 +69,7 @@ public:
     void insertar_cabeceras();
     void imprimir_lista(string parametro, int pos_cab);
     void insertar_album(Album cancion, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album);
-    void consultar_por_atributo(string atributo, int cabecera, string contex);
+    bool consultar_por_atributoAlbum(string atributo, int cabecera);
 
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo);

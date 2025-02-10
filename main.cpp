@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Librerias/Cancion.h"
+#include "Librerias/Album.h"
 #include "Librerias/Links.h"
 #include "Librerias/Artista.h"
 #include "Librerias/MiVector.h"
@@ -12,6 +13,9 @@
 using namespace std;
 #include <iostream>
 MiVector<Cancion> canciones_archivo;
+Album album;
+Cancion cancioncita;
+Version vers;
 void insertar_prueba()
 {
     MiVector<Cancion> listaCanciones;
@@ -22,12 +26,7 @@ void insertar_prueba()
     nodo_album albumInsertado;
     nodo_canciones cancionInsertada;
     nodo_versiones version;
-    Album album;
-    Cancion cancioncita;
-    Version vers;
-    cancioncita.insertar_cabeceras();
-    album.insertar_cabeceras();
-    vers.insertar_cabeceras();
+
     Cancion::leerDesdeArchivo("ArchivosPlanos/canciones.txt");
     Artista::leerDesdeArchivo("ArchivosPlanos/artistas.txt");
     Links::leerDesdeArchivo("ArchivosPlanos/links.txt");
@@ -84,6 +83,9 @@ void menu_consultas()
 }
 
 int main() {
+    cancioncita.insertar_cabeceras();
+    album.insertar_cabeceras();
+    vers.insertar_cabeceras();
     Cancion::leerDesdeArchivo("ArchivosPlanos/canciones.txt");
     Artista::leerDesdeArchivo("ArchivosPlanos/artistas.txt");
     Links::leerDesdeArchivo("ArchivosPlanos/links.txt");
@@ -129,14 +131,16 @@ int main() {
                     cin >> op_cons;
                     switch(op_cons){
                         case 1:
-                            cout << "Consulta 1" << endl;
-                            Album::consultar_por_atributo("editora", 7, "" )
+                            cout << "Consulta 1: Ingrese el nombre de la Editora" << endl;
+                            album.consultar_por_atributoAlbum("editora", 7 );
                             break;
                         case 2:
-                            cout << "Consulta 2" << endl;
+                            cout << "Consulta 2: Ingre" << endl;
+                            album.consultar_por_atributoAlbum("estudio_grab",8 );
                             break;
                         case 3:
-                            cout << "Consulta 3" << endl;
+                            cout << "Consulta 3: Ingresa la duracion de una cancion (Recuerda el formato HH:MM:SS)" << endl;
+
                             break;
                         case 4:
                             break;

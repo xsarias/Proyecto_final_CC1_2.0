@@ -232,3 +232,60 @@ void Version::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Versi
     guardarEnArchivo(nombreArchivo, lista);
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
+
+Version Version::buscarVersionConRelacionados(const string& nombreArchivoVersion,  
+    const string& nombreArchivoLinks,  
+    const string& nombreArchivoArtistas,  
+    MiVector<Links>& listaLinks,  
+    MiVector<Artista>& listaArtistas)  
+{  
+    int idBuscado;  
+    cout << "Ingrese el ID de la versión a buscar: ";  
+    cin >> idBuscado;  
+
+    MiVector<Version> listaVersiones;  
+    leerDesdeArchivo(nombreArchivoVersion, listaVersiones);  
+
+    Version versionEncontrada;  
+    bool encontrado = false;  
+
+    // Buscar la versión por ID  
+    for (size_t i = 1; i <= listaVersiones.size(); i++) {  
+        if (listaVersiones[i].getIdVersion() == idBuscado) {  
+            versionEncontrada = listaVersiones[i];  
+            encontrado = true;  
+            break;  
+        }  
+    }  
+
+    if (!encontrado) {  
+        cout << "No se encontró una versión con el ID especificado.\n";  
+        return Version();  
+    }  
+
+    // Leer registros de Links  
+    MiVector<Links> todosLosLinks;  
+    Links::leerDesdeArchivo(nombreArchivoLinks, todosLosLinks);  
+
+    // Filtrar los links relacionados con esta versión  
+    listaLinks.clear();  
+    for (size_t i = 1; i <= todosLosLinks.size(); i++) {  
+        if (todosLosLinks[i].getIdVersion() == idBuscado) {  
+            listaLinks.push_back(todosLosLinks[i]);  
+        }  
+    }  
+
+    // Leer registros de Artistas  
+    MiVector<Artista> todosLosArtistas;  
+    Artista::leerDesdeArchivo(nombreArchivoArtistas, todosLosArtistas);  
+
+    // Filtrar los artistas relacionados con esta versión  
+    listaArtistas.clear();  
+    for (size_t i = 1; i <= todosLosArtistas.size(); i++) {  
+        if (todosLosArtistas[i].getIdVersion() == idBuscado) {  
+            listaArtistas.push_back(todosLosArtistas[i]);  
+        }  
+    }  
+
+    return versionEncontrada;  
+}

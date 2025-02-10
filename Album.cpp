@@ -78,7 +78,7 @@ void Album:: consultar_por_atributo(string atributo, int cabecera, string contex
     cout << lista_porAnio[1].anio_pub << endl;
     cout << lista_porAnio[2].anio_pub << endl;
 }
-void Album :: insertar_album_multi(Album album, MiVector<Cancion> canciones_album, MiVector<Links> links_album)
+/*void Album :: insertar_album_multi(Album album, MiVector<Cancion> canciones_album, MiVector<Links> links_album)
 {
     nodo_album album_nuevo;
     albums_archivo.push_back(album);
@@ -111,7 +111,7 @@ void Album :: insertar_album_multi(Album album, MiVector<Cancion> canciones_albu
     multi_album.insertar(album_nuevo);
     cout << "Álbum insertado" << endl;
 }
-
+*/
 // Guardar lista de álbumes en archivo
 void Album::guardarEnArchivo(const string &nombreArchivo)
 {
@@ -374,5 +374,5 @@ void Album::buscarAlbumConRelacionados(int id_bus)
     }
 
     
-    albumEncontrado.insertar_album_multi(albumEncontrado, listaCancionesEncontradas, listaLinksEncontrados);
+    //albumEncontrado.insertar_album_multi(albumEncontrado, listaCancionesEncontradas, listaLinksEncontrados);
 }

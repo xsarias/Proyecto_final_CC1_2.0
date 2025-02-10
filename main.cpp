@@ -25,7 +25,7 @@ void insertar_prueba()
     nodo_album albumInsertado;
     nodo_canciones cancionInsertada;
     nodo_versiones version;
-
+    Cancion cancioncita;
     Cancion::leerDesdeArchivo("ArchivosPlanos/canciones.txt");
     Artista::leerDesdeArchivo("ArchivosPlanos/artistas.txt");
     Links::leerDesdeArchivo("ArchivosPlanos/links.txt");
@@ -149,8 +149,8 @@ void insertar_prueba()
     listaArtistas.push_back(Artista(50, 30, 0, "Maluma", "Maluma", "Colombia", "voz"));
     listaArtistas.push_back(Artista(51, 30, 0, "Ricky Martin", "Ricky", "Puerto Rico", "voz"));
     listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[10], listalinkscancion, listaArtistas));
-    
-    album.insertar_album(Album(3, "Éxitos Latinos", "Carlos Vives", "Mexico", 2016, "Carlos Vives", "Carlos Vives", "Sony Music Latin", "Miami, FL"), listaCancionesAlbum, listalinksalbum);
+    Album albu;
+    albu.insertar_album(Album(3, "Éxitos Latinos", "Carlos Vives", "Mexico", 2016, "Carlos Vives", "Carlos Vives", "Sony Music Latin", "Miami, FL"), listaCancionesAlbum, listalinksalbum);
     // Ahora podemos imprimir o hacer lo que sea necesario con la lista de canciones en el album.
     Cancion::guardarEnArchivo("ArchivosPlanos/canciones.txt");
     Artista::guardarEnArchivo("ArchivosPlanos/artistas.txt");
@@ -580,17 +580,18 @@ int main()
             do
             {
                 menu_consultas();
-                cin >> op_cons;
-                switch (op_cons)
-                {
+                switch(op_cons){
                 case 1:
-                    cout << "Consulta 1" << endl;
+                    cout << "Consulta 1: Ingrese el nombre de la Editora" << endl;
+                    album_ins.consultar_por_atributoAlbum("editora", 7 );
                     break;
                 case 2:
-                    cout << "Consulta 2" << endl;
+                    cout << "Consulta 2: Ingre" << endl;
+                    album_ins.consultar_por_atributoAlbum("estudio_grab",8 );
                     break;
                 case 3:
-                    cout << "Consulta 3" << endl;
+                    cout << "Consulta 3: Ingresa la duracion de una cancion (Recuerda el formato HH:MM:SS)" << endl;
+                    
                     break;
                 case 4:
                     break;

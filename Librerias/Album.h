@@ -70,7 +70,7 @@ public:
     void imprimir_lista(string parametro, int pos_cab);
     void insertar_album(Album cancion, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album);
     void consultar_por_atributo(string atributo, int cabecera, string contex, string clave_orden);
-    void insertar_album_multi(Album album, MiVector<Cancion> canciones_album, MiVector<Links> links_album);
+    bool consultar_por_atributoAlbum(string atributo, int cabecera);
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo);
     static void leerDesdeArchivo(const string& nombreArchivo);

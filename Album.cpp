@@ -6,6 +6,8 @@
 
 using namespace std;
 MiVector<Album> albums_archivo;
+MiVector<Cancion>listaCancionesEncontradas;
+MiVector<Links> listaLinksEncontrados;
 void Album::insertar_cabeceras()
 {
     multi_album.insertar(titulo);
@@ -45,6 +47,39 @@ void Album:: consultar_por_atributo(string atributo, int cabecera, string contex
     lista_porAnio = multi_album.consulta_por_atributo(atributo, cabecera, contex, clav_orden);
     cout << lista_porAnio[1].anio_pub << endl;
     cout << lista_porAnio[2].anio_pub << endl;
+}
+void Album :: insertar_album_multi(Album album, MiVector<Cancion> canciones_album, MiVector<Links> links_album)
+{
+    nodo_album album_nuevo;
+    albums_archivo.push_back(album);
+    album_nuevo.id = album.id;
+    album_nuevo.titulo = album.titulo_alb;
+    album_nuevo.nom_artis = album.nombre_art;
+    album_nuevo.cover = album.cover_art;
+    album_nuevo.fotografia = album.fotogra;
+    album_nuevo.editora = album.editora;
+    album_nuevo.estudio_grab = album.estudio_grab;
+    album_nuevo.anio_pub = to_string(album.anio_pub);
+
+    nodo_canciones cancion_album;
+    for(int i=1; i<= canciones_album.size(); i++){
+        cancion_album.id = canciones_album[i].getId();
+        cancion_album.id_album = canciones_album[i].getIdAlbum();
+        cancion_album.nom_cancion = canciones_album[i].getNombreCancion();
+        cancion_album.nom_artistico = canciones_album[i].getNomArtistico();
+        cancion_album.arrMusic = canciones_album[i].getArrMusic();
+        cancion_album.anioPublicacion = canciones_album[i].getAnioPublicacion();
+        cancion_album.arrMusic = canciones_album[i].getArrMusic();
+        cancion_album.ciudadGrabacion = canciones_album[i].getCiudadGrabacion();
+        cancion_album.composLetra = canciones_album[i].getComposLetra();
+        cancion_album.composMusica = canciones_album[i].getComposMusica();
+        cancion_album.duracion = canciones_album[i].getDuracion(); 
+        cancion_album.genero = canciones_album[i].getGenero();
+        album_nuevo.lista_caciones.push_back(cancion_album);
+    }
+
+    multi_album.insertar(album_nuevo);
+    cout << "Álbum insertado" << endl;
 }
 
 // Guardar lista de álbumes en archivo
@@ -262,66 +297,52 @@ void Album::actualizarDesdeArchivo(const string &nombreArchivo)
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
 
-Album Album::buscarAlbumConRelacionados(const string &nombreArchivoAlbum,
-                                        const string &nombreArchivoLinks,
-                                        const string &nombreArchivoCanciones,
-                                        MiVector<Links> &listaLinks,
-                                        MiVector<Cancion> &listaCanciones)
+void Album::buscarAlbumConRelacionados(int id_bus)
 {
-    int idBuscado;
-    cout << "Ingrese el ID del álbum a buscar: ";
-    cin >> idBuscado;
+  
 
-    MiVector<Album> listaAlbumes;
-    leerDesdeArchivo(nombreArchivoAlbum);
 
     Album albumEncontrado;
     bool encontrado = false;
 
     // Buscar el álbum por ID
-    for (size_t i = 1; i <= listaAlbumes.size(); i++)
+    for (size_t i = 1; i <= albums_archivo.size(); i++)
     {
-        if (listaAlbumes[i].getId() == idBuscado)
+        if (albums_archivo[i].getId() == id_bus)
         {
-            albumEncontrado = listaAlbumes[i];
+            albumEncontrado = albums_archivo[i];
             encontrado = true;
             break;
         }
     }
 
-    if (!encontrado)
-    {
-        cout << "No se encontró un álbum con el ID especificado.\n";
-        return Album();
-    }
 
     // Leer registros de Links
-    MiVector<Links> todosLosLinks;
-    Links::leerDesdeArchivo(nombreArchivoLinks);
+    
 
     // Filtrar los links relacionados con este álbum
-    listaLinks.clear();
-    for (size_t i = 1; i <= todosLosLinks.size(); i++)
+    listaLinksEncontrados.clear();
+    for (size_t i = 1; i <= links_archivo.size(); i++)
     {
-        if (todosLosLinks[i].getIdAlbum() == idBuscado)
+        if (links_archivo[i].getIdAlbum() == id_bus)
         {
-            listaLinks.push_back(todosLosLinks[i]);
+            listaLinksEncontrados.push_back(links_archivo[i]);
         }
     }
 
     // Leer registros de Canciones
-    MiVector<Cancion> todasLasCanciones;
-    Cancion::leerDesdeArchivo(nombreArchivoCanciones);
+    
 
     // Filtrar las canciones relacionadas con este álbum
-    listaCanciones.clear();
-    for (size_t i = 1; i <= todasLasCanciones.size(); i++)
+    listaCancionesEncontradas.clear();
+    for (size_t i = 1; i <= lista_canciones_archivo.size(); i++)
     {
-        if (todasLasCanciones[i].getIdAlbum() == idBuscado)
+        if (lista_canciones_archivo[i].getIdAlbum() == id_bus)
         {
-            listaCanciones.push_back(todasLasCanciones[i]);
+            listaCancionesEncontradas.push_back(lista_canciones_archivo[i]);
         }
     }
 
-    return albumEncontrado;
+    
+    albumEncontrado.insertar_album_multi(albumEncontrado, listaCancionesEncontradas, listaLinksEncontrados);
 }

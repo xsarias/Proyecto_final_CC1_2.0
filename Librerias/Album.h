@@ -30,7 +30,7 @@ private:
     string fotogra;
     string editora;
     string estudio_grab;
-
+    
 public:
     // Constructores
     Album() : id(0), titulo_alb(""), nombre_art(""), pais_grab(""), anio_pub(0),
@@ -63,23 +63,19 @@ public:
     void setFotogra(const string& nuevaFotogra) { fotogra = nuevaFotogra; }
     void setEditora(const string& nuevaEditora) { editora = nuevaEditora; }
     void setEstudioGrab(const string& nuevoEstudioGrab) { estudio_grab = nuevoEstudioGrab; }
-
+    
     // Métodos
     void insertar_cabeceras();
     void imprimir_lista(string parametro, int pos_cab);
     void insertar_album(Album cancion, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album);
     void consultar_por_atributo(string atributo, int cabecera, string contex, string clave_orden);
-
+    void insertar_album_multi(Album album, MiVector<Cancion> canciones_album, MiVector<Links> links_album);
     // Métodos de archivos
     static void guardarEnArchivo(const string& nombreArchivo);
     static void leerDesdeArchivo(const string& nombreArchivo);
     static void eliminarDeArchivo(const string& nombreArchivo);
     static void actualizarDesdeArchivo(const string& nombreArchivo);
-    static Album buscarAlbumConRelacionados(const string& nombreArchivoAlbum,  
-      const string& nombreArchivoLinks, 
-      const string& nombreArchivoCanciones,
-      MiVector<Links> &listaLinks,
-      MiVector<Cancion> &listaCanciones);
+    static void buscarAlbumConRelacionados(int id_bus);
 
    
 };

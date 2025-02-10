@@ -10,6 +10,129 @@
 #include "Version.cpp"
 #include "Album.cpp"
 
+// Limpiamos los vectores antes de comenzar a agregar nuevas canciones
+listalinksalbum.push_back(Links(11, 0, 2, 0, "spotify", "https://open.spotify.com/intl-es/album/0LrNWpYtxu1v9tb4VR7SIn?si=1kZOq6xZRLu_sQFkT-ALWw", ""));
+listalinksalbum.push_back(Links(12, 0, 2, 0, "youtube", "https://youtube.com/playlist?list=PLRXmrOeEmWB1OYYXfeGpPht9Q0Q8Wpo6i", ""));
+
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+listaCanciones.push_back(Cancion(11, 2, "Solo Tú", "Carlos Vives", "vallenato", 2019, "00:03:35", "Carlos Vives", "Luis Veleza", "Sofia Perez", "Santa Marta", "Colombia", 2));
+listaCanciones.push_back(Cancion(12, 2, "La Bicicleta", "Carlos Vives & Shakira", "pop", 2016, "00:03:51", "Carlos Vives", "Luis Veleza", "Sofia Perez", "Barranquilla", "Colombia", 1));
+listaCanciones.push_back(Cancion(13, 2, "Bailando", "Enrique Iglesias", "pop", 2014, "00:04:00", "Enrique Iglesias", "Luis Veleza", "Sofia Perez", "Miami", "US", 3));
+listaCanciones.push_back(Cancion(14, 2, "Despacito", "Luis Fonsi & Daddy Yankee", "reggaeton", 2017, "00:03:49", "Luis Fonsi", "Daddy Yankee", "Sofia Perez", "San Juan", "Puerto Rico", 4));
+listaCanciones.push_back(Cancion(15, 2, "Dákiti", "Bad Bunny & Jhay Cortez", "reggaeton", 2020, "00:03:34", "Bad Bunny", "Jhay Cortez", "Sofia Perez", "San Juan", "Puerto Rico", 6));
+listaCanciones.push_back(Cancion(16, 2, "Mienteme", "Maria Becerra & TINI", "pop", 2021, "00:03:14", "Maria Becerra", "TINI", "Sofia Perez", "Buenos Aires", "Argentina", 2));
+listaCanciones.push_back(Cancion(17, 2, "Me Gusta", "Shakira & Anuel AA", "reggaeton", 2019, "00:03:34", "Shakira", "Anuel AA", "Sofia Perez", "Barranquilla", "Colombia", 3));
+listaCanciones.push_back(Cancion(18, 2, "Felices los 4", "Maluma", "reggaeton", 2017, "00:03:43", "Maluma", "Sofia Perez", "Luis Veleza", "Medellín", "Colombia", 3));
+listaCanciones.push_back(Cancion(19, 2, "Vivir Mi Vida", "Marc Anthony", "salsa", 2013, "00:04:13", "Marc Anthony", "Luis Veleza", "Sofia Perez", "New York", "US", 1));
+listaCanciones.push_back(Cancion(20, 2, "La Gozadera", "Gente de Zona & Marc Anthony", "salsa", 2015, "00:04:02", "Gente de Zona", "Marc Anthony", "Sofia Perez", "Havana", "Cuba", 2));
+
+// Canción 1
+listalinkscancion.push_back(Links(14, 11, 0, 0, "spotify", "https://open.spotify.com/intl-es/song/0g58YNff7p7O2zH4dVoNjL", "https://youtube.com/playlist?list=PLRXmrOeEmWB1OYYXfeGpPht9Q0Q8Wpo6i"));
+listaArtistas.push_back(Artista(19, 11, 0, "Carlos Vives", "Carlos", "Colombia", "voz"));
+listaArtistas.push_back(Artista(20, 11, 0, "Carlos Vives", "Carlos", "Colombia", "guitarra"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[1], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 2
+listalinkscancion.push_back(Links(15, 12, 0, 0, "spotify", "https://open.spotify.com/intl-es/song/1eRrrv52hIfG3jdQHk7ftY", "https://youtube.com/playlist?list=PLRXmrOeEmWB1OYYXfeGpPht9Q0Q8Wpo6i"));
+listaArtistas.push_back(Artista(21, 12, 0, "Shakira", "Shakira", "Colombia", "voz"));
+listaArtistas.push_back(Artista(22, 12, 0, "Carlos Vives", "Carlos", "Colombia", "guitarra"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[2], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 3
+listalinkscancion.push_back(Links(16, 13, 0, 0, "youtube", "https://www.youtube.com/watch?v=fGcD7gn5D94", "https://www.youtube.com/watch?v=VAy8oFLdrT4"));
+listaArtistas.push_back(Artista(23, 13, 0, "Enrique Iglesias", "Enrique", "España", "voz"));
+listaArtistas.push_back(Artista(24, 13, 0, "Descemer Bueno", "Descemer", "Cuba", "piano"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[3], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 4
+listalinkscancion.push_back(Links(17, 14, 0, 0, "spotify", "https://open.spotify.com/intl-es/song/5wsAjh6chhGklfpzFb08", "https://www.youtube.com/watch?v=kJQP7kiw5Fk"));
+listaArtistas.push_back(Artista(25, 14, 0, "Luis Fonsi", "Luis", "Puerto Rico", "voz"));
+listaArtistas.push_back(Artista(26, 14, 0, "Daddy Yankee", "Daddy", "Puerto Rico", "rap"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[4], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 5
+listalinkscancion.push_back(Links(18, 15, 0, 0, "youtube", "https://www.youtube.com/watch?v=ckFv18fe0tY", "https://www.youtube.com/watch?v=md3hZbbphWg"));
+listaArtistas.push_back(Artista(27, 15, 0, "Bad Bunny", "Bad Bunny", "Puerto Rico", "voz"));
+listaArtistas.push_back(Artista(28, 15, 0, "Jhay Cortez", "Jhay", "Puerto Rico", "voz"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[5], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 6
+listalinkscancion.push_back(Links(19, 16, 0, 0, "spotify", "https://open.spotify.com/intl-es/song/5kmMdvscU0ZfdtFGW2dsOp", "https://www.youtube.com/watch?v=dGm2klCUxhI"));
+listaArtistas.push_back(Artista(29, 16, 0, "Maria Becerra", "Maria", "Argentina", "voz"));
+listaArtistas.push_back(Artista(30, 16, 0, "TINI", "TINI", "Argentina", "voz"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[6], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 7
+listalinkscancion.push_back(Links(20, 17, 0, 0, "spotify", "https://open.spotify.com/intl-es/song/0I8OtqH7j3hYY5B7aKxz7W", "https://www.youtube.com/watch?v=hpF5G9J3nBs"));
+listaArtistas.push_back(Artista(31, 17, 0, "Shakira", "Shakira", "Colombia", "voz"));
+listaArtistas.push_back(Artista(32, 17, 0, "Anuel AA", "Anuel", "Puerto Rico", "rap"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[7], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 8
+listalinkscancion.push_back(Links(21, 18, 0, 0, "spotify", "https://open.spotify.com/intl-es/song/0Mz7lF0jwYKmMLvmljYBSh", "https://www.youtube.com/watch?v=2kXiECXh_A0"));
+listaArtistas.push_back(Artista(33, 18, 0, "Maluma", "Maluma", "Colombia", "voz"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[8], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 9
+listalinkscancion.push_back(Links(22, 19, 0, 0, "spotify", "https://open.spotify.com/intl-es/song/0zxmgJt9djVoSx5bbzXgl7", "https://www.youtube.com/watch?v=G2fTG_6tRvc"));
+listaArtistas.push_back(Artista(34, 19, 0, "Marc Anthony", "Marc", "Puerto Rico", "voz"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[9], listalinkscancion, listaArtistas));
+
+// Limpiamos los vectores para la siguiente canción
+listalinkscancion.clear();
+listaArtistas.clear();
+listaVersiones.clear();
+
+// Canción 10
+listalinkscancion.push_back(Links(23, 20, 0, 0, "spotify", "https://open.spotify.com/intl-es/song/0z0ekC0ih2LVqxg5j8XftG", "https://www.youtube.com/watch?v=wntA1XBOaWk"));
+listaArtistas.push_back(Artista(35, 20, 0, "Gente de Zona", "Gente de Zona", "Cuba", "voz"));
+listaArtistas.push_back(Artista(36, 20, 0, "Marc Anthony", "Marc", "Puerto Rico", "voz"));
+listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[10], listalinkscancion, listaArtistas));
+// Ahora podemos imprimir o hacer lo que sea necesario con la lista de canciones en el album.
+album.insertar_album(Album(2, "Fiesta Tropical", "Carlos Vives", "Colombia", 2019, "Carlos Vives", "Carlos Vives", "Sony Music Latin", "Miami, FL"), listaCancionesAlbum, listalinksalbum);
+
 using namespace std;
 void insertar_prueba(){
     MiVector<Cancion> listaCanciones;

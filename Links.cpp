@@ -50,17 +50,17 @@ void Links::leerDesdeArchivo(const string& nombreArchivo) {
     string nomPlat, linkAlbum, linkCancion;
     while (archivo >> id) { // Leer ID
         archivo.ignore();
+        archivo >> idCancion;
+        archivo.ignore();
         archivo >> idAlbum;
         archivo.ignore();
         archivo >> idVersion;
-        archivo.ignore();
-        archivo >> idCancion;  // 🔹 Nuevo campo
         archivo.ignore();
         getline(archivo, nomPlat, ',');
         getline(archivo, linkAlbum, ',');
         getline(archivo, linkCancion);
 
-        links_archivo.push_back(Links(id, idAlbum, idVersion, idCancion, nomPlat, linkAlbum, linkCancion));
+        links_archivo.push_back(Links(id,idCancion,idAlbum, idVersion, nomPlat, linkAlbum, linkCancion));
     }
 
     archivo.close();

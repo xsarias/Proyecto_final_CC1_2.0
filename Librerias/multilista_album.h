@@ -5,6 +5,7 @@
 #include "MiVector.h"
 #include "estructuras.h"
 #include "busqueda_binaria.h"
+#include "ordenador_vectores.h"
 using namespace std;
 
 class Multilista_album{
@@ -26,8 +27,9 @@ public:
     int retornar_pos(int x, std::string parametro);
     void ordenar_alfabeticamente(int pos, std::string dato, std::string atributo, std::string apuntador);
     void ordenar_alfabeticamente_centinelas(int pos, std::string dato, std::string atributo, std::string apuntador);
-    void consulta_por_atributo(std:: string atributo, int cab, std::string contex);
+    MiVector<nodo_album> consulta_por_atributo(std:: string atributo, int cab, std::string contex, string clav_orden);
     bool lista_llena();
+    MiVector<nodo_busqueda> obtener_vectorOrdenado(string atributo, int cabecera);
 };
 
 void Multilista_album:: insertar(nodo_album Dato) {
@@ -35,13 +37,19 @@ void Multilista_album:: insertar(nodo_album Dato) {
     lista_datos.push_back(Dato);
     num_dat = lista_datos.size();
     ordenar_alfabeticamente(num_dat, lista_datos[num_dat].titulo, "titulo", "sig_titulo");
+    cout<<"titulo"<<endl;
     ordenar_alfabeticamente(num_dat, lista_datos[num_dat].nom_artis, "nom_artis", "sig_nomArtis");
-    ordenar_alfabeticamente(num_dat, lista_datos[num_dat].anio_pub, "anio_pub", "sig_aniPublic");
+    cout<<"nom_artis"<<endl;
+    ordenar_alfabeticamente(num_dat, lista_datos[num_dat].anio_pub, "anio_pub", "sig_anioPublic");
+    cout<<"anio_pub"<<endl;
     ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].cover, "cover", "sig_cover");
+    cout<<"cover"<<endl;
     ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].estudio_grab, "estudio_grab", "sig_estudioGrab");
+    cout<<"estudi"<<endl;
     ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].fotografia, "fotografia", "sig_fotografia");
+    cout<<"fotogra"<<endl;
     ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].editora, "editora", "sig_editora");
-    
+    cout<<"editora"<<endl;
 }
 void Multilista_album::insertar(cabeza Cabeza) {
     lista_cabeceras.push_back(Cabeza);
@@ -191,6 +199,7 @@ int Multilista_album::retornar_pos(int x, std::string parametro){
     if (parametro == "sig_fotografia") return lista_datos[x].sig_fotografia;
     if (parametro == "sig_editora") return lista_datos[x].sig_editora;
     if (parametro == "sig_anioPublic") return lista_datos[x].sig_anioPublic;
+    if (parametro == "sig_estudioGrab") return lista_datos[x].sig_estudioGrab;
     if (parametro == "pos_cabeza") return lista_cabeceras[x].pos_cabeza;
     if (parametro == "sig_estudioGrab") return lista_datos[x].sig_estudioGrab;
     return -1;
@@ -206,16 +215,36 @@ string Multilista_album::retornar_dato(int x, std::string parametro) {
     if (parametro == "anio_pub") return lista_datos[x].anio_pub;
     return "Parámetro desconocido";
 }
-void Multilista_album::consulta_por_atributo(std::string atributo, int cabecera, std::string contex) {
+MiVector<nodo_album> Multilista_album::consulta_por_atributo(std::string atributo, int cabecera, std::string contex, string clav_orden) {
     cout << "Llegué al método de búsqueda binaria" << endl;
 
-    // Obtener la posición de la cabecera
-    cab = retornar_pos(cabecera, "pos_cabeza");
+    // Realizar la búsqueda binaria
+    Busqueda_binaria consultados(obtener_vectorOrdenado(atributo, cabecera), contex);
+    MiVector<int> lista_consultada = consultados.busquedaBinaria();
+    MiVector<nodo_album> list_porAtributo;
+    nodo_album aux ;
+    //Crear un vector con los nevos nodos.
+    if (lista_consultada.size() == 0) {
+        return list_porAtributo;  // Retorna una lista vacía si no hay coincidencias
+    }
 
-    // Crear una lista de búsqueda
+    for (int i = 1; i <= lista_consultada.size(); i++) {
+        if (lista_consultada[i] >= 1 && lista_consultada[i] <= lista_datos.size()) {
+            list_porAtributo.push_back(lista_datos[lista_consultada[i]]);
+        }
+    }
+    if (clav_orden == "anio_pub") {
+        list_porAtributo = ordenarVector(list_porAtributo, &nodo_album::anio_pub);
+    } else if (clav_orden == "titulo") {
+        list_porAtributo = ordenarVector(list_porAtributo, &nodo_album::titulo);
+    }
+    return list_porAtributo;
+   
+}
+MiVector<nodo_busqueda> Multilista_album:: obtener_vectorOrdenado(string atributo, int cabecera){
+   
     MiVector<nodo_busqueda> lista_busqueda;
-
-    // Recorrer la lista ordenada según el atributo
+    cab = retornar_pos(cabecera, "pos_cabeza");
     int actual = cab;
     while (actual != 0) { // 0 indica el final de la lista
         nodo_busqueda elemento_busqueda;
@@ -241,29 +270,10 @@ void Multilista_album::consulta_por_atributo(std::string atributo, int cabecera,
             actual = lista_datos[actual].sig_editora;
         } else {
             cout << "Atributo no válido: " << atributo << endl;
-            return;
         }
     }
+    return lista_busqueda;
 
-    // Realizar la búsqueda binaria
-    Busqueda_binaria consultados(lista_busqueda, contex);
-    MiVector<int> lista_consultada = consultados.busquedaBinaria();
-
-    // Verificar si se encontraron resultados
-    if (lista_consultada.size() == 0) {
-        cout << "No se encontraron resultados para: " << contex << endl;
-    } else {
-        // Mostrar los resultados
-        cout << "Resultados de la búsqueda:" << endl;
-        for (int i = 1; i <= lista_consultada.size(); i++) {
-            int pos = lista_consultada[i];
-            if (pos >= 1 && pos <= lista_datos.size()) { // Verificar que el índice sea válido
-                cout << "Posición: " << pos << ", Valor: " << retornar_dato(pos, atributo) << endl;
-            } else {
-                cout << "Índice inválido: " << pos << endl;
-            }
-        }
-    }
 }
 
 #endif

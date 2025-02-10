@@ -18,6 +18,7 @@ Multilista_album multi_album;
     cabeza fotografia = {"fotografia", 0};
     cabeza estudio_grabaci = {"estudio_grab", 0};
     cabeza editorial = {"editora", 0};
+    cabeza pais = {"Pais",0};
 
 class Album {
 private:

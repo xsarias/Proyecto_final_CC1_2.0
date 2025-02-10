@@ -56,7 +56,7 @@ public:
     void imprimir_lista(string parametro, int pos_cab);
     nodo_canciones insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<nodo_versiones> version);
     nodo_canciones insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista);
-    
+    void consulta_por_atributosCanc(string atributo, int cabecera);
     // Getters
     int getId() const { return id; }
     string getNombreCancion() const { return nombreCancion; }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Librerias/Cancion.h"
+#include "Librerias/Album.h"
 #include "Librerias/Links.h"
 #include "Librerias/Artista.h"
 #include "Librerias/MiVector.h"
@@ -24,12 +25,7 @@ void insertar_prueba()
     nodo_album albumInsertado;
     nodo_canciones cancionInsertada;
     nodo_versiones version;
-    Album album;
-    Cancion cancioncita;
-    Version vers;
-    cancioncita.insertar_cabeceras();
-    album.insertar_cabeceras();
-    vers.insertar_cabeceras();
+
     Cancion::leerDesdeArchivo("ArchivosPlanos/canciones.txt");
     Artista::leerDesdeArchivo("ArchivosPlanos/artistas.txt");
     Links::leerDesdeArchivo("ArchivosPlanos/links.txt");

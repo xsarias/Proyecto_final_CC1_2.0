@@ -83,6 +83,7 @@ nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> lin
     //cout<<"canción insertada"<<endl;
     return cancion_nueva;
 }
+
 nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> links, MiVector<Artista> artista, MiVector<nodo_versiones> version){
     lista_canciones_archivo.push_back(cancion);
     nodo_canciones cancion_nueva;
@@ -112,6 +113,23 @@ nodo_canciones  Cancion :: insertar_cancion(Cancion cancion, MiVector<Links> lin
     multi_cancion.insertar(cancion_nueva);
     //cout<<"canción insertada"<<endl;
     return cancion_nueva;
+}
+void Cancion :: consulta_por_atributosCanc(string atributo, int cabecera){
+    cout<<"entre al metodo"<<endl;
+    MiVector<nodo_canciones> lista_porDuracion;
+    string duracion;
+    cin>> duracion;
+    
+    lista_porDuracion = multi_cancion.consulta_por_atributo(atributo, cabecera, duracion, "ciudadGrabacion");
+    for(int i = 1; i <= lista_porDuracion.size(); i++ ){
+        if(lista_porDuracion[i].duracion > duracion){
+            cout << "Ciudad de Grabacion de la obra ->" << lista_porDuracion[i].ciudadGrabacion<<endl;
+            cout << "La cancion ->" << lista_porDuracion[i].nom_cancion << endl;
+            cout << "El compositor de la letra" << lista_porDuracion[i].composLetra << endl;
+            cout << "El compositor de la musica" << lista_porDuracion[i].composMusica << endl;
+        }
+    }
+
 }
 // Método para guardar la lista de Canciones en un archivo
 void Cancion::guardarEnArchivo(const string& nombreArchivo) {

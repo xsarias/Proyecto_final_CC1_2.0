@@ -50,6 +50,7 @@ void Multilista_album:: insertar(nodo_album Dato) {
     cout<<"fotogra"<<endl;
     ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].editora, "editora", "sig_editora");
     cout<<"editora"<<endl;
+    ordenar_alfabeticamente_centinelas(num_dat, lista_datos[num_dat].paisGrab, "paisGrab","sig_paisGrab" );
 }
 void Multilista_album::insertar(cabeza Cabeza) {
     lista_cabeceras.push_back(Cabeza);
@@ -181,6 +182,23 @@ void Multilista_album::ordenar_alfabeticamente_centinelas(int pos, string dato, 
             lista_datos[pos].sig_editora = sig;
             lista_datos[ant].sig_editora = pos;
         }
+    }else if(atributo == "paisGrab"){
+        pos_cab = 8;
+        cab = lista_cabeceras[pos_cab].pos_cabeza;
+        if (cab == 0 || dato < retornar_dato(cab, atributo)){
+            lista_datos[pos].sig_paisGrab = cab;
+            lista_cabeceras[pos_cab].pos_cabeza = pos;
+        } else {
+            int ant = cab;
+            int sig = retornar_pos(cab, apuntador);
+
+            while (sig != 0 && dato > retornar_dato(sig, atributo)) {
+                ant = sig;
+                sig = retornar_pos(sig, apuntador);
+            }
+            lista_datos[pos].sig_paisGrab = sig;
+            lista_datos[ant].sig_paisGrab= pos;
+        }
     }
 
 }
@@ -224,8 +242,8 @@ MiVector<nodo_album> Multilista_album::consulta_por_atributo(std::string atribut
     MiVector<nodo_album> list_porAtributo;
     nodo_album aux ;
     //Crear un vector con los nevos nodos.
-    if (lista_consultada.size() == 0) {
-        return list_porAtributo;  // Retorna una lista vacía si no hay coincidencias
+    if (lista_consultada.size() == 0){
+        return list_porAtributo;
     }
 
     for (int i = 1; i <= lista_consultada.size(); i++) {
@@ -235,8 +253,9 @@ MiVector<nodo_album> Multilista_album::consulta_por_atributo(std::string atribut
     }
     if (clav_orden == "anio_pub") {
         list_porAtributo = ordenarVector(list_porAtributo, &nodo_album::anio_pub);
-    } else if (clav_orden == "titulo") {
-        list_porAtributo = ordenarVector(list_porAtributo, &nodo_album::titulo);
+        cout << "Voy a salir del metodo"<< endl;
+    } else if (clav_orden == "nom_artis") {
+        list_porAtributo = ordenarVector(list_porAtributo, &nodo_album::nom_artis);
     }
     return list_porAtributo;
    

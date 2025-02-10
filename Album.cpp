@@ -5,8 +5,9 @@
 #include "Librerias/Cancion.h"
 
 using namespace std;
-
-void Album::insertar_cabeceras() {
+MiVector<Album> albums_archivo;
+void Album::insertar_cabeceras()
+{
     multi_album.insertar(titulo);
     multi_album.insertar(nom_artis);
     multi_album.insertar(anio_publi);
@@ -16,8 +17,10 @@ void Album::insertar_cabeceras() {
     multi_album.insertar(editorial);
 }
 
-void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album, MiVector<Links> links_album){
+void Album ::insertar_album(Album album, MiVector<nodo_canciones> canciones_album, MiVector<Links> links_album)
+{
     nodo_album album_nuevo;
+    albums_archivo.push_back(album);
     album_nuevo.id = album.id;
     album_nuevo.titulo = album.titulo_alb;
     album_nuevo.nom_artis = album.nombre_art;
@@ -26,57 +29,65 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album
     album_nuevo.editora = album.editora;
     album_nuevo.estudio_grab = album.estudio_grab;
     album_nuevo.anio_pub = album.anio_pub;
-    for(int i=1; i<= canciones_album.size(); i++){
+    for (int i = 1; i <= canciones_album.size(); i++)
+    {
         album_nuevo.lista_caciones.push_back(canciones_album[i]);
     }
-    for(int j=1; j<=links_album.size(); j++){
+    for (int j = 1; j <= links_album.size(); j++)
+    {
         album_nuevo.lista_links.push_back(links_album[j].insertar_link(links_album[j]));
     }
-    
+
     multi_album.insertar(album_nuevo);
     cout << "Álbum insertado" << endl;
 }
-void Album:: consultar_por_atributo(string atributo, int cabecera, string contex){
+void Album::consultar_por_atributo(string atributo, int cabecera, string contex)
+{
     multi_album.consulta_por_atributo(atributo, cabecera, contex);
 }
 
 // Guardar lista de álbumes en archivo
-void Album::guardarEnArchivo(const string& nombreArchivo, const MiVector<Album>& lista) {
+void Album::guardarEnArchivo(const string &nombreArchivo)
+{
     ofstream archivo(nombreArchivo);
-    if (!archivo) {
+    if (!archivo)
+    {
         cerr << "Error al abrir el archivo para escritura." << endl;
         return;
     }
 
-    for (size_t i = 1; i <= lista.size(); i++) {
-        archivo << lista[i].getId() << ","
-                << lista[i].getTitulo() << ","
-                << lista[i].getNombreArt() << ","
-                << lista[i].getPaisGrab() << ","
-                << lista[i].getAnioPub() << ","
-                << lista[i].getCoverArt() << ","
-                << lista[i].getFotogra() << ","
-                << lista[i].getEditora() << ","
-                << lista[i].getEstudioGrab() << endl;
+    for (size_t i = 1; i <= albums_archivo.size(); i++)
+    {
+        archivo << albums_archivo[i].getId() << ","
+                << albums_archivo[i].getTitulo() << ","
+                << albums_archivo[i].getNombreArt() << ","
+                << albums_archivo[i].getPaisGrab() << ","
+                << albums_archivo[i].getAnioPub() << ","
+                << albums_archivo[i].getCoverArt() << ","
+                << albums_archivo[i].getFotogra() << ","
+                << albums_archivo[i].getEditora() << ","
+                << albums_archivo[i].getEstudioGrab() << endl;
     }
-
     archivo.close();
 }
 
 // Leer lista de álbumes desde archivo
-void Album::leerDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista) {
+void Album::leerDesdeArchivo(const string &nombreArchivo)
+{
     ifstream archivo(nombreArchivo);
-    if (!archivo) {
+    if (!archivo)
+    {
         cerr << "Error al abrir el archivo para lectura." << endl;
         return;
     }
 
-    lista.clear();
+    albums_archivo.clear();
 
     int id, anioPub;
     string tituloAlb, nombreArt, paisGrab, coverArt, fotogra, editora, estudioGrab;
 
-    while (archivo >> id) {
+    while (archivo >> id)
+    {
         archivo.ignore();
         getline(archivo, tituloAlb, ',');
         getline(archivo, nombreArt, ',');
@@ -88,137 +99,150 @@ void Album::leerDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista
         getline(archivo, editora, ',');
         getline(archivo, estudioGrab);
 
-        lista.push_back(Album(id, tituloAlb, nombreArt, paisGrab, anioPub, coverArt, fotogra, editora, estudioGrab));
+        albums_archivo.push_back(Album(id, tituloAlb, nombreArt, paisGrab, anioPub, coverArt, fotogra, editora, estudioGrab));
     }
 
     archivo.close();
 }
 
-void Album::eliminarDeArchivo(const string& nombreArchivo, MiVector<Album>& lista) {
+void Album::eliminarDeArchivo(const string &nombreArchivo)
+{
     int idEliminar;
     cout << "Ingrese el ID del álbum que desea eliminar: ";
     cin >> idEliminar;
 
     bool encontrado = false;
-    for (size_t i = 1; i <= lista.size(); i++) {
-        if (lista[i].getId() == idEliminar) {
+    for (size_t i = 1; i <= albums_archivo.size(); i++)
+    {
+        if (albums_archivo[i].getId() == idEliminar)
+        {
             encontrado = true;
             cout << "Está seguro de eliminar el siguiente álbum? (y/n)\n";
-            cout << "ID: " << lista[i].getId() << "\n"
-                 << "Título: " << lista[i].getTitulo() << "\n"
-                 << "Artista: " << lista[i].getNombreArt() << "\n"
-                 << "País de grabación: " << lista[i].getPaisGrab() << "\n"
-                 << "Año de publicación: " << lista[i].getAnioPub() << "\n"
-                 << "Cover Art: " << lista[i].getCoverArt() << "\n"
-                 << "Fotografía: " << lista[i].getFotogra() << "\n"
-                 << "Editora: " << lista[i].getEditora() << "\n"
-                 << "Estudio de grabación: " << lista[i].getEstudioGrab() << "\n";
+            cout << "ID: " << albums_archivo[i].getId() << "\n"
+                 << "Título: " << albums_archivo[i].getTitulo() << "\n"
+                 << "Artista: " << albums_archivo[i].getNombreArt() << "\n"
+                 << "País de grabación: " << albums_archivo[i].getPaisGrab() << "\n"
+                 << "Año de publicación: " << albums_archivo[i].getAnioPub() << "\n"
+                 << "Cover Art: " << albums_archivo[i].getCoverArt() << "\n"
+                 << "Fotografía: " << albums_archivo[i].getFotogra() << "\n"
+                 << "Editora: " << albums_archivo[i].getEditora() << "\n"
+                 << "Estudio de grabación: " << albums_archivo[i].getEstudioGrab() << "\n";
 
             char confirmacion;
             cout << "Confirmar eliminación (y/n): ";
             cin >> confirmacion;
 
-            if (confirmacion == 'y' || confirmacion == 'Y') {
-                lista.erase(i);  // Eliminar de la lista
+            if (confirmacion == 'y' || confirmacion == 'Y')
+            {
+                albums_archivo.erase(i); // Eliminar de la lista
                 cout << "Álbum eliminado con éxito.\n";
-            } else {
+            }
+            else
+            {
                 cout << "Eliminación cancelada.\n";
             }
             break;
         }
     }
 
-    if (!encontrado) {
+    if (!encontrado)
+    {
         cout << "No se encontró un álbum con el ID especificado.\n";
         return;
     }
 
     // Guardar la lista actualizada en el archivo
-    guardarEnArchivo(nombreArchivo, lista);
+    guardarEnArchivo(nombreArchivo);
 }
 
-void Album::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista) {
+void Album::actualizarDesdeArchivo(const string &nombreArchivo)
+{
     int idEditar;
     cout << "Ingrese el ID del álbum que desea editar: ";
     cin >> idEditar;
 
     bool encontrado = false;
-    for (size_t i = 1; i <= lista.size(); i++) {
-        if (lista[i].getId() == idEditar) {
+    for (size_t i = 1; i <= albums_archivo.size(); i++)
+    {
+        if (albums_archivo[i].getId() == idEditar)
+        {
             encontrado = true;
             cout << "Álbum encontrado. Datos actuales:\n";
-            cout << "1. ID: " << lista[i].getId() << "\n";
-            cout << "2. Título: " << lista[i].getTitulo() << "\n";
-            cout << "3. Nombre del artista: " << lista[i].getNombreArt() << "\n";
-            cout << "4. País de grabación: " << lista[i].getPaisGrab() << "\n";
-            cout << "5. Año de publicación: " << lista[i].getAnioPub() << "\n";
-            cout << "6. Cover Art: " << lista[i].getCoverArt() << "\n";
-            cout << "7. Fotografía: " << lista[i].getFotogra() << "\n";
-            cout << "8. Editora: " << lista[i].getEditora() << "\n";
-            cout << "9. Estudio de grabación: " << lista[i].getEstudioGrab() << "\n";
+            cout << "1. ID: " << albums_archivo[i].getId() << "\n";
+            cout << "2. Título: " << albums_archivo[i].getTitulo() << "\n";
+            cout << "3. Nombre del artista: " << albums_archivo[i].getNombreArt() << "\n";
+            cout << "4. País de grabación: " << albums_archivo[i].getPaisGrab() << "\n";
+            cout << "5. Año de publicación: " << albums_archivo[i].getAnioPub() << "\n";
+            cout << "6. Cover Art: " << albums_archivo[i].getCoverArt() << "\n";
+            cout << "7. Fotografía: " << albums_archivo[i].getFotogra() << "\n";
+            cout << "8. Editora: " << albums_archivo[i].getEditora() << "\n";
+            cout << "9. Estudio de grabación: " << albums_archivo[i].getEstudioGrab() << "\n";
 
             int opcion;
-            while (true) {
+            while (true)
+            {
                 cout << "Ingrese el número del atributo que desea modificar (0 para salir): ";
                 cin >> opcion;
                 cin.ignore(); // Limpiar buffer
 
-                if (opcion == 0) {
+                if (opcion == 0)
+                {
                     cout << "Saliendo del modo de edición...\n";
                     break;
                 }
 
                 string nuevoValor;
                 int nuevoId, nuevoAnio;
-                switch (opcion) {
-                    case 1:
-                        cout << "Nuevo ID: ";
-                        cin >> nuevoId;
-                        lista[i].setId(nuevoId);
-                        break;
-                    case 2:
-                        cout << "Nuevo título: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setTitulo(nuevoValor);
-                        break;
-                    case 3:
-                        cout << "Nuevo nombre del artista: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setNombreArt(nuevoValor);
-                        break;
-                    case 4:
-                        cout << "Nuevo país de grabación: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setPaisGrab(nuevoValor);
-                        break;
-                    case 5:
-                        cout << "Nuevo año de publicación: ";
-                        cin >> nuevoAnio;
-                        lista[i].setAnioPub(nuevoAnio);
-                        break;
-                    case 6:
-                        cout << "Nuevo cover art: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setCoverArt(nuevoValor);
-                        break;
-                    case 7:
-                        cout << "Nueva fotografía: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setFotogra(nuevoValor);
-                        break;
-                    case 8:
-                        cout << "Nueva editora: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setEditora(nuevoValor);
-                        break;
-                    case 9:
-                        cout << "Nuevo estudio de grabación: ";
-                        getline(cin, nuevoValor);
-                        lista[i].setEstudioGrab(nuevoValor);
-                        break;
-                    default:
-                        cout << "Opción no válida. Intente de nuevo.\n";
-                        continue;
+                switch (opcion)
+                {
+                case 1:
+                    cout << "Nuevo ID: ";
+                    cin >> nuevoId;
+                    albums_archivo[i].setId(nuevoId);
+                    break;
+                case 2:
+                    cout << "Nuevo título: ";
+                    getline(cin, nuevoValor);
+                    albums_archivo[i].setTitulo(nuevoValor);
+                    break;
+                case 3:
+                    cout << "Nuevo nombre del artista: ";
+                    getline(cin, nuevoValor);
+                    albums_archivo[i].setNombreArt(nuevoValor);
+                    break;
+                case 4:
+                    cout << "Nuevo país de grabación: ";
+                    getline(cin, nuevoValor);
+                    albums_archivo[i].setPaisGrab(nuevoValor);
+                    break;
+                case 5:
+                    cout << "Nuevo año de publicación: ";
+                    cin >> nuevoAnio;
+                    albums_archivo[i].setAnioPub(nuevoAnio);
+                    break;
+                case 6:
+                    cout << "Nuevo cover art: ";
+                    getline(cin, nuevoValor);
+                    albums_archivo[i].setCoverArt(nuevoValor);
+                    break;
+                case 7:
+                    cout << "Nueva fotografía: ";
+                    getline(cin, nuevoValor);
+                    albums_archivo[i].setFotogra(nuevoValor);
+                    break;
+                case 8:
+                    cout << "Nueva editora: ";
+                    getline(cin, nuevoValor);
+                    albums_archivo[i].setEditora(nuevoValor);
+                    break;
+                case 9:
+                    cout << "Nuevo estudio de grabación: ";
+                    getline(cin, nuevoValor);
+                    albums_archivo[i].setEstudioGrab(nuevoValor);
+                    break;
+                default:
+                    cout << "Opción no válida. Intente de nuevo.\n";
+                    continue;
                 }
                 cout << "Cambio realizado con éxito.\n";
             }
@@ -226,71 +250,77 @@ void Album::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>&
         }
     }
 
-    if (!encontrado) {
+    if (!encontrado)
+    {
         cout << "No se encontró un álbum con el ID especificado.\n";
         return;
     }
 
     // Guardar la lista actualizada en el archivo
-    guardarEnArchivo(nombreArchivo, lista);
+    guardarEnArchivo(nombreArchivo);
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
 
-Album Album::buscarAlbumConRelacionados(const string& nombreArchivoAlbum, 
-    const string& nombreArchivoLinks, 
-    const string& nombreArchivoCanciones, 
-    MiVector<Links>& listaLinks, 
-    MiVector<Cancion>& listaCanciones) 
+Album Album::buscarAlbumConRelacionados(const string &nombreArchivoAlbum,
+                                        const string &nombreArchivoLinks,
+                                        const string &nombreArchivoCanciones,
+                                        MiVector<Links> &listaLinks,
+                                        MiVector<Cancion> &listaCanciones)
 {
-int idBuscado;
-cout << "Ingrese el ID del álbum a buscar: ";
-cin >> idBuscado;
+    int idBuscado;
+    cout << "Ingrese el ID del álbum a buscar: ";
+    cin >> idBuscado;
 
-MiVector<Album> listaAlbumes;
-leerDesdeArchivo(nombreArchivoAlbum, listaAlbumes);
+    MiVector<Album> listaAlbumes;
+    leerDesdeArchivo(nombreArchivoAlbum);
 
-Album albumEncontrado;
-bool encontrado = false;
+    Album albumEncontrado;
+    bool encontrado = false;
 
-// Buscar el álbum por ID
-for (size_t i = 1; i <= listaAlbumes.size(); i++) {
-if (listaAlbumes[i].getId() == idBuscado) {
-albumEncontrado = listaAlbumes[i];
-encontrado = true;
-break;
+    // Buscar el álbum por ID
+    for (size_t i = 1; i <= listaAlbumes.size(); i++)
+    {
+        if (listaAlbumes[i].getId() == idBuscado)
+        {
+            albumEncontrado = listaAlbumes[i];
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado)
+    {
+        cout << "No se encontró un álbum con el ID especificado.\n";
+        return Album();
+    }
+
+    // Leer registros de Links
+    MiVector<Links> todosLosLinks;
+    Links::leerDesdeArchivo(nombreArchivoLinks);
+
+    // Filtrar los links relacionados con este álbum
+    listaLinks.clear();
+    for (size_t i = 1; i <= todosLosLinks.size(); i++)
+    {
+        if (todosLosLinks[i].getIdAlbum() == idBuscado)
+        {
+            listaLinks.push_back(todosLosLinks[i]);
+        }
+    }
+
+    // Leer registros de Canciones
+    MiVector<Cancion> todasLasCanciones;
+    Cancion::leerDesdeArchivo(nombreArchivoCanciones);
+
+    // Filtrar las canciones relacionadas con este álbum
+    listaCanciones.clear();
+    for (size_t i = 1; i <= todasLasCanciones.size(); i++)
+    {
+        if (todasLasCanciones[i].getIdAlbum() == idBuscado)
+        {
+            listaCanciones.push_back(todasLasCanciones[i]);
+        }
+    }
+
+    return albumEncontrado;
 }
-}
-
-if (!encontrado) {
-cout << "No se encontró un álbum con el ID especificado.\n";
-return Album();
-}
-
-// Leer registros de Links
-MiVector<Links> todosLosLinks;
-Links::leerDesdeArchivo(nombreArchivoLinks, todosLosLinks);
-
-// Filtrar los links relacionados con este álbum
-listaLinks.clear();
-for (size_t i = 1; i <= todosLosLinks.size(); i++) {
-if (todosLosLinks[i].getIdAlbum() == idBuscado) {
-listaLinks.push_back(todosLosLinks[i]);
-}
-}
-
-// Leer registros de Canciones
-MiVector<Cancion> todasLasCanciones;
-Cancion::leerDesdeArchivo(nombreArchivoCanciones, todasLasCanciones);
-
-// Filtrar las canciones relacionadas con este álbum
-listaCanciones.clear();
-for (size_t i = 1; i <= todasLasCanciones.size(); i++) {
-if (todasLasCanciones[i].getIdAlbum() == idBuscado) {
-listaCanciones.push_back(todasLasCanciones[i]);
-}
-}
-
-return albumEncontrado;
-}
-
-

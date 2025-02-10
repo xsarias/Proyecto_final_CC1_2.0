@@ -23,6 +23,7 @@ struct nodo_links{
     int sig_nomPlata, sig_linkAlb, sig_linkCan;
 };
 struct nodo_artistas{
+    int id;
     int id_cancion;
     int id_version;
     string nom_real;

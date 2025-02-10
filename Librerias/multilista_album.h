@@ -192,6 +192,7 @@ int Multilista_album::retornar_pos(int x, std::string parametro){
     if (parametro == "sig_editora") return lista_datos[x].sig_editora;
     if (parametro == "sig_anioPublic") return lista_datos[x].sig_anioPublic;
     if (parametro == "pos_cabeza") return lista_cabeceras[x].pos_cabeza;
+    if (parametro == "sig_estudioGrab") return lista_datos[x].sig_estudioGrab;
     return -1;
 }
 

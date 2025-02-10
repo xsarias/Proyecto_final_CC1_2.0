@@ -2,34 +2,34 @@
 #include <fstream>
 #include "Librerias/Links.h"
 #include "Librerias/MiVector.h"
-
+MiVector<Links>links_archivo;
 nodo_links Links::insertar_link(Links links) {
-
+    links_archivo.push_back(links);
     nodo_links nuevo_link;
     nuevo_link.id = links.id;
+    nuevo_link.id_cancion = links.idCancion;
+    nuevo_link.id_album = links.idAlbum;
+    nuevo_link.nom_plat = links.nomPlat;
     nuevo_link.link_album = links.linkAlbum;
     nuevo_link.link_cancion = links.linkCancion;
-    nuevo_link.nom_plat = links.nomPlat;
     //cout << "link insertado" <<endl;
     return nuevo_link;
 }
 
 // Método para guardar la lista de Links en un archivo
-void Links::guardarEnArchivo(const string& nombreArchivo, const MiVector<Links>& lista) {
+void Links::guardarEnArchivo(const string& nombreArchivo) {
     ofstream archivo(nombreArchivo);
     if (!archivo) {
         cerr << "Error al abrir el archivo para escritura." << endl;
         return;
     }
-
-    for (size_t i = 1; i <= lista.size(); i++) {  // Desde 1 por la estructura de MiVector
-        archivo << lista[i].getId() << ","
-                << lista[i].getIdAlbum() << ","
-                << lista[i].getIdVersion() << ","
-                << lista[i].getIdCancion() << ","  
-                << lista[i].getNomPlat() << ","
-                << lista[i].getLinkAlbum() << ","
-                << lista[i].getLinkCancion() << endl;
+    for (int i = 1; i <= links_archivo.size(); i++) {
+        archivo << links_archivo[i].getId() << ","
+                << links_archivo[i].getIdCancion() << "," 
+                << links_archivo[i].getIdAlbum() << ","
+                << links_archivo[i].getNomPlat() << ","
+                << links_archivo[i].getLinkAlbum() << ","
+                << links_archivo[i].getLinkCancion() << endl;
     }
 
     archivo.close();
@@ -37,14 +37,14 @@ void Links::guardarEnArchivo(const string& nombreArchivo, const MiVector<Links>&
 
 
 // Método para leer la lista de Links desde un archivo
-void Links::leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista) {
+void Links::leerDesdeArchivo(const string& nombreArchivo) {
     ifstream archivo(nombreArchivo);
     if (!archivo) {
         cerr << "Error al abrir el archivo para lectura." << endl;
         return;
     }
 
-    lista.clear();  // Limpiar la lista antes de cargar datos nuevos
+    links_archivo.clear();  // Limpiar la lista antes de cargar datos nuevos
 
     int id, idAlbum, idVersion, idCancion;
     string nomPlat, linkAlbum, linkCancion;
@@ -60,37 +60,37 @@ void Links::leerDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista
         getline(archivo, linkAlbum, ',');
         getline(archivo, linkCancion);
 
-        lista.push_back(Links(id, idAlbum, idVersion, idCancion, nomPlat, linkAlbum, linkCancion));
+        links_archivo.push_back(Links(id, idAlbum, idVersion, idCancion, nomPlat, linkAlbum, linkCancion));
     }
 
     archivo.close();
 }
 
 
-void Links::eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& lista) {
+void Links::eliminarDeArchivo(const string& nombreArchivo) {
     int idEliminar;
     cout << "Ingrese el ID del link que desea eliminar: ";
     cin >> idEliminar;
 
     bool encontrado = false;
-    for (size_t i = 1; i <= lista.size(); i++) {
-        if (lista[i].getId() == idEliminar) {
+    for (size_t i = 1; i <= links_archivo.size(); i++) {
+        if (links_archivo[i].getId() == idEliminar) {
             encontrado = true;
             cout << "Está seguro de eliminar el siguiente link? (y/n)\n";
-            cout << "ID: " << lista[i].getId() << "\n"
-                 << "ID Álbum: " << lista[i].getIdAlbum() << "\n"
-                 << "ID Versión: " << lista[i].getIdVersion() << "\n"
-                 << "ID Canción: " << lista[i].getIdCancion() << "\n"  // 🔹 Nuevo campo
-                 << "Plataforma: " << lista[i].getNomPlat() << "\n"
-                 << "Link Álbum: " << lista[i].getLinkAlbum() << "\n"
-                 << "Link Canción: " << lista[i].getLinkCancion() << "\n";
+            cout << "ID: " << links_archivo[i].getId() << "\n"
+                 << "ID Álbum: " << links_archivo[i].getIdAlbum() << "\n"
+                 << "ID Versión: " << links_archivo[i].getIdVersion() << "\n"
+                 << "ID Canción: " << links_archivo[i].getIdCancion() << "\n"  // 🔹 Nuevo campo
+                 << "Plataforma: " << links_archivo[i].getNomPlat() << "\n"
+                 << "Link Álbum: " << links_archivo[i].getLinkAlbum() << "\n"
+                 << "Link Canción: " << links_archivo[i].getLinkCancion() << "\n";
 
             char confirmacion;
             cout << "Confirmar eliminación (y/n): ";
             cin >> confirmacion;
 
             if (confirmacion == 'y' || confirmacion == 'Y') {
-                lista.erase(i);  // Eliminar de la lista
+                links_archivo.erase(i);  // Eliminar de la lista
                 cout << "Link eliminado con éxito.\n";
             } else {
                 cout << "Eliminación cancelada.\n";
@@ -105,26 +105,26 @@ void Links::eliminarDeArchivo(const string& nombreArchivo, MiVector<Links>& list
     }
 
     // Guardar la lista actualizada en el archivo
-    guardarEnArchivo(nombreArchivo, lista);
+    guardarEnArchivo(nombreArchivo);
 }
 
-void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>& lista) {
+void Links::actualizarDesdeArchivo(const string& nombreArchivo) {
     int idEditar;
     cout << "Ingrese el ID del link que desea editar: ";
     cin >> idEditar;
 
     bool encontrado = false;
-    for (size_t i = 1; i <= lista.size(); i++) {
-        if (lista[i].getId() == idEditar) {
+    for (size_t i = 1; i <= links_archivo.size(); i++) {
+        if (links_archivo[i].getId() == idEditar) {
             encontrado = true;
             cout << "Link encontrado. Datos actuales:\n";
-            cout << "1. ID: " << lista[i].getId() << "\n";
-            cout << "2. ID Canción: " << lista[i].getIdCancion() << "\n";
-            cout << "3. ID Álbum: " << lista[i].getIdAlbum() << "\n";
-            cout << "4. ID Versión: " << lista[i].getIdVersion() << "\n";
-            cout << "5. Plataforma: " << lista[i].getNomPlat() << "\n";
-            cout << "6. Link Álbum: " << lista[i].getLinkAlbum() << "\n";
-            cout << "7. Link Canción: " << lista[i].getLinkCancion() << "\n";
+            cout << "1. ID: " << links_archivo[i].getId() << "\n";
+            cout << "2. ID Canción: " << links_archivo[i].getIdCancion() << "\n";
+            cout << "3. ID Álbum: " << links_archivo[i].getIdAlbum() << "\n";
+            cout << "4. ID Versión: " << links_archivo[i].getIdVersion() << "\n";
+            cout << "5. Plataforma: " << links_archivo[i].getNomPlat() << "\n";
+            cout << "6. Link Álbum: " << links_archivo[i].getLinkAlbum() << "\n";
+            cout << "7. Link Canción: " << links_archivo[i].getLinkCancion() << "\n";
 
             int opcion;
             while (true) {
@@ -142,49 +142,49 @@ void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>&
                         int nuevoId;
                         cout << "Nuevo ID: ";
                         cin >> nuevoId;
-                        lista[i].setId(nuevoId);
+                        links_archivo[i].setId(nuevoId);
                         break;
                     }
                     case 2: {
                         int nuevoIdCancion;
                         cout << "Nuevo ID de la canción: ";
                         cin >> nuevoIdCancion;
-                        lista[i].setIdCancion(nuevoIdCancion);
+                        links_archivo[i].setIdCancion(nuevoIdCancion);
                         break;
                     }
                     case 3: {
                         int nuevoIdAlbum;
                         cout << "Nuevo ID del álbum: ";
                         cin >> nuevoIdAlbum;
-                        lista[i].setIdAlbum(nuevoIdAlbum);
+                        links_archivo[i].setIdAlbum(nuevoIdAlbum);
                         break;
                     }
                     case 4: {
                         int nuevoIdVersion;
                         cout << "Nuevo ID de la versión: ";
                         cin >> nuevoIdVersion;
-                        lista[i].setIdVersion(nuevoIdVersion);
+                        links_archivo[i].setIdVersion(nuevoIdVersion);
                         break;
                     }
                     case 5: {
                         string nuevaPlataforma;
                         cout << "Nuevo nombre de la plataforma: ";
                         getline(cin, nuevaPlataforma);
-                        lista[i].setNomPlat(nuevaPlataforma);
+                        links_archivo[i].setNomPlat(nuevaPlataforma);
                         break;
                     }
                     case 6: {
                         string nuevoLinkAlbum;
                         cout << "Nuevo link del álbum: ";
                         getline(cin, nuevoLinkAlbum);
-                        lista[i].setLinkAlbum(nuevoLinkAlbum);
+                        links_archivo[i].setLinkAlbum(nuevoLinkAlbum);
                         break;
                     }
                     case 7: {
                         string nuevoLinkCancion;
                         cout << "Nuevo link de la canción: ";
                         getline(cin, nuevoLinkCancion);
-                        lista[i].setLinkCancion(nuevoLinkCancion);
+                        links_archivo[i].setLinkCancion(nuevoLinkCancion);
                         break;
                     }
                     default:
@@ -203,7 +203,7 @@ void Links::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Links>&
     }
 
     // Guardar la lista actualizada en el archivo
-    guardarEnArchivo(nombreArchivo, lista);
+    guardarEnArchivo(nombreArchivo);
 }
 
 Links Links::buscarLinkPorId(const string& nombreArchivoLinks) {
@@ -212,7 +212,7 @@ Links Links::buscarLinkPorId(const string& nombreArchivoLinks) {
     cin >> idBuscado;
 
     MiVector<Links> listaLinks;
-    leerDesdeArchivo(nombreArchivoLinks, listaLinks);
+    leerDesdeArchivo(nombreArchivoLinks);
 
     // Buscar el link por ID
     for (size_t i = 1; i <= listaLinks.size(); i++) {

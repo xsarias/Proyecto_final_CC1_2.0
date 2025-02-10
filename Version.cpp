@@ -3,7 +3,7 @@
 #include <fstream>
 #include "Librerias/Artista.h"
 using namespace std;
-
+MiVector<Version> versiones_archivo;
 void Version::insertar_cabeceras() {
     multi_version.insertar(titulo_ver);
     multi_version.insertar(tipoVers);
@@ -16,6 +16,7 @@ void Version::insertar_cabeceras() {
 
 nodo_versiones Version::insertar_version(Version version, MiVector<Artista> artistas_version, MiVector<Links> links_version) {
     nodo_versiones version_nueva;
+    versiones_archivo.push_back(version);
     version_nueva.id = version.idVersion;
     version_nueva.id_cancion = version.idCancion;
     version_nueva.titulos = version.tituloVer;
@@ -37,45 +38,45 @@ nodo_versiones Version::insertar_version(Version version, MiVector<Artista> arti
 }
 
 // Guardar lista de versiones en archivo
-void Version::guardarEnArchivo(const string& nombreArchivo, const MiVector<Version>& lista) {
+void Version::guardarEnArchivo(const string& nombreArchivo) {
     ofstream archivo(nombreArchivo);
     if (!archivo) {
         cerr << "Error al abrir el archivo para escritura." << endl;
         return;
     }
 
-    for (size_t i = 1; i <= lista.size(); i++) {
-        archivo << lista[i].getIdVersion() << ","
-                << lista[i].getIdCancion() << ","   
-                << lista[i].getTituloVer() << ","
-                << lista[i].getTipVersion() << ","
-                << lista[i].getAnio() << ","
-                << lista[i].getCiudadGrab() << ","
-                << lista[i].getPaisGra() << ","
-                << lista[i].getArtistaPrincipal() << ","
-                << lista[i].getGenero()  << endl;
+    for (size_t i = 1; i <= versiones_archivo.size(); i++) {
+        archivo << versiones_archivo[i].getIdVersion() << ","
+                << versiones_archivo[i].getIdCancion() << ","   
+                << versiones_archivo[i].getTituloVer() << ","
+                << versiones_archivo[i].getTipVersion() << ","
+                << versiones_archivo[i].getAnio() << ","
+                << versiones_archivo[i].getCiudadGrab() << ","
+                << versiones_archivo[i].getPaisGra() << ","
+                << versiones_archivo[i].getArtistaPrincipal() << ","
+                << versiones_archivo[i].getGenero()  << endl;
     }
 
     archivo.close();
 }
 
+
 // Leer lista de versiones desde archivo
-void Version::leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista) {
+void Version::leerDesdeArchivo(const string& nombreArchivo) {
     ifstream archivo(nombreArchivo);
     if (!archivo) {
         cerr << "Error al abrir el archivo para lectura." << endl;
         return;
     }
 
-    lista.clear();
+    versiones_archivo.clear();
 
-    int id, idCancion, idAlbum, anio;
+    int id, idCancion, anio;
     string tituloVer, tipVersion, ArtistaPrin, ciudadGrab, paisGra, genero, arrMusic;
 
     while (archivo >> id) {
         archivo.ignore();
-        archivo >> idCancion; archivo.ignore(); // Leer idCancion
-        archivo >> idAlbum; archivo.ignore();   // Leer idAlbum
+        archivo >> idCancion; archivo.ignore();
         getline(archivo, tituloVer, ',');
         getline(archivo, tipVersion, ',');
         archivo >> anio;
@@ -84,39 +85,40 @@ void Version::leerDesdeArchivo(const string& nombreArchivo, MiVector<Version>& l
         getline(archivo, paisGra, ',');
         getline(archivo, genero, ',');
 
-        lista.push_back(Version(id, idCancion, tituloVer, tipVersion, ArtistaPrin, anio, ciudadGrab, paisGra, genero));
+        versiones_archivo.push_back(Version(id, idCancion, tituloVer, tipVersion, ArtistaPrin, anio, ciudadGrab, paisGra, genero));
     }
 
     archivo.close();
 }
 
+
 // Método para eliminar una versión del archivo
-void Version::eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& lista) {
+void Version::eliminarDeArchivo(const string& nombreArchivo) {
     int idEliminar;
     cout << "Ingrese el ID de la versión que desea eliminar: ";
     cin >> idEliminar;
 
     bool encontrado = false;
-    for (size_t i = 1; i <= lista.size(); i++) {
-        if (lista[i].getIdVersion() == idEliminar) {
+    for (size_t i = 1; i <= versiones_archivo.size(); i++) {
+        if (versiones_archivo[i].getIdVersion() == idEliminar) {
             encontrado = true;
             cout << "Está seguro de eliminar la siguiente versión? (y/n)\n";
-            cout << "ID: " << lista[i].getIdVersion() << "\n"
-                 << "Título: " << lista[i].getTituloVer() << "\n"
-                 << "Tipo: " << lista[i].getTipVersion() << "\n"
-                 << "Año: " << lista[i].getAnio() << "\n"
-                 << "Ciudad Grabación: " << lista[i].getCiudadGrab() << "\n"
-                 << "País Grabación: " << lista[i].getPaisGra() << "\n"
-                 << "Género: " << lista[i].getGenero() << "\n"
-                 << "Arreglo Musical: " << lista[i].getArtistaPrincipal() 
-                 << "ID Cancion: " << lista[i].getIdVersion() << "\n";
+            cout << "ID: " << versiones_archivo[i].getIdVersion() << "\n"
+                 << "Título: " << versiones_archivo[i].getTituloVer() << "\n"
+                 << "Tipo: " << versiones_archivo[i].getTipVersion() << "\n"
+                 << "Año: " << versiones_archivo[i].getAnio() << "\n"
+                 << "Ciudad Grabación: " << versiones_archivo[i].getCiudadGrab() << "\n"
+                 << "País Grabación: " << versiones_archivo[i].getPaisGra() << "\n"
+                 << "Género: " << versiones_archivo[i].getGenero() << "\n"
+                 << "Arreglo Musical: " << versiones_archivo[i].getArtistaPrincipal() 
+                 << "ID Cancion: " << versiones_archivo[i].getIdVersion() << "\n";
 
             char confirmacion;
             cout << "Confirmar eliminación (y/n): ";
             cin >> confirmacion;
 
             if (confirmacion == 'y' || confirmacion == 'Y') {
-                lista.erase(i);  // Eliminar de la lista
+                versiones_archivo.erase(i);  // Eliminar de la lista
                 cout << "Versión eliminada con éxito.\n";
             } else {
                 cout << "Eliminación cancelada.\n";
@@ -131,28 +133,28 @@ void Version::eliminarDeArchivo(const string& nombreArchivo, MiVector<Version>& 
     }
 
     // Guardar la lista actualizada en el archivo
-    guardarEnArchivo(nombreArchivo, lista);
+    guardarEnArchivo(nombreArchivo);
 }
 
-void Version::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Version>& lista) {
+void Version::actualizarDesdeArchivo(const string& nombreArchivo) {
     int idEditar;
     cout << "Ingrese el ID de la versión que desea editar: ";
     cin >> idEditar;
 
     bool encontrado = false;
-    for (size_t i = 1; i <= lista.size(); i++) {
-        if (lista[i].getIdVersion() == idEditar) {
+    for (size_t i = 1; i <= versiones_archivo.size(); i++) {
+        if (versiones_archivo[i].getIdVersion() == idEditar) {
             encontrado = true;
             cout << "Versión encontrada. Datos actuales:\n";
-            cout << "1. ID de la versión: " << lista[i].getIdVersion() << "\n";
-            cout << "2. ID de la canción: " << lista[i].getIdCancion() << "\n";
-            cout << "3. Título: " << lista[i].getTituloVer() << "\n";
-            cout << "4. Tipo de Versión: " << lista[i].getTipVersion() << "\n";
-            cout << "5. Año: " << lista[i].getAnio() << "\n";
-            cout << "6. Ciudad de Grabación: " << lista[i].getCiudadGrab() << "\n";
-            cout << "7. País de Grabación: " << lista[i].getPaisGra() << "\n";
-            cout << "8. Género: " << lista[i].getGenero() << "\n";
-            cout << "9. Artista Principal: " << lista[i].getArtistaPrincipal() << "\n";
+            cout << "1. ID de la versión: " << versiones_archivo[i].getIdVersion() << "\n";
+            cout << "2. ID de la canción: " << versiones_archivo[i].getIdCancion() << "\n";
+            cout << "3. Título: " << versiones_archivo[i].getTituloVer() << "\n";
+            cout << "4. Tipo de Versión: " << versiones_archivo[i].getTipVersion() << "\n";
+            cout << "5. Año: " << versiones_archivo[i].getAnio() << "\n";
+            cout << "6. Ciudad de Grabación: " << versiones_archivo[i].getCiudadGrab() << "\n";
+            cout << "7. País de Grabación: " << versiones_archivo[i].getPaisGra() << "\n";
+            cout << "8. Género: " << versiones_archivo[i].getGenero() << "\n";
+            cout << "9. Artista Principal: " << versiones_archivo[i].getArtistaPrincipal() << "\n";
 
             int opcion;
             while (true) {
@@ -171,48 +173,48 @@ void Version::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Versi
                     case 1:
                         cout << "Nuevo ID de la versión: ";
                         cin >> nuevoId;
-                        lista[i].setIdVersion(nuevoId);
+                        versiones_archivo[i].setIdVersion(nuevoId);
                         break;
                     case 2:
                         cout << "Nuevo ID de la canción: ";
                         cin >> nuevoId;
-                        lista[i].setIdCancion(nuevoId);
+                        versiones_archivo[i].setIdCancion(nuevoId);
                         break;
                     case 3:
                         cout << "Nuevo título: ";
                         getline(cin, nuevoValor);
-                        lista[i].setTituloVer(nuevoValor);
+                        versiones_archivo[i].setTituloVer(nuevoValor);
                         break;
                     case 4:
                         cout << "Nuevo tipo de versión: ";
                         getline(cin, nuevoValor);
-                        lista[i].setTipVersion(nuevoValor);
+                        versiones_archivo[i].setTipVersion(nuevoValor);
                         break;
                     case 5:
                         cout << "Nuevo año de publicación: ";
                         cin >> nuevoAnio;
-                        lista[i].setAnio(nuevoAnio);
+                        versiones_archivo[i].setAnio(nuevoAnio);
                         cin.ignore(); // Limpiar buffer
                         break;
                     case 6:
                         cout << "Nueva ciudad de grabación: ";
                         getline(cin, nuevoValor);
-                        lista[i].setCiudadGrab(nuevoValor);
+                        versiones_archivo[i].setCiudadGrab(nuevoValor);
                         break;
                     case 7:
                         cout << "Nuevo país de grabación: ";
                         getline(cin, nuevoValor);
-                        lista[i].setPaisGra(nuevoValor);
+                        versiones_archivo[i].setPaisGra(nuevoValor);
                         break;
                     case 8:
                         cout << "Nuevo género: ";
                         getline(cin, nuevoValor);
-                        lista[i].setGenero(nuevoValor);
+                        versiones_archivo[i].setGenero(nuevoValor);
                         break;
                     case 9:
                         cout << "Nuevo artista principal: ";
                         getline(cin, nuevoValor);
-                        lista[i].setArtistaPrincipal(nuevoValor);
+                        versiones_archivo[i].setArtistaPrincipal(nuevoValor);
                         break;
                     default:
                         cout << "Opción no válida. Intente de nuevo.\n";
@@ -230,7 +232,7 @@ void Version::actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Versi
     }
 
     // Guardar la lista actualizada en el archivo
-    guardarEnArchivo(nombreArchivo, lista);
+    guardarEnArchivo(nombreArchivo);
     cout << "Los cambios han sido guardados correctamente en el archivo.\n";
 }
 
@@ -245,7 +247,7 @@ Version Version::buscarVersionConRelacionados(const string& nombreArchivoVersion
     cin >> idBuscado;  
 
     MiVector<Version> listaVersiones;  
-    leerDesdeArchivo(nombreArchivoVersion, listaVersiones);  
+    leerDesdeArchivo(nombreArchivoVersion);  
 
     Version versionEncontrada;  
     bool encontrado = false;  
@@ -266,7 +268,7 @@ Version Version::buscarVersionConRelacionados(const string& nombreArchivoVersion
 
     // Leer registros de Links  
     MiVector<Links> todosLosLinks;  
-    Links::leerDesdeArchivo(nombreArchivoLinks, todosLosLinks);  
+    Links::leerDesdeArchivo(nombreArchivoLinks);  
 
     // Filtrar los links relacionados con esta versión  
     listaLinks.clear();  
@@ -278,7 +280,7 @@ Version Version::buscarVersionConRelacionados(const string& nombreArchivoVersion
 
     // Leer registros de Artistas  
     MiVector<Artista> todosLosArtistas;  
-    Artista::leerDesdeArchivo(nombreArchivoArtistas, todosLosArtistas);  
+    Artista::leerDesdeArchivo(nombreArchivoArtistas);  
 
     // Filtrar los artistas relacionados con esta versión  
     listaArtistas.clear();  

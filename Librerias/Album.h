@@ -71,15 +71,15 @@ public:
     void consultar_por_atributo(string atributo, int cabecera, string contex);
 
     // Métodos de archivos
-    static void guardarEnArchivo(const string& nombreArchivo, const MiVector<Album>& lista);
-    static void leerDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
-    static void eliminarDeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
-    static void actualizarDesdeArchivo(const string& nombreArchivo, MiVector<Album>& lista);
+    static void guardarEnArchivo(const string& nombreArchivo);
+    static void leerDesdeArchivo(const string& nombreArchivo);
+    static void eliminarDeArchivo(const string& nombreArchivo);
+    static void actualizarDesdeArchivo(const string& nombreArchivo);
     static Album buscarAlbumConRelacionados(const string& nombreArchivoAlbum,  
       const string& nombreArchivoLinks, 
-      const string& nombreArchivoCanciones, 
-      MiVector<Links>& listaLinks, 
-      MiVector<Cancion>& listaCanciones);
+      const string& nombreArchivoCanciones,
+      MiVector<Links> &listaLinks,
+      MiVector<Cancion> &listaCanciones);
 
    
 };

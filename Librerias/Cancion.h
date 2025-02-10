@@ -97,7 +97,8 @@ public:
         const string& nombreArchivoArtistas, 
         MiVector<Links>& listaLinks, 
         MiVector<Artista>& listaArtistas);
-  
+     // Método para contar el número de versiones de una canción
+    static int contarVersiones(const string& nombreArchivoLinks); 
     
 };
 

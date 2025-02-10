@@ -372,3 +372,39 @@ Cancion Cancion::buscarCancionConRelacionados(const string& nombreArchivoCancion
 
     return cancionEncontrada;  
 }
+
+
+int Cancion::contarVersiones(const string& titulo) {
+    MiVector<Cancion> listaCanciones;
+    leerDesdeArchivo("canciones.txt", listaCanciones); // Asegúrate de usar el nombre correcto del archivo
+
+    int idBuscado = -1;
+
+    // Buscar la canción por título para obtener su ID
+    for (size_t i = 1; i <= listaCanciones.size(); i++) {
+        if (listaCanciones[i].getNombreCancion() == titulo) {
+            idBuscado = listaCanciones[i].getId();
+            break;
+        }
+    }
+
+    if (idBuscado == -1) {
+        cout << "No se encontró la canción con título: " << titulo << endl;
+        return 0;
+    }
+
+    // Leer registros de Links
+    MiVector<Links> todosLosLinks;
+    Links::leerDesdeArchivo("links.txt", todosLosLinks); // Ajusta el nombre del archivo si es diferente
+
+    // Contar los links relacionados con esta canción (que representan versiones)
+    int contadorVersiones = 0;
+    for (size_t i = 1; i <= todosLosLinks.size(); i++) {
+        if (todosLosLinks[i].getIdCancion() == idBuscado) {
+            contadorVersiones++;
+        }
+    }
+
+    return contadorVersiones;
+}
+

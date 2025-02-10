@@ -257,4 +257,7 @@ bool Multilista_cancion::lista_llena() {
     return false; // Con punteros, no hay límite fijo de tamaño
 }
 
+
+
+
 #endif

@@ -152,7 +152,14 @@ void insertar_prueba(){
     listaArtistas.push_back(Artista(20, 10, 0, "Maria Magdalena", "Magdalena", "México", "bajo"));
     listaCancionesAlbum.push_back(cancioncita.insertar_cancion(listaCanciones[10], listalinkscancion, listaArtistas, listaVersiones));
     // Insertamos el álbum con todas las canciones
-    album.insertar_album(Album(1, "Primera Cita", "CNCO", "US", 2016, "Edward Frank", "Luisa Restrepo", "Sony Music Latin", "5020 studio miami"), listaCancionesAlbum, listalinksalbum);
+    album.insertar_album(Album(1, "Primera Cita", "CNCO", "US", 2016, "Edward Frank", "Luisa Restrepo", "barney", "5020 studio miami"), listaCancionesAlbum, listalinksalbum);
+    cout << "inserte el primer"<<endl;
+    album.insertar_album(Album(2, "Primera Cita", "CNCO", "US", 2026, "Edward Frank", "Luisa Restrepo", "Sony Music Latin", "5020 studio miami"), listaCancionesAlbum, listalinksalbum);
+    cout << "inserte el segundo"<<endl;
+    album.insertar_album(Album(3, "Primera Cita", "CNCO", "US", 2001, "Edward Frank", "Luisa Restrepo", "Sony Music Latin", "5020 studio miami"), listaCancionesAlbum, listalinksalbum);
+    cout << "inserte el tercero"<<endl;
+    album.insertar_album(Album(4, "Primera Cita", "CNCO", "US", 2006, "Edward Frank", "Luisa Restrepo", "barney", "5020 studio miami"), listaCancionesAlbum, listalinksalbum);
+    album.consultar_por_atributo("editora", 7, "Sony Music Latin", "anio_pub");
     listaCancionesAlbum.clear();
     listalinksalbum.clear();
     listaArtistas.clear();
@@ -202,7 +209,6 @@ void menu_consultas(){
 int main() {
     insertar_prueba();
     int opcion;
-    insertar_prueba();
     do {
         mostrarMenu();
         cin >> opcion;

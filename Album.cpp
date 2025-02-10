@@ -25,7 +25,7 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album
     album_nuevo.fotografia = album.fotogra;
     album_nuevo.editora = album.editora;
     album_nuevo.estudio_grab = album.estudio_grab;
-    album_nuevo.anio_pub = album.anio_pub;
+    album_nuevo.anio_pub = to_string(album.anio_pub);
     for(int i=1; i<= canciones_album.size(); i++){
         album_nuevo.lista_caciones.push_back(canciones_album[i]);
     }
@@ -36,8 +36,11 @@ void Album ::insertar_album(Album album, MiVector<nodo_canciones>canciones_album
     multi_album.insertar(album_nuevo);
     cout << "Álbum insertado" << endl;
 }
-void Album:: consultar_por_atributo(string atributo, int cabecera, string contex){
-    multi_album.consulta_por_atributo(atributo, cabecera, contex);
+void Album:: consultar_por_atributo(string atributo, int cabecera, string contex, string clav_orden){
+    MiVector<nodo_album> lista_porAnio;
+    lista_porAnio = multi_album.consulta_por_atributo(atributo, cabecera, contex, clav_orden);
+    cout << lista_porAnio[1].anio_pub << endl;
+    cout << lista_porAnio[2].anio_pub << endl;
 }
 
 // Guardar lista de álbumes en archivo

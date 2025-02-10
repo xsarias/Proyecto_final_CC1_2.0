@@ -3,6 +3,8 @@
 
 #include "estructuras.h"
 #include "MiVector.h"
+#include "busqueda_binaria.h"
+#include "ordenador_vectores.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -30,7 +32,10 @@ public:
     void por_pais(int pos, string dato);
     void por_ciudad(int pos, string dato);
     void por_duracion(int pos, string dato);
+    MiVector<nodo_canciones> consulta_por_atributo(string atributo, int cabecera, string contex, string clav_orden);
+    MiVector<nodo_busqueda> obtener_vectorOrdenado(string atributo, int cabecera);
     bool lista_llena();
+
 };
 
 // Implementaciones
@@ -256,5 +261,63 @@ bool Multilista_cancion::Multilista_vacia() {
 bool Multilista_cancion::lista_llena() {
     return false; // Con punteros, no hay límite fijo de tamaño
 }
+MiVector<nodo_canciones> Multilista_cancion :: consulta_por_atributo(std::string atributo, int cabecera, std::string contex, string clav_orden){
 
+    Busqueda_binaria consultados(obtener_vectorOrdenado(atributo, cabecera), contex);
+    MiVector<int> lista_consultada = consultados.busquedaBinaria();
+    MiVector<nodo_canciones> list_porAtributo;
+    //Crear un vector con los nevos nodos.
+    if (lista_consultada.size() == 0) {
+        return list_porAtributo;  // Retorna una lista vacía si no hay coincidencias
+    }
+
+    for (int i = 1; i <= lista_consultada.size(); i++) {
+        if (lista_consultada[i] >= 1 && lista_consultada[i] <= lista_datos.size()) {
+            list_porAtributo.push_back(lista_datos[lista_consultada[i]]);
+        }
+    }
+    if (clav_orden == "anio_pub") {
+        list_porAtributo = ordenarVector(list_porAtributo, &nodo_canciones::anioPublicacion);
+    } else if (clav_orden == "ciudadGrabacion") {
+        list_porAtributo = ordenarVector(list_porAtributo, &nodo_canciones::ciudadGrabacion);
+    }
+    return list_porAtributo;
+}
+MiVector<nodo_busqueda> Multilista_cancion :: obtener_vectorOrdenado(string atributo, int cabecera ){
+    MiVector<nodo_busqueda> lista_busqueda;
+    int cab = retornar_pos(cabecera, "pos_cabeza");
+    int actual = cab;
+    while (actual != 0) { // 0 indica el final de la lista
+        nodo_busqueda elemento_busqueda;
+        elemento_busqueda.indice = actual; // Guarda la posición en lista_datos
+        elemento_busqueda.clave = retornar_dato(actual, atributo); // Obtiene el valor del atributo
+        cout<<elemento_busqueda.clave<<endl;
+        lista_busqueda.push_back(elemento_busqueda);
+
+        // Avanzar al siguiente elemento en la lista ordenada
+        if (atributo == "nom_cancion") {
+            actual = lista_datos[actual].sig_nom_cancion;
+        } else if (atributo == "nom_artistico") {
+            actual = lista_datos[actual].sig_nombre_artistico;
+        } else if (atributo == "duracion") {
+            actual = lista_datos[actual].sig_duracion;
+        } else if (atributo == "composLetra") {
+            actual = lista_datos[actual].sig_comp_let;
+        } else if (atributo == "composMusica") {
+            actual = lista_datos[actual].sig_comp_music;
+        } else if (atributo == "ciudadGrabacion") {
+            actual = lista_datos[actual].sig_ciudad;
+        } else if (atributo == "paisGrabacion") {
+            actual = lista_datos[actual].sig_pais;
+        } else if (atributo == "genero"){
+            actual = lista_datos[actual].sig_genero;
+        } else if (atributo == "anioPublicacion"){
+            actual = lista_datos[actual].sig_anio_pub;
+        }else{
+            cout << "Atributo no válido: " << atributo << endl;
+        }
+
+    }
+    return lista_busqueda;
+}
 #endif
